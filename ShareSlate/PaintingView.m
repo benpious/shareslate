@@ -360,6 +360,9 @@
 	}
 		
 	// Render the stroke
+    NSString* coords = [[NSString alloc] initWithFormat:@"%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
+    [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
+
 	[self renderLineFromPoint:previousLocation toPoint:location];
 }
 

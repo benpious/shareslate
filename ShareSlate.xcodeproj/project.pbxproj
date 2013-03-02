@@ -31,6 +31,7 @@
 		3B1D641216DF17DC0008D9EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D641116DF17DC0008D9EC /* QuartzCore.framework */; };
 		3B1D641416DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B1D641516DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
+		3B5B491416E279B80069062A /* shareSlateServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B491316E279B80069062A /* shareSlateServer.py */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		3B1D640F16DF17590008D9EC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3B1D641116DF17DC0008D9EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B1D641316DF19210008D9EC /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
+		3B5B491316E279B80069062A /* shareSlateServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = shareSlateServer.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				3B03713E16E1D827001E1364 /* SSConnectionViewController.m */,
 				3B03713A16E1A140001E1364 /* SSNetworkingEngine.h */,
 				3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */,
+				3B5B491316E279B80069062A /* shareSlateServer.py */,
 				3B1D641316DF19210008D9EC /* Particle.png */,
 				3B1D63D716DF14DF0008D9EC /* Supporting Files */,
 			);
@@ -266,6 +269,7 @@
 				3B1D63E716DF14DF0008D9EC /* Default-568h@2x.png in Resources */,
 				3B1D63EA16DF14DF0008D9EC /* MainStoryboard.storyboard in Resources */,
 				3B1D641416DF19210008D9EC /* Particle.png in Resources */,
+				3B5B491416E279B80069062A /* shareSlateServer.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
