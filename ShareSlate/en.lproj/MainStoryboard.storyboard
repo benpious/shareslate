@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="FnX-Wm-zhy">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="NhW-ka-d7v">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="FnX-Wm-zhy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OiA-id-oaJ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ICY-4d-htd" kind="relationship" relationship="rootViewController" id="yB9-9F-A0w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g22-Mj-hpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1748" y="-38"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4">
+            <objects>
+                <viewController id="2" customClass="SSViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5">
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-3z-FBQ" customClass="PaintingView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="OH6-gs-2TF"/>
+                            <constraint firstAttribute="trailing" secondItem="uFd-3z-FBQ" secondAttribute="trailing" constant="-24" id="iPY-5K-dqO"/>
+                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="lUF-gc-IzG"/>
+                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="top" secondItem="5" secondAttribute="top" constant="-5" id="n64-ku-Tbg"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="69r-pH-8TO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="paintView" destination="uFd-3z-FBQ" id="1im-Rt-zTL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="8m7-lN-tii"/>
+            </objects>
+            <point key="canvasLocation" x="47" y="90"/>
+        </scene>
+        <!--Connection View Controller - Root View Controller-->
+        <scene sceneID="u9Z-AR-E8F">
+            <objects>
+                <viewController id="ICY-4d-htd" customClass="SSConnectionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b2C-nV-Hxo">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLc-Ic-96A">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2" kind="push" id="b43-XA-UbS"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IP Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bAU-NL-UCB">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="184" id="V6k-Es-svL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Port" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Drx-wB-xPd">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="qQn-gJ-L9U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Drx-wB-xPd" firstAttribute="centerX" secondItem="bAU-NL-UCB" secondAttribute="centerX" type="default" id="B6Y-Os-0sl"/>
+                            <constraint firstItem="Drx-wB-xPd" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="236" id="J62-dx-Rdb"/>
+                            <constraint firstItem="Drx-wB-xPd" firstAttribute="centerX" secondItem="YLc-Ic-96A" secondAttribute="centerX" type="default" id="SMu-kf-sRR"/>
+                            <constraint firstItem="bAU-NL-UCB" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="138" id="Z6S-xJ-RHe"/>
+                            <constraint firstItem="YLc-Ic-96A" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="322" id="uUu-C2-6Kp"/>
+                            <constraint firstItem="bAU-NL-UCB" firstAttribute="leading" secondItem="b2C-nV-Hxo" secondAttribute="leading" constant="47" id="ztf-L5-a8c"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="zhe-tP-5DG"/>
+                    <connections>
+                        <outlet property="ipAddress" destination="bAU-NL-UCB" id="4VW-tp-3uG"/>
+                        <outlet property="port" destination="Drx-wB-xPd" id="ut3-iC-fmV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SW5-8C-KVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-846" y="-38"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PaintingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaintingView.h"/>
+        </class>
+        <class className="SSConnectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSConnectionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="ipAddress" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SSViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="paintView" candidateClass="PaintingView"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B03713C16E1A140001E1364 /* SSNetworkingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */; };
+		3B03713F16E1D827001E1364 /* SSConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03713E16E1D827001E1364 /* SSConnectionViewController.m */; };
+		3B1D63D116DF14DF0008D9EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D016DF14DF0008D9EC /* UIKit.framework */; };
+		3B1D63D316DF14DF0008D9EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D216DF14DF0008D9EC /* Foundation.framework */; };
+		3B1D63D516DF14DF0008D9EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D416DF14DF0008D9EC /* CoreGraphics.framework */; };
+		3B1D63DB16DF14DF0008D9EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D63D916DF14DF0008D9EC /* InfoPlist.strings */; };
+		3B1D63DD16DF14DF0008D9EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D63DC16DF14DF0008D9EC /* main.m */; };
+		3B1D63E116DF14DF0008D9EC /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D63E016DF14DF0008D9EC /* SSAppDelegate.m */; };
+		3B1D63E316DF14DF0008D9EC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D63E216DF14DF0008D9EC /* Default.png */; };
+		3B1D63E516DF14DF0008D9EC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D63E416DF14DF0008D9EC /* Default@2x.png */; };
+		3B1D63E716DF14DF0008D9EC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D63E616DF14DF0008D9EC /* Default-568h@2x.png */; };
+		3B1D63EA16DF14DF0008D9EC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D63E816DF14DF0008D9EC /* MainStoryboard.storyboard */; };
+		3B1D63ED16DF14DF0008D9EC /* SSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D63EC16DF14DF0008D9EC /* SSViewController.m */; };
+		3B1D63F516DF14E00008D9EC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63F416DF14E00008D9EC /* SenTestingKit.framework */; };
+		3B1D63F616DF14E00008D9EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D016DF14DF0008D9EC /* UIKit.framework */; };
+		3B1D63F716DF14E00008D9EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D216DF14DF0008D9EC /* Foundation.framework */; };
+		3B1D63FF16DF14E00008D9EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D63FD16DF14E00008D9EC /* InfoPlist.strings */; };
+		3B1D640216DF14E00008D9EC /* ShareSlateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D640116DF14E00008D9EC /* ShareSlateTests.m */; };
+		3B1D640D16DF16490008D9EC /* PaintingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D640C16DF16490008D9EC /* PaintingView.m */; };
+		3B1D640E16DF16490008D9EC /* PaintingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D640C16DF16490008D9EC /* PaintingView.m */; };
+		3B1D641016DF17590008D9EC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D640F16DF17590008D9EC /* OpenGLES.framework */; };
+		3B1D641216DF17DC0008D9EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D641116DF17DC0008D9EC /* QuartzCore.framework */; };
+		3B1D641416DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
+		3B1D641516DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3B1D63F816DF14E00008D9EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B1D63C516DF14DF0008D9EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B1D63CC16DF14DF0008D9EC;
+			remoteInfo = ShareSlate;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3B03713A16E1A140001E1364 /* SSNetworkingEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSNetworkingEngine.h; sourceTree = "<group>"; };
+		3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSNetworkingEngine.m; sourceTree = "<group>"; };
+		3B03713D16E1D826001E1364 /* SSConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSConnectionViewController.h; sourceTree = "<group>"; };
+		3B03713E16E1D827001E1364 /* SSConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSConnectionViewController.m; sourceTree = "<group>"; };
+		3B1D63CD16DF14DF0008D9EC /* ShareSlate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareSlate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B1D63D016DF14DF0008D9EC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3B1D63D216DF14DF0008D9EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3B1D63D416DF14DF0008D9EC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3B1D63D816DF14DF0008D9EC /* ShareSlate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShareSlate-Info.plist"; sourceTree = "<group>"; };
+		3B1D63DA16DF14DF0008D9EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3B1D63DC16DF14DF0008D9EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3B1D63DE16DF14DF0008D9EC /* ShareSlate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShareSlate-Prefix.pch"; sourceTree = "<group>"; };
+		3B1D63DF16DF14DF0008D9EC /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
+		3B1D63E016DF14DF0008D9EC /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
+		3B1D63E216DF14DF0008D9EC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		3B1D63E416DF14DF0008D9EC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		3B1D63E616DF14DF0008D9EC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3B1D63E916DF14DF0008D9EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3B1D63EB16DF14DF0008D9EC /* SSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSViewController.h; sourceTree = "<group>"; };
+		3B1D63EC16DF14DF0008D9EC /* SSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSViewController.m; sourceTree = "<group>"; };
+		3B1D63F316DF14E00008D9EC /* ShareSlateTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShareSlateTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B1D63F416DF14E00008D9EC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3B1D63FC16DF14E00008D9EC /* ShareSlateTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShareSlateTests-Info.plist"; sourceTree = "<group>"; };
+		3B1D63FE16DF14E00008D9EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3B1D640016DF14E00008D9EC /* ShareSlateTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareSlateTests.h; sourceTree = "<group>"; };
+		3B1D640116DF14E00008D9EC /* ShareSlateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareSlateTests.m; sourceTree = "<group>"; };
+		3B1D640B16DF16490008D9EC /* PaintingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintingView.h; sourceTree = "<group>"; };
+		3B1D640C16DF16490008D9EC /* PaintingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintingView.m; sourceTree = "<group>"; };
+		3B1D640F16DF17590008D9EC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3B1D641116DF17DC0008D9EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3B1D641316DF19210008D9EC /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B1D63CA16DF14DF0008D9EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B1D641216DF17DC0008D9EC /* QuartzCore.framework in Frameworks */,
+				3B1D641016DF17590008D9EC /* OpenGLES.framework in Frameworks */,
+				3B1D63D116DF14DF0008D9EC /* UIKit.framework in Frameworks */,
+				3B1D63D316DF14DF0008D9EC /* Foundation.framework in Frameworks */,
+				3B1D63D516DF14DF0008D9EC /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B1D63EF16DF14E00008D9EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B1D63F516DF14E00008D9EC /* SenTestingKit.framework in Frameworks */,
+				3B1D63F616DF14E00008D9EC /* UIKit.framework in Frameworks */,
+				3B1D63F716DF14E00008D9EC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B1D63C416DF14DF0008D9EC = {
+			isa = PBXGroup;
+			children = (
+				3B1D63D616DF14DF0008D9EC /* ShareSlate */,
+				3B1D63FA16DF14E00008D9EC /* ShareSlateTests */,
+				3B1D63CF16DF14DF0008D9EC /* Frameworks */,
+				3B1D63CE16DF14DF0008D9EC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B1D63CE16DF14DF0008D9EC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D63CD16DF14DF0008D9EC /* ShareSlate.app */,
+				3B1D63F316DF14E00008D9EC /* ShareSlateTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B1D63CF16DF14DF0008D9EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D641116DF17DC0008D9EC /* QuartzCore.framework */,
+				3B1D640F16DF17590008D9EC /* OpenGLES.framework */,
+				3B1D63D016DF14DF0008D9EC /* UIKit.framework */,
+				3B1D63D216DF14DF0008D9EC /* Foundation.framework */,
+				3B1D63D416DF14DF0008D9EC /* CoreGraphics.framework */,
+				3B1D63F416DF14E00008D9EC /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B1D63D616DF14DF0008D9EC /* ShareSlate */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D63DF16DF14DF0008D9EC /* SSAppDelegate.h */,
+				3B1D63E016DF14DF0008D9EC /* SSAppDelegate.m */,
+				3B1D63E816DF14DF0008D9EC /* MainStoryboard.storyboard */,
+				3B1D640B16DF16490008D9EC /* PaintingView.h */,
+				3B1D640C16DF16490008D9EC /* PaintingView.m */,
+				3B1D63EB16DF14DF0008D9EC /* SSViewController.h */,
+				3B1D63EC16DF14DF0008D9EC /* SSViewController.m */,
+				3B03713D16E1D826001E1364 /* SSConnectionViewController.h */,
+				3B03713E16E1D827001E1364 /* SSConnectionViewController.m */,
+				3B03713A16E1A140001E1364 /* SSNetworkingEngine.h */,
+				3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */,
+				3B1D641316DF19210008D9EC /* Particle.png */,
+				3B1D63D716DF14DF0008D9EC /* Supporting Files */,
+			);
+			path = ShareSlate;
+			sourceTree = "<group>";
+		};
+		3B1D63D716DF14DF0008D9EC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D63D816DF14DF0008D9EC /* ShareSlate-Info.plist */,
+				3B1D63D916DF14DF0008D9EC /* InfoPlist.strings */,
+				3B1D63DC16DF14DF0008D9EC /* main.m */,
+				3B1D63DE16DF14DF0008D9EC /* ShareSlate-Prefix.pch */,
+				3B1D63E216DF14DF0008D9EC /* Default.png */,
+				3B1D63E416DF14DF0008D9EC /* Default@2x.png */,
+				3B1D63E616DF14DF0008D9EC /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B1D63FA16DF14E00008D9EC /* ShareSlateTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D640016DF14E00008D9EC /* ShareSlateTests.h */,
+				3B1D640116DF14E00008D9EC /* ShareSlateTests.m */,
+				3B1D63FB16DF14E00008D9EC /* Supporting Files */,
+			);
+			path = ShareSlateTests;
+			sourceTree = "<group>";
+		};
+		3B1D63FB16DF14E00008D9EC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D63FC16DF14E00008D9EC /* ShareSlateTests-Info.plist */,
+				3B1D63FD16DF14E00008D9EC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B1D63CC16DF14DF0008D9EC /* ShareSlate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B1D640516DF14E00008D9EC /* Build configuration list for PBXNativeTarget "ShareSlate" */;
+			buildPhases = (
+				3B1D63C916DF14DF0008D9EC /* Sources */,
+				3B1D63CA16DF14DF0008D9EC /* Frameworks */,
+				3B1D63CB16DF14DF0008D9EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareSlate;
+			productName = ShareSlate;
+			productReference = 3B1D63CD16DF14DF0008D9EC /* ShareSlate.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3B1D63F216DF14E00008D9EC /* ShareSlateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B1D640816DF14E00008D9EC /* Build configuration list for PBXNativeTarget "ShareSlateTests" */;
+			buildPhases = (
+				3B1D63EE16DF14E00008D9EC /* Sources */,
+				3B1D63EF16DF14E00008D9EC /* Frameworks */,
+				3B1D63F016DF14E00008D9EC /* Resources */,
+				3B1D63F116DF14E00008D9EC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B1D63F916DF14E00008D9EC /* PBXTargetDependency */,
+			);
+			name = ShareSlateTests;
+			productName = ShareSlateTests;
+			productReference = 3B1D63F316DF14E00008D9EC /* ShareSlateTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B1D63C516DF14DF0008D9EC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SS;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Benjamin Pious";
+			};
+			buildConfigurationList = 3B1D63C816DF14DF0008D9EC /* Build configuration list for PBXProject "ShareSlate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3B1D63C416DF14DF0008D9EC;
+			productRefGroup = 3B1D63CE16DF14DF0008D9EC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B1D63CC16DF14DF0008D9EC /* ShareSlate */,
+				3B1D63F216DF14E00008D9EC /* ShareSlateTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B1D63CB16DF14DF0008D9EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B1D63DB16DF14DF0008D9EC /* InfoPlist.strings in Resources */,
+				3B1D63E316DF14DF0008D9EC /* Default.png in Resources */,
+				3B1D63E516DF14DF0008D9EC /* Default@2x.png in Resources */,
+				3B1D63E716DF14DF0008D9EC /* Default-568h@2x.png in Resources */,
+				3B1D63EA16DF14DF0008D9EC /* MainStoryboard.storyboard in Resources */,
+				3B1D641416DF19210008D9EC /* Particle.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B1D63F016DF14E00008D9EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B1D63FF16DF14E00008D9EC /* InfoPlist.strings in Resources */,
+				3B1D641516DF19210008D9EC /* Particle.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B1D63F116DF14E00008D9EC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B1D63C916DF14DF0008D9EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B1D63DD16DF14DF0008D9EC /* main.m in Sources */,
+				3B1D63E116DF14DF0008D9EC /* SSAppDelegate.m in Sources */,
+				3B1D63ED16DF14DF0008D9EC /* SSViewController.m in Sources */,
+				3B1D640D16DF16490008D9EC /* PaintingView.m in Sources */,
+				3B03713C16E1A140001E1364 /* SSNetworkingEngine.m in Sources */,
+				3B03713F16E1D827001E1364 /* SSConnectionViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B1D63EE16DF14E00008D9EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B1D640216DF14E00008D9EC /* ShareSlateTests.m in Sources */,
+				3B1D640E16DF16490008D9EC /* PaintingView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B1D63F916DF14E00008D9EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B1D63CC16DF14DF0008D9EC /* ShareSlate */;
+			targetProxy = 3B1D63F816DF14E00008D9EC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3B1D63D916DF14DF0008D9EC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B1D63DA16DF14DF0008D9EC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3B1D63E816DF14DF0008D9EC /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B1D63E916DF14DF0008D9EC /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		3B1D63FD16DF14E00008D9EC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B1D63FE16DF14E00008D9EC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B1D640316DF14E00008D9EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		3B1D640416DF14E00008D9EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B1D640616DF14E00008D9EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSlate/ShareSlate-Prefix.pch";
+				INFOPLIST_FILE = "ShareSlate/ShareSlate-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3B1D640716DF14E00008D9EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSlate/ShareSlate-Prefix.pch";
+				INFOPLIST_FILE = "ShareSlate/ShareSlate-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3B1D640916DF14E00008D9EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ShareSlate.app/ShareSlate";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSlate/ShareSlate-Prefix.pch";
+				INFOPLIST_FILE = "ShareSlateTests/ShareSlateTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3B1D640A16DF14E00008D9EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ShareSlate.app/ShareSlate";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareSlate/ShareSlate-Prefix.pch";
+				INFOPLIST_FILE = "ShareSlateTests/ShareSlateTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B1D63C816DF14DF0008D9EC /* Build configuration list for PBXProject "ShareSlate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B1D640316DF14E00008D9EC /* Debug */,
+				3B1D640416DF14E00008D9EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B1D640516DF14E00008D9EC /* Build configuration list for PBXNativeTarget "ShareSlate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B1D640616DF14E00008D9EC /* Debug */,
+				3B1D640716DF14E00008D9EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B1D640816DF14E00008D9EC /* Build configuration list for PBXNativeTarget "ShareSlateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B1D640916DF14E00008D9EC /* Debug */,
+				3B1D640A16DF14E00008D9EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3B1D63C516DF14DF0008D9EC /* Project object */;
+}
