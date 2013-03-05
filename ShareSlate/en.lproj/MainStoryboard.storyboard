@@ -8,6 +8,7 @@
         <scene sceneID="NhW-ka-d7v">
             <objects>
                 <navigationController definesPresentationContext="YES" id="FnX-Wm-zhy" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OiA-id-oaJ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -30,18 +31,28 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-3z-FBQ" customClass="PaintingView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qoh-1r-yzi" customClass="SSVerticalToolBar">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="222" id="ndk-EW-r6z"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="OH6-gs-2TF"/>
-                            <constraint firstAttribute="trailing" secondItem="uFd-3z-FBQ" secondAttribute="trailing" constant="-24" id="iPY-5K-dqO"/>
-                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="lUF-gc-IzG"/>
-                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="top" secondItem="5" secondAttribute="top" constant="-5" id="n64-ku-Tbg"/>
+                            <constraint firstAttribute="trailing" secondItem="uFd-3z-FBQ" secondAttribute="trailing" constant="-5" id="HJE-Cq-Lft"/>
+                            <constraint firstItem="qoh-1r-yzi" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="RBK-gQ-DH1"/>
+                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="221" id="SFI-a7-jXx"/>
+                            <constraint firstItem="qoh-1r-yzi" firstAttribute="top" secondItem="uFd-3z-FBQ" secondAttribute="top" type="default" id="evO-m5-836"/>
+                            <constraint firstItem="qoh-1r-yzi" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="ff5-VI-4tf"/>
+                            <constraint firstAttribute="bottom" secondItem="uFd-3z-FBQ" secondAttribute="bottom" constant="-6" id="gnq-8y-Ijv"/>
+                            <constraint firstItem="qoh-1r-yzi" firstAttribute="centerY" secondItem="5" secondAttribute="centerY" type="default" id="zt6-Kh-shy"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="69r-pH-8TO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="paintView" destination="uFd-3z-FBQ" id="1im-Rt-zTL"/>
                     </connections>
@@ -122,10 +133,18 @@
                 <relationship kind="outlet" name="port" candidateClass="UITextField"/>
             </relationships>
         </class>
+        <class className="SSToolBarTableViewViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSToolBarTableViewViewController.h"/>
+        </class>
+        <class className="SSVerticalToolBar" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSVerticalToolBar.h"/>
+        </class>
         <class className="SSViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="controller" candidateClass="SSToolBarTableViewViewController"/>
                 <relationship kind="outlet" name="paintView" candidateClass="PaintingView"/>
+                <relationship kind="outlet" name="tools" candidateClass="SSVerticalToolBar"/>
             </relationships>
         </class>
     </classes>
