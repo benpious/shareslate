@@ -32,6 +32,8 @@
 		3B1D641416DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B1D641516DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B5B491416E279B80069062A /* shareSlateServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B491316E279B80069062A /* shareSlateServer.py */; };
+		3B691A6E16E54E9C0098E75E /* SSToolColumnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B691A6D16E54E9C0098E75E /* SSToolColumnView.m */; };
+		3B691A7116E54F580098E75E /* SSToolCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B691A7016E54F580098E75E /* SSToolCellView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,10 @@
 		3B1D641116DF17DC0008D9EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B1D641316DF19210008D9EC /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
 		3B5B491316E279B80069062A /* shareSlateServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = shareSlateServer.py; sourceTree = "<group>"; };
+		3B691A6C16E54E9C0098E75E /* SSToolColumnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolColumnView.h; sourceTree = "<group>"; };
+		3B691A6D16E54E9C0098E75E /* SSToolColumnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolColumnView.m; sourceTree = "<group>"; };
+		3B691A6F16E54F580098E75E /* SSToolCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolCellView.h; sourceTree = "<group>"; };
+		3B691A7016E54F580098E75E /* SSToolCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolCellView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,16 +149,9 @@
 				3B1D63DF16DF14DF0008D9EC /* SSAppDelegate.h */,
 				3B1D63E016DF14DF0008D9EC /* SSAppDelegate.m */,
 				3B1D63E816DF14DF0008D9EC /* MainStoryboard.storyboard */,
-				3B1D640B16DF16490008D9EC /* PaintingView.h */,
-				3B1D640C16DF16490008D9EC /* PaintingView.m */,
-				3B1D63EB16DF14DF0008D9EC /* SSViewController.h */,
-				3B1D63EC16DF14DF0008D9EC /* SSViewController.m */,
-				3B03713D16E1D826001E1364 /* SSConnectionViewController.h */,
-				3B03713E16E1D827001E1364 /* SSConnectionViewController.m */,
-				3B03713A16E1A140001E1364 /* SSNetworkingEngine.h */,
-				3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */,
-				3B5B491316E279B80069062A /* shareSlateServer.py */,
-				3B1D641316DF19210008D9EC /* Particle.png */,
+				3B691A7416E54F980098E75E /* Drawing */,
+				3B691A7316E54F740098E75E /* Networking */,
+				3B691A7216E54F5E0098E75E /* UI Elements */,
 				3B1D63D716DF14DF0008D9EC /* Supporting Files */,
 			);
 			path = ShareSlate;
@@ -189,6 +188,41 @@
 				3B1D63FD16DF14E00008D9EC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B691A7216E54F5E0098E75E /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				3B691A6F16E54F580098E75E /* SSToolCellView.h */,
+				3B691A7016E54F580098E75E /* SSToolCellView.m */,
+				3B691A6C16E54E9C0098E75E /* SSToolColumnView.h */,
+				3B691A6D16E54E9C0098E75E /* SSToolColumnView.m */,
+			);
+			name = "UI Elements";
+			sourceTree = "<group>";
+		};
+		3B691A7316E54F740098E75E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3B03713D16E1D826001E1364 /* SSConnectionViewController.h */,
+				3B03713E16E1D827001E1364 /* SSConnectionViewController.m */,
+				3B5B491316E279B80069062A /* shareSlateServer.py */,
+				3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */,
+				3B03713A16E1A140001E1364 /* SSNetworkingEngine.h */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		3B691A7416E54F980098E75E /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D640B16DF16490008D9EC /* PaintingView.h */,
+				3B1D640C16DF16490008D9EC /* PaintingView.m */,
+				3B1D63EB16DF14DF0008D9EC /* SSViewController.h */,
+				3B1D63EC16DF14DF0008D9EC /* SSViewController.m */,
+				3B1D641316DF19210008D9EC /* Particle.png */,
+			);
+			name = Drawing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +345,8 @@
 				3B1D640D16DF16490008D9EC /* PaintingView.m in Sources */,
 				3B03713C16E1A140001E1364 /* SSNetworkingEngine.m in Sources */,
 				3B03713F16E1D827001E1364 /* SSConnectionViewController.m in Sources */,
+				3B691A6E16E54E9C0098E75E /* SSToolColumnView.m in Sources */,
+				3B691A7116E54F580098E75E /* SSToolCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

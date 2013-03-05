@@ -12,6 +12,7 @@
 -(id) initWithHostName: (NSString*) hostname port: (int) port
 {
     if (self = [super init]) {
+        
         CFReadStreamRef readStream;
         CFWriteStreamRef writeStream;
         NSLog(@"%@, %d", hostname, port);
@@ -44,7 +45,6 @@
             
 		case NSStreamEventHasBytesAvailable:
             if (theStream == inputStream) {
-                
                 uint8_t buffer[1024];
                 int len;
                 while ([inputStream hasBytesAvailable]) {
@@ -71,6 +71,7 @@
 			break;
             
 		case NSStreamEventEndEncountered:
+            NSLog(@"event end encountered");
 			break;
             
 		default:
