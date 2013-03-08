@@ -53,14 +53,23 @@
 
 -(void) propogatePaint: (NSNotification*) note
 {
+    NSLog(@"paint method entered");
     
     NSString* coordData = [note object];
-    NSArray* coords = [coordData componentsSeparatedByString:@":"];
-    if ([coords count]<4) {
-        return;
-    }
+    NSArray* strokes = [coordData componentsSeparatedByString:@"b:"];
     
-    [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:0] floatValue], [[coords objectAtIndex:1] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:2] floatValue], [[coords objectAtIndex:3] floatValue])];
+    for (NSString* stroke in strokes) {
+
+        NSArray* coords = [stroke componentsSeparatedByString:@":"];
+        if ([coords count]<4) {
+            continue;
+        }
+        
+        NSLog(@"(%@,%@,%@,%@)",[coords objectAtIndex:0],[coords objectAtIndex:1],[coords objectAtIndex:2],[coords objectAtIndex:3] );
+        [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:0] floatValue], [[coords objectAtIndex:1] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:2] floatValue], [[coords objectAtIndex:3] floatValue])];
+
+
+    }
 }
 
 

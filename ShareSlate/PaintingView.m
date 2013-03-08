@@ -360,7 +360,7 @@
 	}
 		
 	// Render the stroke
-    NSString* coords = [[NSString alloc] initWithFormat:@"%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
+    NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
     [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
 
 	[self renderLineFromPoint:previousLocation toPoint:location];
@@ -376,7 +376,8 @@
 		previousLocation = [touch previousLocationInView:self];
 		previousLocation.y = bounds.size.height - previousLocation.y;
 		[self renderLineFromPoint:previousLocation toPoint:location];
-        NSString* coords = [[NSString alloc] initWithFormat:@"%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
+        NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
+        NSLog(@"%@",coords);
         [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
 	}
 }

@@ -84,6 +84,7 @@
 -(void) sendMessage: (NSString*) message
 {
     NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
+    NSLog(@"%@", message);
 	[outputStream write:[data bytes] maxLength:[data length]];
     [data release];
 

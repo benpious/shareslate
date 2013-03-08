@@ -15,6 +15,20 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.textLabel.backgroundColor = [UIColor clearColor];
+        self.textLabel.textColor = [UIColor lightGrayColor];
+        self.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
+        
+        self.otherView = [[[[NSBundle mainBundle] loadNibNamed:@"testToolBarPalette" owner:self options:nil] objectAtIndex:0] retain];
+        self.objects = [[NSBundle mainBundle] loadNibNamed:@"testToolBarPalette" owner:self options:nil];
+        self.isExpanded = NO;
+
+        if (self.otherView) {
+            // Initialization code
+            self.otherView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 200);
+            
+            
+        }
     }
     return self;
 }
@@ -26,8 +40,10 @@
     // Configure the view for the selected state
 }
 
+/*
 -(void) drawRect:(CGRect)rect
 {
+
     CGRect bounds = self.bounds;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -42,7 +58,20 @@
                                   imageSize.width,
                                   imageSize.height);
 
-    CGContextDrawImage(context, imageRect, self.iconImage.CGImage);
+    //CGContextDrawImage(context, imageRect , self.iconImage.CGImage);
 }
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect textLabelFrame = CGRectMake(0,
+                                       NAN,
+                                       self.bounds.size.width,
+                                       self.textLabel.font.lineHeight);
+    textLabelFrame.origin.y = self.bounds.size.height-textLabelFrame.size.height - 15;
+    self.textLabel.frame = textLabelFrame;
+}
+*/
 
 @end

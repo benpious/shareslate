@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+/*
+    subclass this for each different tool item
+ */
 
 @interface SSToolBarCell : UITableViewCell
 @property (retain) UIImage* iconImage;
+@property (assign) CGRect ExpandedBounds;
+@property (retain) UIView* otherView;
+@property (assign) BOOL isExpanded;
+@property (retain) NSArray* objects;
 @end

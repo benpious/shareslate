@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1nC-1Q-XrF">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="t8M-7A-wto">
+            <objects>
+                <viewController id="VxV-gY-zqd" customClass="SSViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bIb-Pg-ed7" customClass="PaintingView">
+                        <rect key="frame" x="0.0" y="64" width="568" height="256"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3Y2-nW-9TV"/>
+                    <connections>
+                        <outlet property="paintView" destination="bIb-Pg-ed7" id="A4V-ii-myR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5u-ef-NpL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1319" y="170"/>
+        </scene>
+        <!--Connection View Controller-->
+        <scene sceneID="e57-3g-zKF">
+            <objects>
+                <viewController id="Md6-u8-cI6" customClass="SSConnectionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z8p-Fe-D51">
+                        <rect key="frame" x="0.0" y="64" width="568" height="256"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRD-3p-Hog">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="VxV-gY-zqd" kind="push" id="myg-Tq-yGF"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IP Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e9a-fY-9wa">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="192" id="BxZ-73-rZq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Port" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GYM-3i-qpY">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="3We-Ls-tKK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GYM-3i-qpY" firstAttribute="baseline" secondItem="e9a-fY-9wa" secondAttribute="baseline" type="default" id="02p-IS-xXf"/>
+                            <constraint firstItem="FRD-3p-Hog" firstAttribute="top" secondItem="z8p-Fe-D51" secondAttribute="top" constant="19" id="UK6-ZX-7PL"/>
+                            <constraint firstAttribute="trailing" secondItem="FRD-3p-Hog" secondAttribute="trailing" constant="70" id="bCI-jR-GPH"/>
+                            <constraint firstItem="FRD-3p-Hog" firstAttribute="baseline" secondItem="GYM-3i-qpY" secondAttribute="baseline" type="default" id="dYk-Ws-Lya"/>
+                            <constraint firstItem="e9a-fY-9wa" firstAttribute="leading" secondItem="z8p-Fe-D51" secondAttribute="leading" constant="27" id="sm7-bd-OIF"/>
+                            <constraint firstItem="GYM-3i-qpY" firstAttribute="top" secondItem="z8p-Fe-D51" secondAttribute="top" constant="26" id="vTu-P1-geh"/>
+                            <constraint firstItem="GYM-3i-qpY" firstAttribute="leading" secondItem="z8p-Fe-D51" secondAttribute="leading" constant="255" id="z2j-Vq-xpc"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rwe-c4-yJ4"/>
+                    <connections>
+                        <outlet property="ipAddress" destination="e9a-fY-9wa" id="wGF-3w-bkd"/>
+                        <outlet property="port" destination="GYM-3i-qpY" id="37u-vr-PHu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qre-dV-RfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="645" y="170"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oWa-vZ-Lz3">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="1nC-1Q-XrF" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lcf-sl-XBP">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Md6-u8-cI6" kind="relationship" relationship="rootViewController" id="i1s-qU-Sij"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r1M-S2-frJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-135" y="170"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PaintingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaintingView.h"/>
+        </class>
+        <class className="SSConnectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSConnectionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="ipAddress" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SSToolBarTableViewViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSToolBarTableViewViewController.h"/>
+        </class>
+        <class className="SSVerticalToolBar" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSVerticalToolBar.h"/>
+        </class>
+        <class className="SSViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="controller" candidateClass="SSToolBarTableViewViewController"/>
+                <relationship kind="outlet" name="paintView" candidateClass="PaintingView"/>
+                <relationship kind="outlet" name="tools" candidateClass="SSVerticalToolBar"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

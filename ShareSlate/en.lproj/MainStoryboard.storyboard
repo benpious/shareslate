@@ -60,14 +60,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
                 <pinchGestureRecognizer id="8m7-lN-tii"/>
             </objects>
-            <point key="canvasLocation" x="47" y="90"/>
+            <point key="canvasLocation" x="329" y="-12"/>
         </scene>
         <!--Connection View Controller - Root View Controller-->
         <scene sceneID="u9Z-AR-E8F">
             <objects>
                 <viewController id="ICY-4d-htd" customClass="SSConnectionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b2C-nV-Hxo">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLc-Ic-96A">
@@ -100,15 +100,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Drx-wB-xPd" firstAttribute="centerX" secondItem="bAU-NL-UCB" secondAttribute="centerX" type="default" id="B6Y-Os-0sl"/>
-                            <constraint firstItem="Drx-wB-xPd" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="236" id="J62-dx-Rdb"/>
-                            <constraint firstItem="Drx-wB-xPd" firstAttribute="centerX" secondItem="YLc-Ic-96A" secondAttribute="centerX" type="default" id="SMu-kf-sRR"/>
-                            <constraint firstItem="bAU-NL-UCB" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="138" id="Z6S-xJ-RHe"/>
-                            <constraint firstItem="YLc-Ic-96A" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="322" id="uUu-C2-6Kp"/>
-                            <constraint firstItem="bAU-NL-UCB" firstAttribute="leading" secondItem="b2C-nV-Hxo" secondAttribute="leading" constant="47" id="ztf-L5-a8c"/>
+                            <constraint firstItem="bAU-NL-UCB" firstAttribute="centerX" secondItem="YLc-Ic-96A" secondAttribute="centerX" type="default" id="0uV-Ka-Bwk"/>
+                            <constraint firstItem="YLc-Ic-96A" firstAttribute="centerX" secondItem="b2C-nV-Hxo" secondAttribute="centerX" type="default" id="4cQ-Hn-Lal"/>
+                            <constraint firstItem="Drx-wB-xPd" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="165" id="H7m-Uy-Ug6"/>
+                            <constraint firstItem="YLc-Ic-96A" firstAttribute="trailing" secondItem="Drx-wB-xPd" secondAttribute="trailing" type="default" id="oTE-S9-1tJ"/>
+                            <constraint firstItem="YLc-Ic-96A" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="257" id="pja-sc-C6e"/>
+                            <constraint firstItem="bAU-NL-UCB" firstAttribute="top" secondItem="b2C-nV-Hxo" secondAttribute="top" constant="86" id="sNK-JN-4DK"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Root View Controller" id="zhe-tP-5DG"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="ipAddress" destination="bAU-NL-UCB" id="4VW-tp-3uG"/>
                         <outlet property="port" destination="Drx-wB-xPd" id="ut3-iC-fmV"/>

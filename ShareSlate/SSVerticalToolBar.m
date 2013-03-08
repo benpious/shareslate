@@ -26,18 +26,19 @@
 {
     // Initialization code
     self.dataSource = self;
-    self.rowHeight = 100;
-    self.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.rowHeight = 80;
+    //self.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSString* imageNameFullPath = [[NSBundle mainBundle] pathForResource:@"ios-linen.png" ofType: nil];
     self.backgroundImage = [[UIImage alloc] initWithContentsOfFile:imageNameFullPath];
     backImage = [[UIImageView alloc] initWithImage: self.backgroundImage];
     [self addSubview: backImage];
     [self sendSubviewToBack: backImage];
     self.items = [[NSMutableArray alloc] initWithCapacity:4];
-    for (int i =0; i<4; i++) {
+    for (int i = 0; i < 1; i++) {
         UITabBarItem* curr = [[UITabBarItem alloc] init];
-        curr.title = @"xyz";
-        curr.image = [[UIImage alloc] initWithContentsOfFile:imageNameFullPath];
+        curr.title = @"Tool";
+        NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        curr.image = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
         [self.items addObject:curr];
     }
 
@@ -48,15 +49,14 @@
     return [self.items count];
 }
 
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)layoutSubviews
 {
-    // Drawing code
-    [backImage setNeedsDisplay];
-    
+    [super layoutSubviews];
+    self.scrollEnabled = (self.rowHeight * [self.items count]) > self.bounds.size.height;
 }
+
+
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,7 +70,12 @@
         
     UITabBarItem *item = [self.items objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
-    cell.iconImage = item.image;
+    //cell.iconImage = item.image;
+    NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+    UIImage* image = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+
+    [cell.contentView addSubview: [[UIImageView alloc] initWithImage: image] ];
+
     
     return cell;
 
