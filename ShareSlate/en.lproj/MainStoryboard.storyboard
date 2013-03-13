@@ -34,6 +34,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qoh-1r-yzi" customClass="SSVerticalToolBar">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="749" id="5uF-J3-x6l"/>
                                     <constraint firstAttribute="width" constant="222" id="ndk-EW-r6z"/>
                                 </constraints>
                                 <connections>
@@ -47,10 +48,9 @@
                             <constraint firstAttribute="trailing" secondItem="uFd-3z-FBQ" secondAttribute="trailing" constant="-5" id="HJE-Cq-Lft"/>
                             <constraint firstItem="qoh-1r-yzi" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="RBK-gQ-DH1"/>
                             <constraint firstItem="uFd-3z-FBQ" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="221" id="SFI-a7-jXx"/>
-                            <constraint firstItem="qoh-1r-yzi" firstAttribute="top" secondItem="uFd-3z-FBQ" secondAttribute="top" type="default" id="evO-m5-836"/>
                             <constraint firstItem="qoh-1r-yzi" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="ff5-VI-4tf"/>
                             <constraint firstAttribute="bottom" secondItem="uFd-3z-FBQ" secondAttribute="bottom" constant="-6" id="gnq-8y-Ijv"/>
-                            <constraint firstItem="qoh-1r-yzi" firstAttribute="centerY" secondItem="5" secondAttribute="centerY" type="default" id="zt6-Kh-shy"/>
+                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="kPr-FH-pTh"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -125,6 +125,31 @@
             <point key="canvasLocation" x="-846" y="-38"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PaintingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaintingView.h"/>
+        </class>
+        <class className="SSConnectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSConnectionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="ipAddress" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SSVerticalToolBar" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSVerticalToolBar.h"/>
+        </class>
+        <class className="SSViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="paintView" candidateClass="PaintingView"/>
+                <relationship kind="outlet" name="tools" candidateClass="SSVerticalToolBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -10,7 +10,7 @@
 		3B03713C16E1A140001E1364 /* SSNetworkingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */; };
 		3B03713F16E1D827001E1364 /* SSConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03713E16E1D827001E1364 /* SSConnectionViewController.m */; };
 		3B0886C016E7B99300B61EF4 /* IphoneStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0886BF16E7B99300B61EF4 /* IphoneStoryBoard.storyboard */; };
-		3B0886C216E7BF4100B61EF4 /* testToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0886C116E7BF4100B61EF4 /* testToolBarPalette.xib */; };
+		3B0886C216E7BF4100B61EF4 /* brushToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */; };
 		3B1D63D116DF14DF0008D9EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D016DF14DF0008D9EC /* UIKit.framework */; };
 		3B1D63D316DF14DF0008D9EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D216DF14DF0008D9EC /* Foundation.framework */; };
 		3B1D63D516DF14DF0008D9EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D416DF14DF0008D9EC /* CoreGraphics.framework */; };
@@ -34,6 +34,9 @@
 		3B1D641416DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B1D641516DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B5B491416E279B80069062A /* shareSlateServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B491316E279B80069062A /* shareSlateServer.py */; };
+		3B79A4B416F1237400D5DF08 /* EraserToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */; };
+		3B79A4B616F123F400D5DF08 /* ShapeToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */; };
+		3B79A4B816F1289700D5DF08 /* colorPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B716F1289700D5DF08 /* colorPicker.png */; };
 		3BB7ADD716E7D0F300E47735 /* gplaypattern_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */; };
 		3BC9F35016E5A14200F4B47C /* SSToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */; };
 		3BC9F35316E5A26500F4B47C /* SSVerticalToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */; };
@@ -58,7 +61,7 @@
 		3B03713D16E1D826001E1364 /* SSConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSConnectionViewController.h; sourceTree = "<group>"; };
 		3B03713E16E1D827001E1364 /* SSConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSConnectionViewController.m; sourceTree = "<group>"; };
 		3B0886BF16E7B99300B61EF4 /* IphoneStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IphoneStoryBoard.storyboard; sourceTree = "<group>"; };
-		3B0886C116E7BF4100B61EF4 /* testToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testToolBarPalette.xib; sourceTree = "<group>"; };
+		3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = brushToolBarPalette.xib; sourceTree = "<group>"; };
 		3B1D63CD16DF14DF0008D9EC /* ShareSlate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareSlate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1D63D016DF14DF0008D9EC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B1D63D216DF14DF0008D9EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,6 +90,9 @@
 		3B1D641116DF17DC0008D9EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B1D641316DF19210008D9EC /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
 		3B5B491316E279B80069062A /* shareSlateServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = shareSlateServer.py; sourceTree = "<group>"; };
+		3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EraserToolBarPalette.xib; sourceTree = "<group>"; };
+		3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShapeToolBarPalette.xib; sourceTree = "<group>"; };
+		3B79A4B716F1289700D5DF08 /* colorPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorPicker.png; sourceTree = "<group>"; };
 		3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gplaypattern_@2X.png"; sourceTree = "<group>"; };
 		3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolBarCell.h; sourceTree = "<group>"; };
 		3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolBarCell.m; sourceTree = "<group>"; };
@@ -213,7 +219,10 @@
 				3BC9F35816E5B47D00F4B47C /* ios-linen.png */,
 				3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */,
 				3BC9F35516E5A85D00F4B47C /* perforated_white_leather_@2X.png */,
-				3B0886C116E7BF4100B61EF4 /* testToolBarPalette.xib */,
+				3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */,
+				3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */,
+				3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */,
+				3B79A4B716F1289700D5DF08 /* colorPicker.png */,
 			);
 			name = "UI Elements";
 			sourceTree = "<group>";
@@ -326,8 +335,11 @@
 				3BC9F35716E5A85E00F4B47C /* perforated_white_leather_@2X.png in Resources */,
 				3BC9F35916E5B47D00F4B47C /* ios-linen.png in Resources */,
 				3B0886C016E7B99300B61EF4 /* IphoneStoryBoard.storyboard in Resources */,
-				3B0886C216E7BF4100B61EF4 /* testToolBarPalette.xib in Resources */,
+				3B0886C216E7BF4100B61EF4 /* brushToolBarPalette.xib in Resources */,
 				3BB7ADD716E7D0F300E47735 /* gplaypattern_@2X.png in Resources */,
+				3B79A4B416F1237400D5DF08 /* EraserToolBarPalette.xib in Resources */,
+				3B79A4B616F123F400D5DF08 /* ShapeToolBarPalette.xib in Resources */,
+				3B79A4B816F1289700D5DF08 /* colorPicker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,7 @@
     notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"propogatePaint:") name:@"serverData" object:nil];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"sendPaint:") name:@"drawingEvent" object:nil];
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
 
 }
 
