@@ -18,19 +18,18 @@
         self.textLabel.backgroundColor = [UIColor clearColor];
         self.textLabel.textColor = [UIColor lightGrayColor];
         self.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
-        
-        self.otherView = [[[[NSBundle mainBundle] loadNibNamed:@"testToolBarPalette" owner:self options:nil] objectAtIndex:0] retain];
-        self.objects = [[NSBundle mainBundle] loadNibNamed:@"testToolBarPalette" owner:self options:nil];
-        self.isExpanded = NO;
-
-        if (self.otherView) {
-            // Initialization code
-            self.otherView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 200);
-            
-            
-        }
+        center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:NSSelectorFromString(@"deSelected:") name:@"rowDeselected" object:nil];
     }
     return self;
+}
+
+-(void) deSelected: (id) object {
+    
+    self.isExpanded = NO;
+    //NSLog(@"adfa");
+    [self.otherView removeFromSuperview];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -38,9 +37,11 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height*2);
 }
 
-/*
+
 -(void) drawRect:(CGRect)rect
 {
 
@@ -58,7 +59,15 @@
                                   imageSize.width,
                                   imageSize.height);
 
-    //CGContextDrawImage(context, imageRect , self.iconImage.CGImage);
+    CGContextDrawImage(context, imageRect , self.iconImage.CGImage);
+    
+
+    if (self.isExpanded) {
+        [self addSubview:self.otherView];
+        [self bringSubviewToFront:self.otherView];
+        [self.otherView setNeedsDisplay];
+    }
+    
 }
 
 - (void)layoutSubviews
@@ -72,6 +81,6 @@
     textLabelFrame.origin.y = self.bounds.size.height-textLabelFrame.size.height - 15;
     self.textLabel.frame = textLabelFrame;
 }
-*/
+
 
 @end

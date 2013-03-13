@@ -10,7 +10,6 @@
 #import "PaintingView.h"
 #import "SSNetworkingEngine.h"
 #import "SSVerticalToolBar.h"
-#import "SSToolBarTableViewViewController.h"
 
 @interface SSViewController : UIViewController
 {
@@ -18,11 +17,10 @@
     SSNetworkingEngine* networkingEngine;
 }
 
-@property  (retain) IBOutlet PaintingView* paintView;
+@property (retain) IBOutlet PaintingView* paintView;
 @property (retain) NSString* ip;
 @property (assign) int port;
 @property (retain) IBOutlet SSVerticalToolBar* tools;
-@property (retain) IBOutlet SSToolBarTableViewViewController* controller;
 
 
 -(void) propogatePaint: (NSNotification*) note;

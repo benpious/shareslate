@@ -35,7 +35,6 @@
 		3B1D641516DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B5B491416E279B80069062A /* shareSlateServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B491316E279B80069062A /* shareSlateServer.py */; };
 		3BB7ADD716E7D0F300E47735 /* gplaypattern_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */; };
-		3BC9F34D16E5A09E00F4B47C /* SSToolBarTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F34C16E5A09E00F4B47C /* SSToolBarTableViewViewController.m */; };
 		3BC9F35016E5A14200F4B47C /* SSToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */; };
 		3BC9F35316E5A26500F4B47C /* SSVerticalToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */; };
 		3BC9F35616E5A85E00F4B47C /* perforated_white_leather.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */; };
@@ -89,8 +88,6 @@
 		3B1D641316DF19210008D9EC /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
 		3B5B491316E279B80069062A /* shareSlateServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = shareSlateServer.py; sourceTree = "<group>"; };
 		3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gplaypattern_@2X.png"; sourceTree = "<group>"; };
-		3BC9F34B16E5A09E00F4B47C /* SSToolBarTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolBarTableViewViewController.h; sourceTree = "<group>"; };
-		3BC9F34C16E5A09E00F4B47C /* SSToolBarTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolBarTableViewViewController.m; sourceTree = "<group>"; };
 		3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolBarCell.h; sourceTree = "<group>"; };
 		3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolBarCell.m; sourceTree = "<group>"; };
 		3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVerticalToolBar.h; sourceTree = "<group>"; };
@@ -209,15 +206,13 @@
 		3B691A7216E54F5E0098E75E /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
-				3BC9F34B16E5A09E00F4B47C /* SSToolBarTableViewViewController.h */,
-				3BC9F34C16E5A09E00F4B47C /* SSToolBarTableViewViewController.m */,
 				3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */,
 				3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */,
+				3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */,
+				3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */,
 				3BC9F35816E5B47D00F4B47C /* ios-linen.png */,
 				3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */,
 				3BC9F35516E5A85D00F4B47C /* perforated_white_leather_@2X.png */,
-				3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */,
-				3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */,
 				3B0886C116E7BF4100B61EF4 /* testToolBarPalette.xib */,
 			);
 			name = "UI Elements";
@@ -374,7 +369,6 @@
 				3B1D640D16DF16490008D9EC /* PaintingView.m in Sources */,
 				3B03713C16E1A140001E1364 /* SSNetworkingEngine.m in Sources */,
 				3B03713F16E1D827001E1364 /* SSConnectionViewController.m in Sources */,
-				3BC9F34D16E5A09E00F4B47C /* SSToolBarTableViewViewController.m in Sources */,
 				3BC9F35016E5A14200F4B47C /* SSToolBarCell.m in Sources */,
 				3BC9F35316E5A26500F4B47C /* SSVerticalToolBar.m in Sources */,
 			);

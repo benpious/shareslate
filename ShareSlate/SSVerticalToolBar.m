@@ -26,56 +26,98 @@
 {
     // Initialization code
     self.dataSource = self;
-    self.rowHeight = 80;
+    self.delegate = self;
+
+    selectedRow = -1;
     //self.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSString* imageNameFullPath = [[NSBundle mainBundle] pathForResource:@"ios-linen.png" ofType: nil];
     self.backgroundImage = [[UIImage alloc] initWithContentsOfFile:imageNameFullPath];
     backImage = [[UIImageView alloc] initWithImage: self.backgroundImage];
-    [self addSubview: backImage];
-    [self sendSubviewToBack: backImage];
-    self.items = [[NSMutableArray alloc] initWithCapacity:4];
-    for (int i = 0; i < 1; i++) {
-        UITabBarItem* curr = [[UITabBarItem alloc] init];
-        curr.title = @"Tool";
+    numItems = 4;
+    self.rowHeight = 704.0f/numItems;
+    //[self addSubview: backImage];
+    //[self sendSubviewToBack: backImage];
+    items = malloc(sizeof(toolBarItem) * numItems);
+    
+    for (int i = 0; i < numItems; i++) {
+        toolBarItem curr = items[i];
+        curr.label = @"Brush";
+        curr.expandedHeight = 60.0f;
+        curr.expandedViewController = [[UIViewController alloc] initWithNibName:@"testToolBarPalette" bundle:nil];
         NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
-        curr.image = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
-        [self.items addObject:curr];
+        curr.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        items[i] = curr;
     }
+    
+    center = [NSNotificationCenter defaultCenter];
+    
 
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.items count];
+    return numItems;
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.scrollEnabled = (self.rowHeight * [self.items count]) > self.bounds.size.height;
+    self.scrollEnabled = (self.rowHeight * numItems) > self.bounds.size.height;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [center postNotification:[NSNotification notificationWithName:@"rowDeselected" object:nil]];
+    selectedRow = indexPath.row;
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self reloadData];
 }
 
 
+//implement to get a size from each member of the array
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if (selectedRow == indexPath.row) {
+        
+        return items[indexPath.row].expandedHeight;
+    }
+    
+    else {
+        return self.rowHeight;
+    }
+}
 
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *vtbci = @"vtbci";
-    SSToolBarCell *cell = [tableView dequeueReusableCellWithIdentifier:vtbci];
+    NSString *identifier = @"id";
+    SSToolBarCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
     if (cell == nil)
     {
-        cell = [[SSToolBarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:vtbci];
+        cell = [[SSToolBarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    
+    toolBarItem item = items[indexPath.row];
+
+    
+    if (indexPath.row == selectedRow) {
+        cell.otherView = [item.expandedViewController view];
+        cell.isExpanded = YES;
+    }
+    
+    else {
         
-    UITabBarItem *item = [self.items objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.title;
-    //cell.iconImage = item.image;
-    NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
-    UIImage* image = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        cell.textLabel.text = item.label;
+        cell.iconImage = item.backGroundImage;
 
-    [cell.contentView addSubview: [[UIImageView alloc] initWithImage: image] ];
-
+    }
     
     return cell;
 

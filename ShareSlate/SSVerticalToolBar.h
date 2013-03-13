@@ -8,11 +8,26 @@
 
 #import <UIKit/UIKit.h>
 #import "SSToolBarCell.h"
-@interface SSVerticalToolBar : UITableView <UITableViewDataSource>
+
+typedef struct {
+    CGFloat expandedHeight;
+    UIViewController* expandedViewController;
+    NSString* label;
+    UIImage* backGroundImage;
+    
+} toolBarItem;
+
+@interface SSVerticalToolBar : UITableView <UITableViewDataSource, UITableViewDelegate>
 {
     UIImageView *backImage;
+    NSString* textLabel;
+    int numItems;
+    int selectedRow;
+    toolBarItem* items;
+    NSNotificationCenter* center;
+    NSNotification* deselected;
 }
-@property (retain) NSMutableArray* items;
+
 @property (retain) UIImage* backgroundImage;
 
 

@@ -66,8 +66,6 @@
             
 		case NSStreamEventErrorOccurred:
 			NSLog(@"Can not connect to the host!");
-            NSNotification* notification = [NSNotification notificationWithName:@"serverData" object: @"10:10:100:100"];
-            [notificationCenter postNotification:notification];
 			break;
             
 		case NSStreamEventEndEncountered:

@@ -12,9 +12,14 @@
  */
 
 @interface SSToolBarCell : UITableViewCell
+{
+    NSNotificationCenter* center;
+}
 @property (retain) UIImage* iconImage;
 @property (assign) CGRect ExpandedBounds;
 @property (retain) UIView* otherView;
 @property (assign) BOOL isExpanded;
 @property (retain) NSArray* objects;
+-(void) deSelected: (id) object;
+
 @end
