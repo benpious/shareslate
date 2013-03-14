@@ -377,7 +377,7 @@
 		previousLocation.y = bounds.size.height - previousLocation.y;
 		[self renderLineFromPoint:previousLocation toPoint:location];
         NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
-        NSLog(@"%@",coords);
+        //NSLog(@"%@",coords);
         [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
 	}
 }

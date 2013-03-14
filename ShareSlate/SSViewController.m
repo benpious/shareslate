@@ -14,7 +14,24 @@
 @end
 
 @implementation SSViewController
+/*
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        // Do any additional setup after loading the view, typically from a nib.
+        [self.paintView setBrushColorWithRed:0.1f green:0.1f blue:0.1f];
+        //networkingEngine = [[SSNetworkingEngine alloc] initWithHostName:@"128.237.136.94" port:1700];
+        networkingEngine = [[SSNetworkingEngine alloc] initWithHostName:self.ip port:self.port];
+        notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self selector: NSSelectorFromString(@"propogatePaint:") name:@"serverData" object:nil];
+        [notificationCenter addObserver:self selector: NSSelectorFromString(@"sendPaint:") name:@"drawingEvent" object:nil];
+        [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    }
+    
+    return self;
 
+}
+*/
 - (void)viewDidLoad
 {
     [super viewDidLoad];

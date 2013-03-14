@@ -46,9 +46,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 
-        SSViewController *controller = (SSViewController *)segue.destinationViewController;
-        controller.ip = [self.ipAddress text];
-        controller.port = [[self.port text] intValue];
+        DVSlideViewController *controller = (DVSlideViewController*)segue.destinationViewController;
+        ((SSViewController*)[controller.viewControllers objectAtIndex:0]).ip = [self.ipAddress text];
+        ((SSViewController*)[controller.viewControllers objectAtIndex:0]).port = [[self.port text] intValue];
 }
 
 -(void)dismissKeyboard {

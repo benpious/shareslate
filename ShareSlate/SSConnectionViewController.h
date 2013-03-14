@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SSViewController.h"
+#import "DVSlideViewController.h"
 
 @interface SSConnectionViewController : UIViewController
 @property (retain) IBOutlet UITextField* ipAddress;

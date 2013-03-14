@@ -20,51 +20,23 @@
             </objects>
             <point key="canvasLocation" x="-1748" y="-38"/>
         </scene>
-        <!--View Controller-->
+        <!--Slide View Controller-->
         <scene sceneID="4">
             <objects>
-                <viewController id="2" customClass="SSViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="DVSlideViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-3z-FBQ" customClass="PaintingView">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qoh-1r-yzi" customClass="SSVerticalToolBar">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="749" id="5uF-J3-x6l"/>
-                                    <constraint firstAttribute="width" constant="222" id="ndk-EW-r6z"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="5" id="CUh-Lc-0dU"/>
-                                    <outlet property="delegate" destination="5" id="BId-ua-0Tu"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="uFd-3z-FBQ" secondAttribute="trailing" constant="-5" id="HJE-Cq-Lft"/>
-                            <constraint firstItem="qoh-1r-yzi" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="RBK-gQ-DH1"/>
-                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="221" id="SFI-a7-jXx"/>
-                            <constraint firstItem="qoh-1r-yzi" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="ff5-VI-4tf"/>
-                            <constraint firstAttribute="bottom" secondItem="uFd-3z-FBQ" secondAttribute="bottom" constant="-6" id="gnq-8y-Ijv"/>
-                            <constraint firstItem="uFd-3z-FBQ" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="kPr-FH-pTh"/>
-                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="69r-pH-8TO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="paintView" destination="uFd-3z-FBQ" id="1im-Rt-zTL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="8m7-lN-tii"/>
             </objects>
-            <point key="canvasLocation" x="329" y="-12"/>
+            <point key="canvasLocation" x="346" y="-38"/>
         </scene>
         <!--Connection View Controller - Root View Controller-->
         <scene sceneID="u9Z-AR-E8F">
@@ -125,31 +97,6 @@
             <point key="canvasLocation" x="-846" y="-38"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PaintingView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaintingView.h"/>
-        </class>
-        <class className="SSConnectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSConnectionViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="ipAddress" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SSVerticalToolBar" superclassName="UITableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSVerticalToolBar.h"/>
-        </class>
-        <class className="SSViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="paintView" candidateClass="PaintingView"/>
-                <relationship kind="outlet" name="tools" candidateClass="SSVerticalToolBar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
