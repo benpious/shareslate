@@ -14,6 +14,8 @@
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, readonly) NSUInteger selectedIndex;
 @property (nonatomic, assign) CGFloat scaleFactor;
+@property (assign) BOOL isActive;
+
 
 //- (id)init;
 - (void)nextViewController;

@@ -26,5 +26,6 @@
 @property (retain) DVSlideViewController* slideController;
 
 -(void) propogatePaint: (NSNotification*) note;
+-(void) versionControlEvent: (NSNotification*) note;
 
 @end

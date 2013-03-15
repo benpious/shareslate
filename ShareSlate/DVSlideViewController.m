@@ -24,23 +24,15 @@
 
 - (id)init
 {
-        NSLog(@"init");
 	self = [super init];
 	if (self)
 	{
+        self.isActive = NO;
         _selectedIndex = 0;
         _scaleFactor = 0.8;
         
-        self.viewControllers = [[NSMutableArray alloc] initWithCapacity:5];
+        self.viewControllers = [[NSMutableArray alloc] initWithCapacity:4];
         
-         for (int i=0; i<5; i++) {
-         UIViewController* controller = [[UIViewController alloc] init];
-         controller.view = [[PaintingView alloc] initWithFrame:[self.view frame]];
-            NSLog(@"init bounds: %f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
-             NSLog(@"init frame: %f,%f,%f,%f", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-
-         [self.viewControllers setObject: controller atIndexedSubscript: i];
-         }
 
 	}
 	
@@ -49,13 +41,20 @@
 
 -(void) setUp
 {
+    for (int i=0; i < 4 ; i++) {
+        
+        UIViewController* controller = [[UIViewController alloc] init];
+        controller.view = [[PaintingView alloc] initWithFrame:[self.view bounds]];
+        [self.viewControllers setObject: controller atIndexedSubscript: i];
+        
+    }
+
     [self setupViews];
     [self setupViewControllers];
 }
 
 - (void)setupViews
 {
-    NSLog(@"Setupviews bounds: %f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
 	UIView *background = [[UIView alloc] initWithFrame:self.view.bounds];
 	[background setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
 	[background setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grayBackground"]]];
@@ -99,12 +98,10 @@
 
 - (void)addViewController:(UIViewController *)viewController atIndex:(int)index;
 {
-    NSLog(@"%f,%f,%f,%f", viewController.view.bounds.origin.x, viewController.view.bounds.origin.y, viewController.view.bounds.size.width, viewController.view.bounds.size.height);
-    NSLog(@"%f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
+    //NSLog(@"%f,%f,%f,%f", viewController.view.bounds.origin.x, viewController.view.bounds.origin.y, viewController.view.bounds.size.width, viewController.view.bounds.size.height);
+    //NSLog(@"%f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
     
-    //this is the line to change to make it work in landscape mode i think
     viewController.view.frame = CGRectMake(self.view.bounds.size.width * index, 0, self.view.frame.size.width, self.view.frame.size.height);
-	//viewController.view.backgroundColor = [UIColor colorWithWhite:(index + 1) * 0.2 alpha:1.0];
 	[viewsContainer addSubview:viewController.view];
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];
@@ -143,6 +140,11 @@
 //i added this method
 -(void) selectViewController: (UITapGestureRecognizer *) gesture
 {
+    /*
+    if (!self.isActive) {
+        return;
+    }
+    */
     [UIView animateWithDuration:0.25
 						  delay:0.75
 						options:UIViewAnimationCurveEaseInOut
@@ -202,6 +204,11 @@
 
 - (void)slideToViewControllerAtIndex:(NSUInteger)toIndex
 {
+    /*
+    if (!self.isActive) {
+        return;
+    }
+     */
 	UIViewController *currentViewController = [self viewControllerWithIndex:_selectedIndex];
 	UIViewController *nextViewController = [self viewControllerWithIndex:toIndex];
 	
@@ -263,26 +270,7 @@
 						 [currentViewController viewDidDisappear:YES];
 					 }];
 	
-	//Zoom in animation
-    
-	[UIView animateWithDuration:0.25
-						  delay:0.75
-						options:UIViewAnimationCurveEaseInOut
-					 animations:^{
-						 nextViewController.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
-					 }
-					 completion:^(BOOL completed){
-						 currentViewController.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
-						 
-						 //remove shadow next view controller
-						 nextViewController.view.layer.masksToBounds = YES;
-						 nextViewController.view.layer.shadowRadius = 0.0;
-						 nextViewController.view.layer.shadowOpacity = 0.0;
-						 nextViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:nextViewController.view.bounds].CGPath;
-						 nextViewController.view.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-						 
-						 [nextViewController viewDidAppear:YES];
-					 }];
+
 }
 
 #pragma mark - UIScrollView Delegate

@@ -7,6 +7,7 @@
 //
 
 #import "SSToolBarCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SSToolBarCell
 
@@ -17,7 +18,8 @@
         // Initialization code
         self.textLabel.backgroundColor = [UIColor clearColor];
         self.textLabel.textColor = [UIColor lightGrayColor];
-        self.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
+        self.textLabel.font = [UIFont boldSystemFontOfSize:40.0];
+        
         center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:NSSelectorFromString(@"deSelected:") name:@"rowDeselected" object:nil];
     }
@@ -44,7 +46,6 @@
 -(void) drawRect:(CGRect)rect
 {
 
-    //NSLog(@"%f", self.frame.size.width);
     if (self.isExpanded) {
         [self addSubview:self.otherView];
         [self bringSubviewToFront:self.otherView];
@@ -68,7 +69,7 @@
         
         CGContextDrawImage(context, imageRect , self.iconImage.CGImage);
     }
-    
+        
 }
 
 - (void)layoutSubviews

@@ -78,8 +78,8 @@
     //create the chat tool
     
     toolBarItem chat = items[3];
-    chat.label = @"Chat";
-    chat.expandedViewController = [[UIViewController alloc] initWithNibName:@"brushToolBarPalette" bundle:nil];
+    chat.label = @"History";
+    chat.expandedViewController = [[UIViewController alloc] initWithNibName:@"VersionControlPalette" bundle:nil];
     chat.expandedHeight = [[chat.expandedViewController view] frame].size.height;
     otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
     chat.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
@@ -109,6 +109,11 @@
     if (selectedRow != indexPath.row) {
         selectedRow = indexPath.row;
 
+    }
+    else {
+        
+        selectedRow = -1;
+        
     }
     
     return indexPath;

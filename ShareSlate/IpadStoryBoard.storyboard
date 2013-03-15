@@ -38,6 +38,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="canvasView" destination="E7x-nx-qrn" id="Cxl-Ov-MMq"/>
                         <outlet property="tools" destination="rve-9R-zXg" id="FUF-iH-fKV"/>

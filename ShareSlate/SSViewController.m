@@ -18,21 +18,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"viewdid load for ssviewcontroller");
+    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO]; //deprecated
 	// Do any additional setup after loading the view, typically from a nib.
     networkingEngine = [[SSNetworkingEngine alloc] initWithHostName:self.ip port:self.port];
     notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"propogatePaint:") name:@"serverData" object:nil];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"sendPaint:") name:@"drawingEvent" object:nil];
-    //[[self navigationController] setNavigationBarHidden:YES animated:NO];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"versionControlOpened:") name:@"versionControlEvent" object:nil];
+
+
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     self.slideController = [[DVSlideViewController alloc] init];
     [self.canvasView addSubview:self.slideController.view];
     [self.canvasView bringSubviewToFront:self.slideController.view];
     //[self.slideController.view setBounds:self.canvasView.bounds];
     //[self.slideController.view setFrame:self.canvasView.frame];
     [self.slideController setUp];
-}
+    self.paintView = (PaintingView*)((UIViewController*)[self.slideController.viewControllers objectAtIndex:self.slideController.selectedIndex]).view;
+    [self.paintView setBrushColorWithRed:0.1f green:0.1f blue:0.1f];
 
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -65,6 +73,11 @@
 
 
     }
+}
+
+-(void) versionControlEvent: (NSNotification*) note
+{
+    self.slideController.isActive = !(self.slideController.isActive);
 }
 
 

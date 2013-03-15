@@ -44,6 +44,8 @@
 		3BC9F35616E5A85E00F4B47C /* perforated_white_leather.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */; };
 		3BC9F35716E5A85E00F4B47C /* perforated_white_leather_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35516E5A85D00F4B47C /* perforated_white_leather_@2X.png */; };
 		3BC9F35916E5B47D00F4B47C /* ios-linen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35816E5B47D00F4B47C /* ios-linen.png */; };
+		3BD9899416F3DAF10084B6E6 /* VersionControlPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */; };
+		3BD9899716F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9899616F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,9 @@
 		3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perforated_white_leather.png; sourceTree = "<group>"; };
 		3BC9F35516E5A85D00F4B47C /* perforated_white_leather_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "perforated_white_leather_@2X.png"; sourceTree = "<group>"; };
 		3BC9F35816E5B47D00F4B47C /* ios-linen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios-linen.png"; sourceTree = "<group>"; };
+		3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VersionControlPalette.xib; sourceTree = "<group>"; };
+		3BD9899516F3DB5B0084B6E6 /* SSVersionControlButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVersionControlButtonViewController.h; sourceTree = "<group>"; };
+		3BD9899616F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSVersionControlButtonViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,9 +268,12 @@
 			children = (
 				3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */,
 				3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */,
+				3BD9899516F3DB5B0084B6E6 /* SSVersionControlButtonViewController.h */,
+				3BD9899616F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m */,
 				3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */,
 				3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */,
 				3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */,
+				3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */,
 				3B79A4B716F1289700D5DF08 /* colorPicker.png */,
 				3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */,
 				3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */,
@@ -361,6 +369,7 @@
 				3B79A4B816F1289700D5DF08 /* colorPicker.png in Resources */,
 				3B79A4C116F1445100D5DF08 /* grayBackground.png in Resources */,
 				3B25C4E516F286110018795A /* IpadStoryBoard.storyboard in Resources */,
+				3BD9899416F3DAF10084B6E6 /* VersionControlPalette.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +414,7 @@
 				3BC9F35016E5A14200F4B47C /* SSToolBarCell.m in Sources */,
 				3BC9F35316E5A26500F4B47C /* SSVerticalToolBar.m in Sources */,
 				3B79A4BD16F1440800D5DF08 /* DVSlideViewController.m in Sources */,
+				3BD9899716F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
