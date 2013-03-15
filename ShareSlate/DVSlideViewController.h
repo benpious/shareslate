@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SSViewController.h"
 #import "PaintingView.h"
 
 @interface DVSlideViewController : UIViewController <UIScrollViewDelegate>
@@ -16,10 +15,10 @@
 @property (nonatomic, readonly) NSUInteger selectedIndex;
 @property (nonatomic, assign) CGFloat scaleFactor;
 
-- (id)init;
+//- (id)init;
 - (void)nextViewController;
 - (void)prevViewController;
-
+- (void) setUp;
 @end
 
 

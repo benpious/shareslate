@@ -74,6 +74,204 @@
 	return [CAEAGLLayer class];
 }
 
+- (id)initWithFrame:(CGRect)frame
+{
+    NSLog(@"inited with frame");
+    
+    NSMutableArray*	recordedPaths;
+	CGImageRef		brushImage;
+	CGContextRef	brushContext;
+	GLubyte			*brushData;
+	size_t			width, height;
+    
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
+		
+		eaglLayer.opaque = YES;
+		// In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
+		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+										[NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+		
+		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+		
+		if (!context || ![EAGLContext setCurrentContext:context]) {
+			[self release];
+			return nil;
+		}
+		
+		// Create a texture from an image
+		// First create a UIImage object from the data in a image file, and then extract the Core Graphics image
+		brushImage = [UIImage imageNamed:@"Particle.png"].CGImage;
+		
+		// Get the width and height of the image
+		width = CGImageGetWidth(brushImage);
+		height = CGImageGetHeight(brushImage);
+		
+		// Texture dimensions must be a power of 2. If you write an application that allows users to supply an image,
+		// you'll want to add code that checks the dimensions and takes appropriate action if they are not a power of 2.
+		
+		// Make sure the image exists
+		if(brushImage) {
+			// Allocate  memory needed for the bitmap context
+			brushData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
+			// Use  the bitmatp creation function provided by the Core Graphics framework.
+			brushContext = CGBitmapContextCreate(brushData, width, height, 8, width * 4, CGImageGetColorSpace(brushImage), kCGImageAlphaPremultipliedLast);
+			// After you create the context, you can draw the  image to the context.
+			CGContextDrawImage(brushContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), brushImage);
+			// You don't need the context at this point, so you need to release it to avoid memory leaks.
+			CGContextRelease(brushContext);
+			// Use OpenGL ES to generate a name for the texture.
+			glGenTextures(1, &brushTexture);
+			// Bind the texture name.
+			glBindTexture(GL_TEXTURE_2D, brushTexture);
+			// Set the texture parameters to use a minifying filter and a linear filer (weighted average)
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			// Specify a 2D texture image, providing the a pointer to the image data in memory
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, brushData);
+			// Release  the image data; it's no longer needed
+            free(brushData);
+		}
+		
+		// Set the view's scale factor
+		self.contentScaleFactor = 1.0;
+        
+		// Setup OpenGL states
+		glMatrixMode(GL_PROJECTION);
+		//CGRect frame = self.bounds;
+        //NSLog(@"%f,%f", frame.size.height, frame.size.width);
+		CGFloat scale = self.contentScaleFactor;
+		// Setup the view port in Pixels
+        //assumes a view size of 797 and 753
+		glOrthof(0, 797 * scale, 0, 753 * scale, -1, 1);
+		glViewport(0, 0, 797 * scale, 753 * scale);
+		glMatrixMode(GL_MODELVIEW);
+		glDisable(GL_DITHER);
+		glEnable(GL_TEXTURE_2D);
+        
+		glEnableClientState(GL_VERTEX_ARRAY);
+		
+	    glEnable(GL_BLEND);
+		// Set a blending function appropriate for premultiplied alpha pixel data
+		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		
+		glEnable(GL_POINT_SPRITE_OES);
+		glTexEnvf(GL_POINT_SPRITE_OES, GL_COORD_REPLACE_OES, GL_TRUE);
+		glPointSize(width / kBrushScale);
+		
+		// Make sure to start with a cleared buffer
+		needsErase = YES;
+		
+		// Playback recorded path, which is "Shake Me"
+		recordedPaths = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Recording" ofType:@"data"]];
+		if([recordedPaths count])
+			[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.2];
+        
+        notificationCenter = [NSNotificationCenter defaultCenter];
+    }
+    return self;
+}
+
+
+- (id)init
+{
+    
+    NSMutableArray*	recordedPaths;
+	CGImageRef		brushImage;
+	CGContextRef	brushContext;
+	GLubyte			*brushData;
+	size_t			width, height;
+
+    self = [super init];
+    if (self) {
+        CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
+		
+		eaglLayer.opaque = YES;
+		// In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
+		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+										[NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+		
+		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+		
+		if (!context || ![EAGLContext setCurrentContext:context]) {
+			[self release];
+			return nil;
+		}
+		
+		// Create a texture from an image
+		// First create a UIImage object from the data in a image file, and then extract the Core Graphics image
+		brushImage = [UIImage imageNamed:@"Particle.png"].CGImage;
+		
+		// Get the width and height of the image
+		width = CGImageGetWidth(brushImage);
+		height = CGImageGetHeight(brushImage);
+		
+		// Texture dimensions must be a power of 2. If you write an application that allows users to supply an image,
+		// you'll want to add code that checks the dimensions and takes appropriate action if they are not a power of 2.
+		
+		// Make sure the image exists
+		if(brushImage) {
+			// Allocate  memory needed for the bitmap context
+			brushData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
+			// Use  the bitmatp creation function provided by the Core Graphics framework.
+			brushContext = CGBitmapContextCreate(brushData, width, height, 8, width * 4, CGImageGetColorSpace(brushImage), kCGImageAlphaPremultipliedLast);
+			// After you create the context, you can draw the  image to the context.
+			CGContextDrawImage(brushContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), brushImage);
+			// You don't need the context at this point, so you need to release it to avoid memory leaks.
+			CGContextRelease(brushContext);
+			// Use OpenGL ES to generate a name for the texture.
+			glGenTextures(1, &brushTexture);
+			// Bind the texture name.
+			glBindTexture(GL_TEXTURE_2D, brushTexture);
+			// Set the texture parameters to use a minifying filter and a linear filer (weighted average)
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			// Specify a 2D texture image, providing the a pointer to the image data in memory
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, brushData);
+			// Release  the image data; it's no longer needed
+            free(brushData);
+		}
+		
+		// Set the view's scale factor
+		self.contentScaleFactor = 1.0;
+        
+		// Setup OpenGL states
+		glMatrixMode(GL_PROJECTION);
+		//CGRect frame = self.bounds;
+        //NSLog(@"%f,%f", frame.size.height, frame.size.width);
+		CGFloat scale = self.contentScaleFactor;
+		// Setup the view port in Pixels
+        //assumes a view size of 797 and 753
+		glOrthof(0, 797 * scale, 0, 753 * scale, -1, 1);
+		glViewport(0, 0, 797 * scale, 753 * scale);
+		glMatrixMode(GL_MODELVIEW);
+		glDisable(GL_DITHER);
+		glEnable(GL_TEXTURE_2D);
+        
+		glEnableClientState(GL_VERTEX_ARRAY);
+		
+	    glEnable(GL_BLEND);
+		// Set a blending function appropriate for premultiplied alpha pixel data
+		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		
+		glEnable(GL_POINT_SPRITE_OES);
+		glTexEnvf(GL_POINT_SPRITE_OES, GL_COORD_REPLACE_OES, GL_TRUE);
+		glPointSize(width / kBrushScale);
+		
+		// Make sure to start with a cleared buffer
+		needsErase = YES;
+		
+		// Playback recorded path, which is "Shake Me"
+		recordedPaths = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Recording" ofType:@"data"]];
+		if([recordedPaths count])
+			[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.2];
+        
+        notificationCenter = [NSNotificationCenter defaultCenter];
+    }
+    return self;
+}
+
+
 // The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
 - (id)initWithCoder:(NSCoder*)coder {
 	

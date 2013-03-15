@@ -20,19 +20,43 @@
             </objects>
             <point key="canvasLocation" x="-1748" y="-38"/>
         </scene>
-        <!--Slide View Controller-->
+        <!--View Controller-->
         <scene sceneID="4">
             <objects>
-                <viewController id="2" customClass="DVSlideViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="SSViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RBm-UA-Gdd" customClass="SSVerticalToolBar">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="222" id="kXw-nf-6Pq"/>
+                                    <constraint firstAttribute="height" constant="747" id="uJg-VG-8g9"/>
+                                </constraints>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83w-lw-cNG">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RBm-UA-Gdd" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="0cA-DC-cav"/>
+                            <constraint firstItem="83w-lw-cNG" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="221" id="1PB-sm-pMf"/>
+                            <constraint firstItem="RBm-UA-Gdd" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="YwW-Sw-O14"/>
+                            <constraint firstItem="83w-lw-cNG" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="ZVx-hA-ejD"/>
+                            <constraint firstItem="83w-lw-cNG" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="m2l-1d-xk6"/>
+                            <constraint firstItem="RBm-UA-Gdd" firstAttribute="top" secondItem="83w-lw-cNG" secondAttribute="top" type="default" id="vvf-Pv-otg"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="69r-pH-8TO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="canvasView" destination="83w-lw-cNG" id="IvP-Us-PKd"/>
+                        <outlet property="tools" destination="RBm-UA-Gdd" id="oWM-mx-YMM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>

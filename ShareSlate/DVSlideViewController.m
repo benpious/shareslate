@@ -24,43 +24,49 @@
 
 - (id)init
 {
+        NSLog(@"init");
 	self = [super init];
 	if (self)
 	{
-		_selectedIndex = 0;
-		_scaleFactor = 0.8;
+        _selectedIndex = 0;
+        _scaleFactor = 0.8;
+        
+        self.viewControllers = [[NSMutableArray alloc] initWithCapacity:5];
+        
+         for (int i=0; i<5; i++) {
+         UIViewController* controller = [[UIViewController alloc] init];
+         controller.view = [[PaintingView alloc] initWithFrame:[controller.view frame]];
+         [self.viewControllers setObject: controller atIndexedSubscript: i];
+         
+         }
+         
+        
+        [self setupViews];
+        [self setupViewControllers];
+
 	}
 	
 	return self;
 }
-
--(void) awakeFromNib
-{
-    
-    [super awakeFromNib];
-    
-    _selectedIndex = 0;
-    _scaleFactor = 0.8;
-
-    self.viewControllers = [[NSMutableArray alloc] initWithCapacity:5];
-    
-    for (int i=0; i<5; i++) {
-        SSViewController* controller = [[SSViewController alloc] initWithNibName:@"SlateView" bundle:nil];
-        [self.viewControllers setObject: controller atIndexedSubscript: i];
-
-    }
-}
-
+/*
 - (void)loadView
 {
 	[super loadView];
-	
+    NSLog(@"loadview called");
 	[self setupViews];
 	[self setupViewControllers];
+}
+*/
+
+-(void) setUp
+{
+    [self setupViews];
+    [self setupViewControllers];
 }
 
 - (void)setupViews
 {
+    NSLog(@"Setupviews bounds: %f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
 	UIView *background = [[UIView alloc] initWithFrame:self.view.bounds];
 	[background setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
 	[background setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grayBackground"]]];
@@ -104,6 +110,9 @@
 
 - (void)addViewController:(UIViewController *)viewController atIndex:(int)index;
 {
+    NSLog(@"%f,%f,%f,%f", viewController.view.bounds.origin.x, viewController.view.bounds.origin.y, viewController.view.bounds.size.width, viewController.view.bounds.size.height);
+    NSLog(@"%f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
+
     viewController.view.frame = CGRectMake(self.view.bounds.size.width * index, 0, self.view.frame.size.width, self.view.frame.size.height);
 	viewController.view.backgroundColor = [UIColor colorWithWhite:(index + 1) * 0.2 alpha:1.0];
 	[viewsContainer addSubview:viewController.view];
@@ -265,7 +274,7 @@
 					 }];
 	
 	//Zoom in animation
-    /*
+    
 	[UIView animateWithDuration:0.25
 						  delay:0.75
 						options:UIViewAnimationCurveEaseInOut
@@ -283,7 +292,7 @@
 						 nextViewController.view.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 						 
 						 [nextViewController viewDidAppear:YES];
-					 }];*/
+					 }];
 }
 
 #pragma mark - UIScrollView Delegate

@@ -44,9 +44,7 @@
 -(void) drawRect:(CGRect)rect
 {
 
-    
-    
-    NSLog(@"%f", self.frame.size.width);
+    //NSLog(@"%f", self.frame.size.width);
     if (self.isExpanded) {
         [self addSubview:self.otherView];
         [self bringSubviewToFront:self.otherView];

@@ -30,12 +30,13 @@
 
     selectedRow = -1;
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
-    NSString* imageNameFullPath = [[NSBundle mainBundle] pathForResource:@"ios-linen.png" ofType: nil];
-    self.backgroundImage = [[UIImage alloc] initWithContentsOfFile:imageNameFullPath];
-    backImage = [[UIImageView alloc] initWithImage: self.backgroundImage];
+    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grayBackground"]]];
+    //NSString* imageNameFullPath = [[NSBundle mainBundle] pathForResource:@"ios-linen.png" ofType: nil];
+    //self.backgroundImage = [[UIImage alloc] initWithContentsOfFile:imageNameFullPath];
+    //backImage = [[UIImageView alloc] initWithImage: self.backgroundImage];
     numItems = 4;
     self.rowHeight = 768.0f/numItems;
-    self.backgroundView = [[UIImageView alloc] initWithImage:self.backgroundImage];
+    //self.backgroundView = [[UIImageView alloc] initWithImage:self.backgroundImage];
     //[self addSubview: backImage];
     //[self sendSubviewToBack: backImage];
     items = malloc(sizeof(toolBarItem) * numItems);

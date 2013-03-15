@@ -99,35 +99,6 @@
             <point key="canvasLocation" x="-135" y="170"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PaintingView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaintingView.h"/>
-        </class>
-        <class className="SSConnectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSConnectionViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="ipAddress" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SSToolBarTableViewViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSToolBarTableViewViewController.h"/>
-        </class>
-        <class className="SSVerticalToolBar" superclassName="UITableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSVerticalToolBar.h"/>
-        </class>
-        <class className="SSViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="controller" candidateClass="SSToolBarTableViewViewController"/>
-                <relationship kind="outlet" name="paintView" candidateClass="PaintingView"/>
-                <relationship kind="outlet" name="tools" candidateClass="SSVerticalToolBar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
