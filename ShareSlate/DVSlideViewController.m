@@ -35,28 +35,17 @@
         
          for (int i=0; i<5; i++) {
          UIViewController* controller = [[UIViewController alloc] init];
-         controller.view = [[PaintingView alloc] initWithFrame:[controller.view frame]];
+         controller.view = [[PaintingView alloc] initWithFrame:[self.view frame]];
+            NSLog(@"init bounds: %f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
+             NSLog(@"init frame: %f,%f,%f,%f", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+
          [self.viewControllers setObject: controller atIndexedSubscript: i];
-         
          }
-         
-        
-        [self setupViews];
-        [self setupViewControllers];
 
 	}
 	
 	return self;
 }
-/*
-- (void)loadView
-{
-	[super loadView];
-    NSLog(@"loadview called");
-	[self setupViews];
-	[self setupViewControllers];
-}
-*/
 
 -(void) setUp
 {
@@ -112,9 +101,10 @@
 {
     NSLog(@"%f,%f,%f,%f", viewController.view.bounds.origin.x, viewController.view.bounds.origin.y, viewController.view.bounds.size.width, viewController.view.bounds.size.height);
     NSLog(@"%f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
-
+    
+    //this is the line to change to make it work in landscape mode i think
     viewController.view.frame = CGRectMake(self.view.bounds.size.width * index, 0, self.view.frame.size.width, self.view.frame.size.height);
-	viewController.view.backgroundColor = [UIColor colorWithWhite:(index + 1) * 0.2 alpha:1.0];
+	//viewController.view.backgroundColor = [UIColor colorWithWhite:(index + 1) * 0.2 alpha:1.0];
 	[viewsContainer addSubview:viewController.view];
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];

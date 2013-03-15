@@ -76,7 +76,6 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    NSLog(@"inited with frame");
     
     NSMutableArray*	recordedPaths;
 	CGImageRef		brushImage;
