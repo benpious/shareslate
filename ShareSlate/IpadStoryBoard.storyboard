@@ -12,25 +12,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rve-9R-zXg" customClass="SSVerticalToolBar">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="222" id="jgc-I2-R1I"/>
-                                </constraints>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7x-nx-qrn">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.10566986239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyR-c7-APN" customClass="SSToolBarContainer">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rve-9R-zXg" firstAttribute="top" secondItem="waC-oS-Tm9" secondAttribute="top" type="default" id="63y-OY-tGI"/>
                             <constraint firstItem="E7x-nx-qrn" firstAttribute="leading" secondItem="waC-oS-Tm9" secondAttribute="leading" constant="222" id="BqX-eY-60G"/>
                             <constraint firstItem="E7x-nx-qrn" firstAttribute="trailing" secondItem="waC-oS-Tm9" secondAttribute="trailing" type="default" id="G1B-oP-eoO"/>
-                            <constraint firstItem="rve-9R-zXg" firstAttribute="bottom" secondItem="waC-oS-Tm9" secondAttribute="bottom" type="default" id="Lci-8L-tEL"/>
-                            <constraint firstItem="rve-9R-zXg" firstAttribute="leading" secondItem="waC-oS-Tm9" secondAttribute="leading" type="default" id="WEN-zT-PMs"/>
+                            <constraint firstItem="tyR-c7-APN" firstAttribute="leading" secondItem="waC-oS-Tm9" secondAttribute="leading" type="default" id="SnR-Zh-lXT"/>
+                            <constraint firstAttribute="trailing" secondItem="tyR-c7-APN" secondAttribute="trailing" constant="802" id="TE7-q8-crT"/>
+                            <constraint firstItem="tyR-c7-APN" firstAttribute="top" secondItem="waC-oS-Tm9" secondAttribute="top" type="default" id="a1o-FI-M88"/>
                             <constraint firstItem="E7x-nx-qrn" firstAttribute="bottom" secondItem="waC-oS-Tm9" secondAttribute="bottom" type="default" id="hGe-Rm-pvH"/>
                             <constraint firstItem="E7x-nx-qrn" firstAttribute="top" secondItem="waC-oS-Tm9" secondAttribute="top" type="default" id="oDr-US-5eR"/>
+                            <constraint firstItem="tyR-c7-APN" firstAttribute="bottom" secondItem="waC-oS-Tm9" secondAttribute="bottom" type="default" id="tEc-Bt-os6"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -41,7 +39,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="canvasView" destination="E7x-nx-qrn" id="Cxl-Ov-MMq"/>
-                        <outlet property="tools" destination="rve-9R-zXg" id="FUF-iH-fKV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cP9-gq-cPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,14 +136,13 @@
                 <relationship kind="outlet" name="port" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="SSVerticalToolBar" superclassName="UITableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSVerticalToolBar.h"/>
+        <class className="SSToolBarContainer" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSToolBarContainer.h"/>
         </class>
         <class className="SSViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="canvasView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="tools" candidateClass="SSVerticalToolBar"/>
             </relationships>
         </class>
     </classes>

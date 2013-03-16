@@ -19,7 +19,7 @@
         self.textLabel.backgroundColor = [UIColor clearColor];
         self.textLabel.textColor = [UIColor lightGrayColor];
         self.textLabel.font = [UIFont boldSystemFontOfSize:40.0];
-        
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
         center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:NSSelectorFromString(@"deSelected:") name:@"rowDeselected" object:nil];
     }

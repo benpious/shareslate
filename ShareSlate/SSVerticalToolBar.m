@@ -15,7 +15,67 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-     
+        self.dataSource = self;
+        self.delegate = self;
+        
+        //set selected row to an invalid row so nothing starts out as selected
+        selectedRow = -1;
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grayBackground"]]];
+        numItems = 4;
+        
+        //magic number -- at this point the view doesn't have a height, so need to specify this
+        //obviously this is kind of awful, at some point I'll look into fixing it
+        self.rowHeight = 768.0f/numItems;
+        items = malloc(sizeof(toolBarItem) * numItems);
+        
+        
+        
+        //create the brush tool
+        toolBarItem brush = items[0];
+        brush.label = @"Brush";
+        brush.expandedViewController = [[UIViewController alloc] initWithNibName:@"brushToolBarPalette" bundle:nil];
+        brush.expandedHeight = [[brush.expandedViewController view] frame].size.height;
+        
+        NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        brush.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        items[0] = brush;
+        
+        //create the eraser tool
+        
+        toolBarItem eraser = items[1];
+        eraser.label = @"Eraser";
+        eraser.expandedViewController = [[UIViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
+        eraser.expandedHeight = [[eraser.expandedViewController view] frame].size.height;
+        
+        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        eraser.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        items[1] = eraser;
+        
+        
+        //create the shape tool
+        
+        toolBarItem shape = items[2];
+        shape.label = @"Shape";
+        shape.expandedViewController = [[UIViewController alloc] initWithNibName:@"ShapeToolBarPalette" bundle:nil];
+        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        shape.expandedHeight = [[shape.expandedViewController view] frame].size.height;
+        shape.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        items[2] = shape;
+        
+        //create the chat tool
+        
+        toolBarItem chat = items[3];
+        chat.label = @"History";
+        chat.expandedViewController = [[UIViewController alloc] initWithNibName:@"VersionControlPalette" bundle:nil];
+        chat.expandedHeight = [[chat.expandedViewController view] frame].size.height;
+        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        chat.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        items[3] = chat;
+        
+        
+        center = [NSNotificationCenter defaultCenter];
+        //historySelected = [NSNotification notificationWithName:@"historySelected" object:nil];
 
     }
     return self;
@@ -27,18 +87,16 @@
     // Initialization code
     self.dataSource = self;
     self.delegate = self;
-
+    
+    //set selected row to an invalid row so nothing starts out as selected
     selectedRow = -1;
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grayBackground"]]];
-    //NSString* imageNameFullPath = [[NSBundle mainBundle] pathForResource:@"ios-linen.png" ofType: nil];
-    //self.backgroundImage = [[UIImage alloc] initWithContentsOfFile:imageNameFullPath];
-    //backImage = [[UIImageView alloc] initWithImage: self.backgroundImage];
     numItems = 4;
+    
+    //magic number -- at this point the view doesn't have a height, so need to specify this
+    //obviously this is kind of awful, at some point I'll look into fixing it
     self.rowHeight = 768.0f/numItems;
-    //self.backgroundView = [[UIImageView alloc] initWithImage:self.backgroundImage];
-    //[self addSubview: backImage];
-    //[self sendSubviewToBack: backImage];
     items = malloc(sizeof(toolBarItem) * numItems);
     
     
@@ -88,8 +146,8 @@
     
     center = [NSNotificationCenter defaultCenter];
     
-
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -105,6 +163,14 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [center postNotification:[NSNotification notificationWithName:@"rowDeselected" object:nil]];
+    
+    NSLog(@"%d",indexPath.row);
+    //hard coded selection of history
+    if (indexPath.row == 3) {
+        NSLog(@"selectedrow == 3");
+        [center postNotification: [NSNotification notificationWithName:@"historySelected" object:nil]];
+        return  indexPath;
+    }
     
     if (selectedRow != indexPath.row) {
         selectedRow = indexPath.row;
@@ -165,6 +231,7 @@
         
         cell.textLabel.text = item.label;
         cell.iconImage = item.backGroundImage;
+
 
     }
     

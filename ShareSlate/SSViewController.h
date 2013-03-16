@@ -22,7 +22,7 @@
 @property (retain) NSString* ip;
 @property (assign) int port;
 @property (retain) IBOutlet UIView* canvasView;
-@property (retain) IBOutlet SSVerticalToolBar* tools;
+//@property (retain) IBOutlet SSVerticalToolBar* tools;
 @property (retain) DVSlideViewController* slideController;
 
 -(void) propogatePaint: (NSNotification*) note;

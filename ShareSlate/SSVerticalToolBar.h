@@ -26,6 +26,7 @@ typedef struct {
     toolBarItem* items;
     NSNotificationCenter* center;
     NSNotification* deselected;
+    NSNotification* historySelected;
 }
 
 @property (retain) UIImage* backgroundImage;
