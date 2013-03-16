@@ -41,6 +41,8 @@
 
 -(void) setUp
 {
+    center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"historySelected" object:nil];
     for (int i=0; i < 4 ; i++) {
         
         UIViewController* controller = [[UIViewController alloc] init];
@@ -67,6 +69,7 @@
 	viewsContainer.pagingEnabled = TRUE;
 	[viewsContainer setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
 	[self.view addSubview:viewsContainer];
+    
 }
 
 - (void)setupViewControllers
@@ -98,16 +101,12 @@
 
 - (void)addViewController:(UIViewController *)viewController atIndex:(int)index;
 {
-    //NSLog(@"%f,%f,%f,%f", viewController.view.bounds.origin.x, viewController.view.bounds.origin.y, viewController.view.bounds.size.width, viewController.view.bounds.size.height);
-    //NSLog(@"%f,%f,%f,%f", self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
-    
     viewController.view.frame = CGRectMake(self.view.bounds.size.width * index, 0, self.view.frame.size.width, self.view.frame.size.height);
 	[viewsContainer addSubview:viewController.view];
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];
 	}
-	
-    //i added this
+	/*
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectViewController:)];
     [viewController.view addGestureRecognizer:tap];
     
@@ -120,6 +119,7 @@
 	[swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
 	[viewController.view addGestureRecognizer:swipeRight];
 	[swipeRight release];
+     */
 }
 
 - (void)changeViewController:(UISwipeGestureRecognizer *)gesture
@@ -140,11 +140,11 @@
 //i added this method
 -(void) selectViewController: (UITapGestureRecognizer *) gesture
 {
-    /*
+    
     if (!self.isActive) {
         return;
     }
-    */
+    
     [UIView animateWithDuration:0.25
 						  delay:0.75
 						options:UIViewAnimationCurveEaseInOut
@@ -163,6 +163,12 @@
 						 
 						 [((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]) viewDidAppear:YES];
 					 }];
+    
+    self.isActive = NO;
+    //post notification that version has been selected
+    [self.view removeGestureRecognizer:tap];
+    [self.view removeGestureRecognizer:swipeLeft];
+    [self.view removeGestureRecognizer:swipeRight];
 
 }
 
@@ -204,11 +210,11 @@
 
 - (void)slideToViewControllerAtIndex:(NSUInteger)toIndex
 {
-    /*
+    
     if (!self.isActive) {
         return;
     }
-     */
+     
 	UIViewController *currentViewController = [self viewControllerWithIndex:_selectedIndex];
 	UIViewController *nextViewController = [self viewControllerWithIndex:toIndex];
 	
@@ -230,6 +236,7 @@
 	[currentViewController viewWillDisappear:YES];
 	
 	//Zoom out animation
+    /*
 	[UIView animateWithDuration:0.25
 						  delay:0.0
 						options:UIViewAnimationCurveEaseInOut
@@ -248,7 +255,7 @@
 						 [nextViewController viewWillAppear:YES];
 					 }];
 	
-	
+	*/
 	//Slide animation
 	[UIView animateWithDuration:0.5
 						  delay:0.25
@@ -295,6 +302,37 @@
 - (void)prevViewController
 {
 	[self slideToViewControllerAtIndex:_selectedIndex - 1];
+}
+
+-(void) historySelected: (NSNotification*) note
+{
+    
+    UIViewController *currentViewController = [self viewControllerWithIndex:_selectedIndex];
+
+    [UIView animateWithDuration:0.25
+						  delay:0.0
+						options:UIViewAnimationCurveEaseInOut
+					 animations:^{
+						 currentViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
+					 }
+					 completion:NULL
+					 ];
+    self.isActive = YES;
+    
+    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectViewController:)];
+    [self.view addGestureRecognizer:tap];
+    
+	swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changeViewController:)];
+	[swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+	[self.view addGestureRecognizer:swipeLeft];
+	[swipeLeft release];
+	
+	swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changeViewController:)];
+	[swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+	[self.view addGestureRecognizer:swipeRight];
+	[swipeRight release];
+
+
 }
 
 @end

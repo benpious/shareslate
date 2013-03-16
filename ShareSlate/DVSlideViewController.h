@@ -10,7 +10,12 @@
 #import "PaintingView.h"
 
 @interface DVSlideViewController : UIViewController <UIScrollViewDelegate>
-
+{
+    NSNotificationCenter* center;
+    UITapGestureRecognizer* tap;
+    UISwipeGestureRecognizer* swipeLeft;
+    UISwipeGestureRecognizer* swipeRight;
+}
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, readonly) NSUInteger selectedIndex;
 @property (nonatomic, assign) CGFloat scaleFactor;
@@ -21,6 +26,7 @@
 - (void)nextViewController;
 - (void)prevViewController;
 - (void) setUp;
+-(void) historySelected: (NSNotification*) note;
 @end
 
 
