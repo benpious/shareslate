@@ -1,0 +1,54 @@
+Shape:
+    type: "brushStroke" or "rectangle" or "circle"
+    color: rgb value
+    positions: [int int int int]
+    lineSize: number
+
+
+requests:
+    add:
+    {
+        type:"add"
+        shapes
+    }
+
+    save: 
+    {
+        type:"save"
+        name:"stuff"
+        description:"stuff"
+    }
+            
+    propogate
+    {
+        type:"propogate"
+        name:"stuff"
+    }
+
+    getVersion
+    {
+        type:"getVersion"
+        name:"stuff"
+    }
+    
+responses
+    add: see above
+    save: 
+    {
+        type:"save"
+        name:"stuff"
+        description:"stuff"
+        timeStamp: some timestamp format
+    }
+    propogate
+    {
+        type:"propogate"
+        name:"stuff"
+        data: [Shape array]
+    }
+    getVersion
+    {
+        type:"getVersion"
+        name:"stuff"
+        data: [Shape array]
+    }
