@@ -87,6 +87,7 @@
     
     if (self) {
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
+        self.isActive = YES;
 		
 		eaglLayer.opaque = YES;
 		// In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
@@ -168,6 +169,8 @@
 			[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.2];
         
         notificationCenter = [NSNotificationCenter defaultCenter];
+        [self setBrushColorWithRed:0.1f green:0.1f blue:0.1f];
+
     }
     return self;
 }
@@ -185,7 +188,7 @@
     self = [super init];
     if (self) {
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
-		
+        self.isActive = YES;
 		eaglLayer.opaque = YES;
 		// In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
 		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -282,7 +285,7 @@
     
     if ((self = [super initWithCoder:coder])) {
 		CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
-		
+        self.isActive = YES;
 		eaglLayer.opaque = YES;
 		// In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
 		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -525,10 +528,30 @@
 		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.01];
 }
 
+-(void) renderImageFrom: (CGPoint) start To: (CGPoint) end
+{
+    CGRect rectToDraw = CGRectMake(start.x, start.y, start.x - end.x , start.y - end.y);
+    
+    CGContextRef theContext = UIGraphicsGetCurrentContext();
+    
+    CGContextDrawImage(theContext, rectToDraw, [self.imageToDraw CGImage]);
+    
+}
+
 
 // Handles the start of a touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    if (!(self.isActive)) {
+        return;
+    }
+    
+    if (self.drawingImages) {
+        
+        return;
+    }
+    
 	CGRect				bounds = [self bounds];
     UITouch*	touch = [[event touchesForView:self] anyObject];
 	firstTouch = YES;
@@ -540,7 +563,17 @@
 // Handles the continuation of a touch.
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {  
-   	  
+   	
+    if (!(self.isActive)) {
+        return;
+    }
+    
+    if (self.drawingImages) {
+        [self renderImageFrom: [ ((UITouch*)[[event touchesForView:self] anyObject]) previousLocationInView: self ] To: [ ((UITouch*)[[event touchesForView:self] anyObject]) previousLocationInView: self ]];
+        return;
+    }
+
+    
 	CGRect				bounds = [self bounds];
 	UITouch*			touch = [[event touchesForView:self] anyObject];
 		
@@ -566,6 +599,16 @@
 // Handles the end of a touch event when the touch is a tap.
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    if (!(self.isActive)) {
+        return;
+    }
+    
+    if (self.drawingImages) {
+        
+        return;
+    }
+    
 	CGRect				bounds = [self bounds];
     UITouch*	touch = [[event touchesForView:self] anyObject];
 	if (firstTouch) {

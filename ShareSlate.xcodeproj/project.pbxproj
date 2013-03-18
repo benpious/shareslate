@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B01B1B216F6D1A2009C039E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B01B1B116F6D1A2009C039E /* MobileCoreServices.framework */; };
 		3B03713C16E1A140001E1364 /* SSNetworkingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */; };
 		3B03713F16E1D827001E1364 /* SSConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03713E16E1D827001E1364 /* SSConnectionViewController.m */; };
 		3B0886C216E7BF4100B61EF4 /* brushToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */; };
@@ -32,6 +33,7 @@
 		3B1D641416DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B1D641516DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B25C4E516F286110018795A /* IpadStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B25C4E416F286110018795A /* IpadStoryBoard.storyboard */; };
+		3B3CC2E616F5055700ED78AE /* VersionControlInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */; };
 		3B5B491416E279B80069062A /* shareSlateServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B491316E279B80069062A /* shareSlateServer.py */; };
 		3B79A4B416F1237400D5DF08 /* EraserToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */; };
 		3B79A4B616F123F400D5DF08 /* ShapeToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */; };
@@ -49,7 +51,9 @@
 		3BC9F35716E5A85E00F4B47C /* perforated_white_leather_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35516E5A85D00F4B47C /* perforated_white_leather_@2X.png */; };
 		3BC9F35916E5B47D00F4B47C /* ios-linen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35816E5B47D00F4B47C /* ios-linen.png */; };
 		3BD9899416F3DAF10084B6E6 /* VersionControlPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */; };
-		3BD9899716F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9899616F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m */; };
+		3BE4280116F5234800D404B1 /* buttonEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE4280016F5234800D404B1 /* buttonEffect.png */; };
+		3BE4280316F5240E00D404B1 /* recessedButtonEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */; };
+		3BEF154316F51A100008E293 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEF154216F51A100008E293 /* button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B01B1B116F6D1A2009C039E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3B03713A16E1A140001E1364 /* SSNetworkingEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSNetworkingEngine.h; sourceTree = "<group>"; };
 		3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSNetworkingEngine.m; sourceTree = "<group>"; };
 		3B03713D16E1D826001E1364 /* SSConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSConnectionViewController.h; sourceTree = "<group>"; };
@@ -95,6 +100,7 @@
 		3B1D641116DF17DC0008D9EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B1D641316DF19210008D9EC /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
 		3B25C4E416F286110018795A /* IpadStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IpadStoryBoard.storyboard; sourceTree = "<group>"; };
+		3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VersionControlInfoView.xib; sourceTree = "<group>"; };
 		3B5B491316E279B80069062A /* shareSlateServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = shareSlateServer.py; sourceTree = "<group>"; };
 		3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EraserToolBarPalette.xib; sourceTree = "<group>"; };
 		3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShapeToolBarPalette.xib; sourceTree = "<group>"; };
@@ -117,8 +123,9 @@
 		3BC9F35516E5A85D00F4B47C /* perforated_white_leather_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "perforated_white_leather_@2X.png"; sourceTree = "<group>"; };
 		3BC9F35816E5B47D00F4B47C /* ios-linen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios-linen.png"; sourceTree = "<group>"; };
 		3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VersionControlPalette.xib; sourceTree = "<group>"; };
-		3BD9899516F3DB5B0084B6E6 /* SSVersionControlButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVersionControlButtonViewController.h; sourceTree = "<group>"; };
-		3BD9899616F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSVersionControlButtonViewController.m; sourceTree = "<group>"; };
+		3BE4280016F5234800D404B1 /* buttonEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonEffect.png; sourceTree = "<group>"; };
+		3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recessedButtonEffect.png; sourceTree = "<group>"; };
+		3BEF154216F51A100008E293 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B01B1B216F6D1A2009C039E /* MobileCoreServices.framework in Frameworks */,
 				3B1D641216DF17DC0008D9EC /* QuartzCore.framework in Frameworks */,
 				3B1D641016DF17590008D9EC /* OpenGLES.framework in Frameworks */,
 				3B1D63D116DF14DF0008D9EC /* UIKit.framework in Frameworks */,
@@ -169,6 +177,7 @@
 		3B1D63CF16DF14DF0008D9EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B01B1B116F6D1A2009C039E /* MobileCoreServices.framework */,
 				3B1D641116DF17DC0008D9EC /* QuartzCore.framework */,
 				3B1D640F16DF17590008D9EC /* OpenGLES.framework */,
 				3B1D63D016DF14DF0008D9EC /* UIKit.framework */,
@@ -184,6 +193,7 @@
 			children = (
 				3B1D63DF16DF14DF0008D9EC /* SSAppDelegate.h */,
 				3B1D63E016DF14DF0008D9EC /* SSAppDelegate.m */,
+				3B3CC2E416F504FB00ED78AE /* Backgrounds */,
 				3B691A7416E54F980098E75E /* Drawing */,
 				3B691A7316E54F740098E75E /* Networking */,
 				3B691A7216E54F5E0098E75E /* UI Elements */,
@@ -225,13 +235,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3B3CC2E316F504D700ED78AE /* Palettes */ = {
+			isa = PBXGroup;
+			children = (
+				3B79A4B716F1289700D5DF08 /* colorPicker.png */,
+				3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */,
+				3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */,
+				3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */,
+				3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */,
+			);
+			name = Palettes;
+			sourceTree = "<group>";
+		};
+		3B3CC2E416F504FB00ED78AE /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */,
+				3BC9F35516E5A85D00F4B47C /* perforated_white_leather_@2X.png */,
+				3BC9F35816E5B47D00F4B47C /* ios-linen.png */,
+				3B79A4C016F1445100D5DF08 /* grayBackground.png */,
+				3BAD138716F4330D00898C05 /* bo_play_pattern.png */,
+				3BAD138816F4330D00898C05 /* bo_play_pattern_@2X.png */,
+				3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */,
+			);
+			name = Backgrounds;
+			sourceTree = "<group>";
+		};
 		3B691A7216E54F5E0098E75E /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
 				3B79A4BF16F1441900D5DF08 /* ToolBar */,
 				3B79A4BE16F1441500D5DF08 /* Version Control */,
-				3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */,
-				3BC9F35516E5A85D00F4B47C /* perforated_white_leather_@2X.png */,
 			);
 			name = "UI Elements";
 			sourceTree = "<group>";
@@ -256,7 +290,6 @@
 				3B1D63EB16DF14DF0008D9EC /* SSViewController.h */,
 				3B1D63EC16DF14DF0008D9EC /* SSViewController.m */,
 				3B1D641316DF19210008D9EC /* Particle.png */,
-				3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */,
 				3B25C4E416F286110018795A /* IpadStoryBoard.storyboard */,
 			);
 			name = Drawing;
@@ -267,12 +300,11 @@
 			children = (
 				3BAD138E16F43A7700898C05 /* SSVersionInfoView.h */,
 				3BAD138F16F43A7700898C05 /* SSVersionInfoView.m */,
+				3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */,
 				3BAD138B16F439D700898C05 /* SSToolBarContainer.h */,
 				3BAD138C16F439D800898C05 /* SSToolBarContainer.m */,
 				3B79A4BB16F1440800D5DF08 /* DVSlideViewController.h */,
 				3B79A4BC16F1440800D5DF08 /* DVSlideViewController.m */,
-				3BC9F35816E5B47D00F4B47C /* ios-linen.png */,
-				3B79A4C016F1445100D5DF08 /* grayBackground.png */,
 			);
 			name = "Version Control";
 			sourceTree = "<group>";
@@ -282,17 +314,12 @@
 			children = (
 				3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */,
 				3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */,
-				3BAD138716F4330D00898C05 /* bo_play_pattern.png */,
-				3BAD138816F4330D00898C05 /* bo_play_pattern_@2X.png */,
-				3BD9899516F3DB5B0084B6E6 /* SSVersionControlButtonViewController.h */,
-				3BD9899616F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m */,
-				3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */,
-				3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */,
-				3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */,
-				3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */,
-				3B79A4B716F1289700D5DF08 /* colorPicker.png */,
 				3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */,
 				3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */,
+				3BEF154216F51A100008E293 /* button.png */,
+				3BE4280016F5234800D404B1 /* buttonEffect.png */,
+				3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */,
+				3B3CC2E316F504D700ED78AE /* Palettes */,
 			);
 			name = ToolBar;
 			sourceTree = "<group>";
@@ -388,6 +415,10 @@
 				3BD9899416F3DAF10084B6E6 /* VersionControlPalette.xib in Resources */,
 				3BAD138916F4330D00898C05 /* bo_play_pattern.png in Resources */,
 				3BAD138A16F4330D00898C05 /* bo_play_pattern_@2X.png in Resources */,
+				3B3CC2E616F5055700ED78AE /* VersionControlInfoView.xib in Resources */,
+				3BEF154316F51A100008E293 /* button.png in Resources */,
+				3BE4280116F5234800D404B1 /* buttonEffect.png in Resources */,
+				3BE4280316F5240E00D404B1 /* recessedButtonEffect.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +463,6 @@
 				3BC9F35016E5A14200F4B47C /* SSToolBarCell.m in Sources */,
 				3BC9F35316E5A26500F4B47C /* SSVerticalToolBar.m in Sources */,
 				3B79A4BD16F1440800D5DF08 /* DVSlideViewController.m in Sources */,
-				3BD9899716F3DB5B0084B6E6 /* SSVersionControlButtonViewController.m in Sources */,
 				3BAD138D16F439D800898C05 /* SSToolBarContainer.m in Sources */,
 				3BAD139016F43A7700898C05 /* SSVersionInfoView.m in Sources */,
 			);

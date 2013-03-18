@@ -22,6 +22,12 @@
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:NSSelectorFromString(@"deSelected:") name:@"rowDeselected" object:nil];
+        NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"buttonEffect.png" ofType: nil];
+        self.buttonEffect = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        //otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"recessedButtonEffect.png" ofType: nil];
+        //self.recessedButtonEffect = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+
+
     }
     return self;
 }
@@ -50,9 +56,22 @@
         [self addSubview:self.otherView];
         [self bringSubviewToFront:self.otherView];
         [self.otherView setNeedsDisplay];
+        
+        
+        CGRect bounds = self.bounds;
+
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        // flip the coordinates system
+        CGContextTranslateCTM(context, 0.0, bounds.size.height);
+        CGContextScaleCTM(context, 1.0, -1.0);
+
+        //CGContextDrawImage(context, self.bounds, self.recessedButtonEffect.CGImage);
+
     }
     
     else {
+        
         CGRect bounds = self.bounds;
         CGContextRef context = UIGraphicsGetCurrentContext();
         
@@ -60,16 +79,11 @@
         CGContextTranslateCTM(context, 0.0, bounds.size.height);
         CGContextScaleCTM(context, 1.0, -1.0);
         
-        // draw an image in the center of the cell
-        CGSize imageSize = self.iconImage.size;
-        CGRect imageRect = CGRectMake(floorf(((bounds.size.width-imageSize.width)/2.0)),
-                                      floorf(((bounds.size.height-imageSize.height)/2.0)+15),
-                                      imageSize.width,
-                                      imageSize.height);
-        
-        CGContextDrawImage(context, imageRect , self.iconImage.CGImage);
+        CGContextDrawImage(context, self.bounds, self.iconImage.CGImage);
+        CGContextDrawImage(context, self.bounds, self.buttonEffect.CGImage);
+
     }
-        
+    
 }
 
 - (void)layoutSubviews

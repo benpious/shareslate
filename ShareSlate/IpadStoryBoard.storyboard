@@ -39,6 +39,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="canvasView" destination="E7x-nx-qrn" id="Cxl-Ov-MMq"/>
+                        <outlet property="container" destination="tyR-c7-APN" id="Qm4-OF-qm5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cP9-gq-cPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -143,6 +144,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="canvasView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="container" candidateClass="SSToolBarContainer"/>
             </relationships>
         </class>
     </classes>

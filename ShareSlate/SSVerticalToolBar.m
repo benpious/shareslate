@@ -7,6 +7,8 @@
 //
 
 #import "SSVerticalToolBar.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @implementation SSVerticalToolBar
 
@@ -75,7 +77,6 @@
         
         
         center = [NSNotificationCenter defaultCenter];
-        //historySelected = [NSNotification notificationWithName:@"historySelected" object:nil];
 
     }
     return self;
@@ -146,6 +147,13 @@
     
     center = [NSNotificationCenter defaultCenter];
     
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)] autorelease];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+    [view.layer insertSublayer:gradient atIndex:0];
+
+    
 }
 
 
@@ -164,10 +172,16 @@
     
     [center postNotification:[NSNotification notificationWithName:@"rowDeselected" object:nil]];
     
-    NSLog(@"%d",indexPath.row);
+    
+    //hard coded selection of image
+    if (indexPath.row == 2 && selectedRow !=2 ) {
+        
+        [center postNotification: [NSNotification notificationWithName:@"imageSelected" object:nil]];
+    }
+    
     //hard coded selection of history
     if (indexPath.row == 3) {
-        NSLog(@"selectedrow == 3");
+        
         [center postNotification: [NSNotification notificationWithName:@"historySelected" object:nil]];
         return  indexPath;
     }
@@ -231,7 +245,6 @@
         
         cell.textLabel.text = item.label;
         cell.iconImage = item.backGroundImage;
-
 
     }
     

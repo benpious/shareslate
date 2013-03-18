@@ -106,20 +106,6 @@
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];
 	}
-	/*
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectViewController:)];
-    [viewController.view addGestureRecognizer:tap];
-    
-	UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changeViewController:)];
-	[swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-	[viewController.view addGestureRecognizer:swipeLeft];
-	[swipeLeft release];
-	
-	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changeViewController:)];
-	[swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-	[viewController.view addGestureRecognizer:swipeRight];
-	[swipeRight release];
-     */
 }
 
 - (void)changeViewController:(UISwipeGestureRecognizer *)gesture
@@ -145,9 +131,14 @@
         return;
     }
     
+    for (UIViewController* controller in self.viewControllers ) {
+        ((PaintingView*)(controller.view)).isActive = YES;
+    }
+
+    
     [UIView animateWithDuration:0.25
 						  delay:0.75
-						options:UIViewAnimationCurveEaseInOut
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
 						 ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.transform = CGAffineTransformMakeScale(1.0, 1.0);
 					 }
@@ -166,6 +157,7 @@
     
     self.isActive = NO;
     //post notification that version has been selected
+    [center postNotification: [NSNotification notificationWithName:@"viewSelected" object:nil]];
     [self.view removeGestureRecognizer:tap];
     [self.view removeGestureRecognizer:swipeLeft];
     [self.view removeGestureRecognizer:swipeRight];
@@ -259,7 +251,7 @@
 	//Slide animation
 	[UIView animateWithDuration:0.5
 						  delay:0.25
-						options:UIViewAnimationCurveEaseInOut
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
 						 [viewsContainer setContentOffset:toPoint];
 					 }
@@ -307,20 +299,26 @@
 -(void) historySelected: (NSNotification*) note
 {
     
+    for (UIViewController* controller in self.viewControllers ) {
+        ((PaintingView*)(controller.view)).isActive = NO;
+    }
+    
     UIViewController *currentViewController = [self viewControllerWithIndex:_selectedIndex];
 
     [UIView animateWithDuration:0.25
 						  delay:0.0
-						options:UIViewAnimationCurveEaseInOut
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
 						 currentViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
 					 }
 					 completion:NULL
 					 ];
+    
     self.isActive = YES;
     
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectViewController:)];
     [self.view addGestureRecognizer:tap];
+    [tap release];
     
 	swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changeViewController:)];
 	[swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];

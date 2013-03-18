@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SSToolBarCell.h"
 
+
 typedef struct {
     CGFloat expandedHeight;
     UIViewController* expandedViewController;
@@ -30,6 +31,8 @@ typedef struct {
 }
 
 @property (retain) UIImage* backgroundImage;
+@property (retain) UIImage* currImageToDraw;
+
 
 
 @end

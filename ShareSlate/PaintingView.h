@@ -87,6 +87,9 @@
 
 @property(nonatomic, readwrite) CGPoint location;
 @property(nonatomic, readwrite) CGPoint previousLocation;
+@property(assign) BOOL isActive;
+@property (retain) UIImage* imageToDraw;
+@property (assign) BOOL drawingImages;
 
 - (void)erase;
 - (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;

@@ -18,11 +18,12 @@
     self.versionView = [[SSVersionInfoView alloc] initWithFrame:CGRectMake(0.0, 0.0, 222.0f, 768.f)];
     center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"historySelected" object:nil];
+    [center addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"viewSelected" object:nil];
+    
 }
 
 -(void) historySelected: (NSNotification*) note
 {
-    NSLog(@"historySelected Called");
     [self flipViews];
 }
 
@@ -39,6 +40,7 @@
     
     [UIView commitAnimations];
 }
+
 
 
 @end

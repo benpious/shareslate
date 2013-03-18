@@ -11,8 +11,10 @@
 #import "SSNetworkingEngine.h"
 #import "SSVerticalToolBar.h"
 #import "DVSlideViewController.h"
+#import <MobileCoreServices/UTCoreTypes.h>
+#import "SSToolBarContainer.h"
 
-@interface SSViewController : UIViewController
+@interface SSViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
     NSNotificationCenter* notificationCenter;
     SSNetworkingEngine* networkingEngine;
@@ -22,10 +24,12 @@
 @property (retain) NSString* ip;
 @property (assign) int port;
 @property (retain) IBOutlet UIView* canvasView;
-//@property (retain) IBOutlet SSVerticalToolBar* tools;
+@property (retain) IBOutlet SSToolBarContainer* container;  ;
 @property (retain) DVSlideViewController* slideController;
 
 -(void) propogatePaint: (NSNotification*) note;
 -(void) versionControlEvent: (NSNotification*) note;
+-(void) imageSelected: (NSNotification*) note;
+
 
 @end

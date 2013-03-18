@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SSVersionInfoView : UIView
-
+@property(retain) UISearchBar* searchBar;
+@property (retain) UITableView* versions;
 @end

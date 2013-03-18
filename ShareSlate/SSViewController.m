@@ -25,6 +25,8 @@
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"propogatePaint:") name:@"serverData" object:nil];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"sendPaint:") name:@"drawingEvent" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"versionControlOpened:") name:@"versionControlEvent" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"imageSelected:") name:@"imageSelected" object:nil];
+
 
 
 }
@@ -78,6 +80,75 @@
 -(void) versionControlEvent: (NSNotification*) note
 {
     self.slideController.isActive = !(self.slideController.isActive);
+}
+
+#pragma mark camera methods
+
+-(void) imageSelected: (NSNotification*) note
+{
+    [self startMediaBrowserFromViewController:self usingDelegate:self];
+}
+
+
+- (BOOL) startMediaBrowserFromViewController: (UIViewController*) controller
+                               usingDelegate: (id <UIImagePickerControllerDelegate,
+                                               UINavigationControllerDelegate>) delegate {
+    
+    if (([UIImagePickerController isSourceTypeAvailable:
+          UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)
+        || (delegate == nil)
+        || (controller == nil))
+        return NO;
+    
+    UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+    mediaUI.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    
+    // Displays saved pictures and movies, if both are available, from the
+    // Camera Roll album.
+    mediaUI.mediaTypes =
+    [UIImagePickerController availableMediaTypesForSourceType:
+     UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    
+    // Hides the controls for moving & scaling pictures, or for
+    // trimming movies. To instead show the controls, use YES.
+    mediaUI.allowsEditing = NO;
+    
+    mediaUI.delegate = delegate;
+    
+    UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: mediaUI];
+    [popOverController presentPopoverFromRect: CGRectMake(100, (768/4) *3, 50, 50)  inView: self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    
+    return YES;
+}
+
+- (void) imagePickerController: (UIImagePickerController *) picker
+ didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    UIImage *originalImage, *editedImage, *imageToUse;
+    
+    // Handle a still image picked from a photo album
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
+        == kCFCompareEqualTo) {
+        
+        editedImage = (UIImage *) [info objectForKey:
+                                   UIImagePickerControllerEditedImage];
+        originalImage = (UIImage *) [info objectForKey:
+                                     UIImagePickerControllerOriginalImage];
+        
+        if (editedImage) {
+            imageToUse = editedImage;
+        } else {
+            imageToUse = originalImage;
+        }
+        // Do something with imageToUse
+        
+        self.paintView.imageToDraw = imageToUse;
+    }
+    
+    
+    [[picker parentViewController] dismissViewControllerAnimated:YES completion:NULL];
+    [picker release];
 }
 
 
