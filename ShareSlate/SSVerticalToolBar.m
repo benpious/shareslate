@@ -247,7 +247,7 @@
     
     else {
         
-        cell.textLabel.text = item.label;
+        //cell.textLabel.text = item.label;
         cell.iconImage = item.backGroundImage;
 
     }

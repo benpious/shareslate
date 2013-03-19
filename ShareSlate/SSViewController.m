@@ -64,11 +64,6 @@
     for (NSString* stroke in strokes) {
 
         NSArray* coords = [stroke componentsSeparatedByString:@":"];
-        /*
-        if ([coords count]<4) {
-            continue;
-        }
-        */
         
         if ([coords count] < 1) {
             return;
@@ -170,7 +165,7 @@
     }
     
     
-    [[picker parentViewController] dismissViewControllerAnimated:YES completion:NULL];
+    [[picker parentViewController] dismissViewControllerAnimated:NO completion:NULL];
     [picker release];
 }
 
