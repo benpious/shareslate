@@ -15,10 +15,10 @@
 
 @implementation SSViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO]; //deprecated
 	// Do any additional setup after loading the view, typically from a nib.
     networkingEngine = [[SSNetworkingEngine alloc] initWithHostName:self.ip port:self.port];
     notificationCenter = [NSNotificationCenter defaultCenter];

@@ -532,7 +532,7 @@
 {
     //self.imageToDraw = [UIImage imageNamed:@"tris"];
     
-    NSLog(@"%d", glGetError());
+    //NSLog(@"%d", glGetError());
     glColor4f(1, 1, 1, 1);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     GLubyte			*imageData;
@@ -581,7 +581,7 @@
     
     free(imageVertexBuffer);
     free(textureVertexBuffer);
-    NSLog(@"%d", glGetError());
+    //NSLog(@"%d", glGetError());
 
     glColor4f(0, 0, 0, 1);
 
