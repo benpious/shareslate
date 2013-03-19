@@ -603,7 +603,7 @@
     
     if (self.drawingImages) {
         [self renderImageFrom: location];
-        NSString* coords = [[NSString alloc] initWithFormat:@"i:%f:%f", location.x, location.y];
+        NSString* coords = [[NSString alloc] initWithFormat:@"i:%f:%fC", location.x, location.y];
         [notificationCenter postNotification: [NSNotification notificationWithName:@"imageDrawingEvent" object:coords ]];
 
         return;
@@ -619,6 +619,10 @@
         return;
     }
     
+    if (self.drawingImages) {
+        
+        return;
+    }
     
 	CGRect				bounds = [self bounds];
 	UITouch*			touch = [[event touchesForView:self] anyObject];
@@ -635,14 +639,8 @@
 		previousLocation.y = bounds.size.height - previousLocation.y;
 	}
 		
-    
-    if (self.drawingImages) {
-        
-        return;
-    }
-
 	// Render the stroke
-    NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
+    NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%fC", previousLocation.x, previousLocation.y, location.x, location.y];
     [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
 
 	[self renderLineFromPoint:previousLocation toPoint:location];
@@ -668,7 +666,7 @@
 		previousLocation = [touch previousLocationInView:self];
 		previousLocation.y = bounds.size.height - previousLocation.y;
 		[self renderLineFromPoint:previousLocation toPoint:location];
-        NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
+        NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%fC", previousLocation.x, previousLocation.y, location.x, location.y];
         //NSLog(@"%@",coords);
         [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
 	}

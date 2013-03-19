@@ -59,20 +59,32 @@
 {
     
     NSString* coordData = [note object];
-    NSArray* strokes = [coordData componentsSeparatedByString:@"b:"];
+    NSArray* strokes = [coordData componentsSeparatedByString:@"C"];
     
     for (NSString* stroke in strokes) {
 
         NSArray* coords = [stroke componentsSeparatedByString:@":"];
+        /*
         if ([coords count]<4) {
             continue;
         }
+        */
         
-        //NSLog(@"(%@,%@,%@,%@)",[coords objectAtIndex:0],[coords objectAtIndex:1],[coords objectAtIndex:2],[coords objectAtIndex:3] );
-        [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:0] floatValue], [[coords objectAtIndex:1] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:2] floatValue], [[coords objectAtIndex:3] floatValue])];
-
-
+        if ([coords count] < 1) {
+            return;
+        }
+        
+        if ([[coords objectAtIndex:0] isEqual: @"b"]) {
+            //NSLog(@"(%@,%@,%@,%@)",[coords objectAtIndex:0],[coords objectAtIndex:1],[coords objectAtIndex:2],[coords objectAtIndex:3] );
+            [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:1] floatValue], [[coords objectAtIndex:2] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:3] floatValue], [[coords objectAtIndex:4] floatValue])];
+        }
+        
+        if ([[coords objectAtIndex:0] isEqual: @"i"]) {
+            [self.paintView renderImageFrom:CGPointMake([[coords objectAtIndex:1] floatValue], [[coords objectAtIndex:2] floatValue])];
+        }
+        
     }
+    
 }
 
 -(void) sendImage: (NSNotification*) note

@@ -54,7 +54,7 @@
                         NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
                         
                         if (nil != output) {
-                            NSLog(@"server said: %@", output);
+                            //NSLog(@"server said: %@", output);
                             NSNotification* notification = [NSNotification notificationWithName:@"serverData" object:output];
                             [notificationCenter postNotification:notification];
                         }
