@@ -530,8 +530,9 @@
 
 -(void) renderImageFrom: (CGPoint) start
 {
-    self.imageToDraw = [UIImage imageNamed:@"grayBackground"];
+    //self.imageToDraw = [UIImage imageNamed:@"tris"];
     
+    NSLog(@"%d", glGetError());
     glColor4f(1, 1, 1, 1);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     GLubyte			*imageData;
@@ -556,6 +557,8 @@
     // Bind the texture name.
     glBindTexture(GL_TEXTURE_2D, imageTexture);
     // Set the texture parameters to use a minifying filter and a linear filer (weighted average)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     // Specify a 2D texture image, providing the a pointer to the image data in memory
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
@@ -578,7 +581,8 @@
     
     free(imageVertexBuffer);
     free(textureVertexBuffer);
-    
+    NSLog(@"%d", glGetError());
+
     glColor4f(0, 0, 0, 1);
 
     
@@ -694,22 +698,18 @@
     
     GLfloat* vertexCoords = malloc(sizeof(GLfloat) * 12);
     
-    GLfloat proportion;
-    //this test and if statement ensure that the vertex coords array is at the right proportion
-        
-   proportion = CGImageGetHeight(ref)/CGImageGetWidth(ref);
-   GLfloat proportionateHeight = CGImageGetHeight(ref) ;
-   GLfloat proportionateWidth = CGImageGetWidth(ref);
+   GLfloat height = CGImageGetHeight(ref) ;
+   GLfloat width = CGImageGetWidth(ref);
    
-   vertexCoords[0] = proportionateHeight + xOffset;
-   vertexCoords[1] = proportionateWidth + yOffset;
+   vertexCoords[0] = width + xOffset;
+   vertexCoords[1] = height + yOffset;
    vertexCoords[2] = xOffset;
    vertexCoords[3] = yOffset;
    vertexCoords[4] = xOffset;
-   vertexCoords[5] = proportionateWidth + yOffset;
-   vertexCoords[6] = proportionateHeight + xOffset;
-   vertexCoords[7] = proportionateWidth + yOffset;
-   vertexCoords[8] = proportionateHeight + xOffset;
+   vertexCoords[5] = height + yOffset;
+   vertexCoords[6] = width + xOffset;
+   vertexCoords[7] = height + yOffset;
+   vertexCoords[8] = width + xOffset;
    vertexCoords[9] = yOffset;
    vertexCoords[10] = xOffset;
    vertexCoords[11] = yOffset;

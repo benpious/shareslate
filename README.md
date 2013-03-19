@@ -6,7 +6,7 @@ HCI class Project. This iOS app and accompanying Python script can be used to al
 
 Instructions:
 
-If you merely wish to test the functionality of the iOS App, you should download the latest version of xCode, open the project, and run the project on the iPad simulator. If you wish to test multiple clients, you should either build and run the app on another computer running xCode, or build and run the app on an iPad 2 or iPad 3 of your own.
+If you merely wish to test the functionality of the iOS App, you should download the latest version of xCode, open the project, and run the project on the iPad simulator, and not enter any IP address or port. If you wish to test multiple clients, you should either build and run the app on another computer running xCode, or build and run the app on an iPad 2 or iPad 3 of your own.
 
 Running the server: 
 
@@ -24,7 +24,7 @@ Presently, the only indication that a connection has failed is a log to the cons
 
 Known Issues:
 
-The connection view which first greets users is not the best design for non technical users who likely don't know what an IP address or port is. We would hope to either have a web server with a static IP that the applicaiton can be hard-coded to connect to, or a server browser of sorts.
+The connection view which first greets users is not the best design for non technical users who likely don't know what an IP address or port is. We would hope to either have a web server with a static IP that the applicaiton can be hard-coded to connect to, or a server browser of sorts. 
 
 The eraser button does nothing, as do many UI elements.
 
