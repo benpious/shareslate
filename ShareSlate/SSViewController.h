@@ -30,6 +30,6 @@
 -(void) propogatePaint: (NSNotification*) note;
 -(void) versionControlEvent: (NSNotification*) note;
 -(void) imageSelected: (NSNotification*) note;
-
+-(void) brushSelected: (NSNotification*) note;
 
 @end

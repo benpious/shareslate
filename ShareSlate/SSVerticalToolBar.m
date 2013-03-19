@@ -58,7 +58,7 @@
         //create the shape tool
         
         toolBarItem shape = items[2];
-        shape.label = @"Shape";
+        shape.label = @"Image";
         shape.expandedViewController = [[UIViewController alloc] initWithNibName:@"ShapeToolBarPalette" bundle:nil];
         otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
         shape.expandedHeight = [[shape.expandedViewController view] frame].size.height;
@@ -172,6 +172,10 @@
     
     [center postNotification:[NSNotification notificationWithName:@"rowDeselected" object:nil]];
     
+    //hardcoded selection of brush
+    if (indexPath.row == 0 && selectedRow != 0) {
+        [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
+    }
     
     //hard coded selection of image
     if (indexPath.row == 2 && selectedRow !=2 ) {

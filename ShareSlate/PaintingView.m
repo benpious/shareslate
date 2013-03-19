@@ -239,8 +239,6 @@
         
 		// Setup OpenGL states
 		glMatrixMode(GL_PROJECTION);
-		//CGRect frame = self.bounds;
-        //NSLog(@"%f,%f", frame.size.height, frame.size.width);
 		CGFloat scale = self.contentScaleFactor;
 		// Setup the view port in Pixels
         //assumes a view size of 797 and 753
@@ -478,6 +476,8 @@
 	[EAGLContext setCurrentContext:context];
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 	
+    glBindTexture(GL_TEXTURE_2D, brushTexture);
+
 	// Convert locations from Points to Pixels
 	CGFloat scale = self.contentScaleFactor;
 	start.x *= scale;
@@ -528,13 +528,59 @@
 		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.01];
 }
 
--(void) renderImageFrom: (CGPoint) start To: (CGPoint) end
+-(void) renderImageFrom: (CGPoint) start
 {
-    CGRect rectToDraw = CGRectMake(start.x, start.y, start.x - end.x , start.y - end.y);
+    self.imageToDraw = [UIImage imageNamed:@"grayBackground"];
     
-    CGContextRef theContext = UIGraphicsGetCurrentContext();
+    glColor4f(1, 1, 1, 1);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    GLubyte			*imageData;
+	CGContextRef	imageContext;
+    GLuint imageTexture;
     
-    CGContextDrawImage(theContext, rectToDraw, [self.imageToDraw CGImage]);
+    [EAGLContext setCurrentContext:context];
+	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
+    
+    size_t width = CGImageGetWidth(self.imageToDraw.CGImage);
+    size_t height = CGImageGetHeight(self.imageToDraw.CGImage);
+    // Allocate  memory needed for the bitmap context
+    imageData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
+    // Use  the bitmatp creation function provided by the Core Graphics framework.
+    imageContext = CGBitmapContextCreate(imageData, width, height, 8, width * 4, CGImageGetColorSpace(self.imageToDraw.CGImage), kCGImageAlphaPremultipliedLast);
+    // After you create the context, you can draw the  image to the context.
+    CGContextDrawImage(imageContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), self.imageToDraw.CGImage);
+    // You don't need the context at this point, so you need to release it to avoid memory leaks.
+    CGContextRelease(imageContext);
+    // Use OpenGL ES to generate a name for the texture.
+    glGenTextures(1, &imageTexture);
+    // Bind the texture name.
+    glBindTexture(GL_TEXTURE_2D, imageTexture);
+    // Set the texture parameters to use a minifying filter and a linear filer (weighted average)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    // Specify a 2D texture image, providing the a pointer to the image data in memory
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+    // Release  the image data; it's no longer needed
+    free(imageData);
+    GLfloat* imageVertexBuffer = NULL;
+
+    CGFloat scale = self.contentScaleFactor;
+	start.x *= scale;
+	start.y *= scale;
+
+    imageVertexBuffer = [self populateArraysWithScaleFactor:1.0 xOffset:start.x yOffset:start.y withScreenSize:[self bounds] CGImage: self.imageToDraw.CGImage];
+    GLfloat* textureVertexBuffer = [self defineTextureCoords];
+    glTexCoordPointer(2, GL_FLOAT, 0, textureVertexBuffer);
+    glVertexPointer(2, GL_FLOAT, 0, imageVertexBuffer);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	// Display the buffer
+	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
+	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
+    
+    free(imageVertexBuffer);
+    free(textureVertexBuffer);
+    
+    glColor4f(0, 0, 0, 1);
+
     
 }
 
@@ -547,10 +593,6 @@
         return;
     }
     
-    if (self.drawingImages) {
-        
-        return;
-    }
     
 	CGRect				bounds = [self bounds];
     UITouch*	touch = [[event touchesForView:self] anyObject];
@@ -558,6 +600,15 @@
 	// Convert touch point from UIView referential to OpenGL one (upside-down flip)
 	location = [touch locationInView:self];
 	location.y = bounds.size.height - location.y;
+    
+    if (self.drawingImages) {
+        [self renderImageFrom: location];
+        NSString* coords = [[NSString alloc] initWithFormat:@"i:%f:%f", location.x, location.y];
+        [notificationCenter postNotification: [NSNotification notificationWithName:@"imageDrawingEvent" object:coords ]];
+
+        return;
+    }
+
 }
 
 // Handles the continuation of a touch.
@@ -568,11 +619,6 @@
         return;
     }
     
-    if (self.drawingImages) {
-        [self renderImageFrom: [ ((UITouch*)[[event touchesForView:self] anyObject]) previousLocationInView: self ] To: [ ((UITouch*)[[event touchesForView:self] anyObject]) previousLocationInView: self ]];
-        return;
-    }
-
     
 	CGRect				bounds = [self bounds];
 	UITouch*			touch = [[event touchesForView:self] anyObject];
@@ -589,6 +635,12 @@
 		previousLocation.y = bounds.size.height - previousLocation.y;
 	}
 		
+    
+    if (self.drawingImages) {
+        
+        return;
+    }
+
 	// Render the stroke
     NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%f", previousLocation.x, previousLocation.y, location.x, location.y];
     [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
@@ -637,5 +689,60 @@
 			  blue	* kBrushOpacity,
 			  kBrushOpacity);
 }
+
+
+-(GLfloat*) populateArraysWithScaleFactor: (GLfloat) scaleFactor xOffset: (GLfloat) xOffset yOffset: (GLfloat) yOffset withScreenSize: (CGRect) screenSize CGImage: (CGImageRef) ref
+{
+    
+    GLfloat* vertexCoords = malloc(sizeof(GLfloat) * 12);
+    
+    GLfloat proportion;
+    //this test and if statement ensure that the vertex coords array is at the right proportion
+        
+   proportion = CGImageGetHeight(ref)/CGImageGetWidth(ref);
+   GLfloat proportionateHeight = CGImageGetHeight(ref) ;
+   GLfloat proportionateWidth = CGImageGetWidth(ref);
+   
+   vertexCoords[0] = proportionateHeight + xOffset;
+   vertexCoords[1] = proportionateWidth + yOffset;
+   vertexCoords[2] = xOffset;
+   vertexCoords[3] = yOffset;
+   vertexCoords[4] = xOffset;
+   vertexCoords[5] = proportionateWidth + yOffset;
+   vertexCoords[6] = proportionateHeight + xOffset;
+   vertexCoords[7] = proportionateWidth + yOffset;
+   vertexCoords[8] = proportionateHeight + xOffset;
+   vertexCoords[9] = yOffset;
+   vertexCoords[10] = xOffset;
+   vertexCoords[11] = yOffset;
+    
+    return vertexCoords;
+
+}
+
+-(GLfloat*) defineTextureCoords
+{
+    
+    GLfloat* textureCoordsArray = malloc(sizeof(GLfloat) * 12);
+    
+    textureCoordsArray[0] = 1.0f;
+    textureCoordsArray[1] = 1.0f;
+    textureCoordsArray[2] = 0.0f;
+    textureCoordsArray[3] = 0.0f;
+    textureCoordsArray[4] = 0.0f;
+    textureCoordsArray[5] = 1.0f;
+    textureCoordsArray[6] = 1.0f;
+    textureCoordsArray[7] = 1.0f;
+    textureCoordsArray[8] = 1.0f;
+    textureCoordsArray[9] = 0.0f;
+    textureCoordsArray[10] = 0.0f;
+    textureCoordsArray[11] = 0.0f;
+    
+
+    return textureCoordsArray;
+    
+}
+
+
 
 @end

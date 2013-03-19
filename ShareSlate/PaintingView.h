@@ -83,6 +83,7 @@
 	Boolean	firstTouch;
 	Boolean needsErase;
     NSNotificationCenter* notificationCenter;
+    
 }
 
 @property(nonatomic, readwrite) CGPoint location;

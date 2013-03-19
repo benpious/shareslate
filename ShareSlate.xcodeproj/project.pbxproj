@@ -45,6 +45,7 @@
 		3BAD138D16F439D800898C05 /* SSToolBarContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD138C16F439D800898C05 /* SSToolBarContainer.m */; };
 		3BAD139016F43A7700898C05 /* SSVersionInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD138F16F43A7700898C05 /* SSVersionInfoView.m */; };
 		3BB7ADD716E7D0F300E47735 /* gplaypattern_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */; };
+		3BC1D03416F781EF00276F8B /* communication_protocol.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3BC1D03316F781EF00276F8B /* communication_protocol.txt */; };
 		3BC9F35016E5A14200F4B47C /* SSToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */; };
 		3BC9F35316E5A26500F4B47C /* SSVerticalToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */; };
 		3BC9F35616E5A85E00F4B47C /* perforated_white_leather.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */; };
@@ -115,6 +116,7 @@
 		3BAD138E16F43A7700898C05 /* SSVersionInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVersionInfoView.h; sourceTree = "<group>"; };
 		3BAD138F16F43A7700898C05 /* SSVersionInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSVersionInfoView.m; sourceTree = "<group>"; };
 		3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gplaypattern_@2X.png"; sourceTree = "<group>"; };
+		3BC1D03316F781EF00276F8B /* communication_protocol.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = communication_protocol.txt; sourceTree = "<group>"; };
 		3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolBarCell.h; sourceTree = "<group>"; };
 		3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolBarCell.m; sourceTree = "<group>"; };
 		3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVerticalToolBar.h; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		3B1D63D616DF14DF0008D9EC /* ShareSlate */ = {
 			isa = PBXGroup;
 			children = (
+				3BC1D03316F781EF00276F8B /* communication_protocol.txt */,
 				3B1D63DF16DF14DF0008D9EC /* SSAppDelegate.h */,
 				3B1D63E016DF14DF0008D9EC /* SSAppDelegate.m */,
 				3B3CC2E416F504FB00ED78AE /* Backgrounds */,
@@ -419,6 +422,7 @@
 				3BEF154316F51A100008E293 /* button.png in Resources */,
 				3BE4280116F5234800D404B1 /* buttonEffect.png in Resources */,
 				3BE4280316F5240E00D404B1 /* recessedButtonEffect.png in Resources */,
+				3BC1D03416F781EF00276F8B /* communication_protocol.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,11 +24,10 @@
     notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"propogatePaint:") name:@"serverData" object:nil];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"sendPaint:") name:@"drawingEvent" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"sendImage:") name:@"imageDrawingEvent" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"versionControlOpened:") name:@"versionControlEvent" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"imageSelected:") name:@"imageSelected" object:nil];
-
-
-
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"brushSelected:") name:@"brushSelected" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -58,7 +57,6 @@
 
 -(void) propogatePaint: (NSNotification*) note
 {
-    NSLog(@"paint method entered");
     
     NSString* coordData = [note object];
     NSArray* strokes = [coordData componentsSeparatedByString:@"b:"];
@@ -70,11 +68,23 @@
             continue;
         }
         
-        NSLog(@"(%@,%@,%@,%@)",[coords objectAtIndex:0],[coords objectAtIndex:1],[coords objectAtIndex:2],[coords objectAtIndex:3] );
+        //NSLog(@"(%@,%@,%@,%@)",[coords objectAtIndex:0],[coords objectAtIndex:1],[coords objectAtIndex:2],[coords objectAtIndex:3] );
         [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:0] floatValue], [[coords objectAtIndex:1] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:2] floatValue], [[coords objectAtIndex:3] floatValue])];
 
 
     }
+}
+
+-(void) sendImage: (NSNotification*) note
+{
+    NSString* coordData = [note object];
+    [networkingEngine sendMessage:coordData];
+}
+
+
+-(void) brushSelected:(NSNotification *)note
+{
+    self.paintView.drawingImages = NO;
 }
 
 -(void) versionControlEvent: (NSNotification*) note
@@ -87,6 +97,7 @@
 -(void) imageSelected: (NSNotification*) note
 {
     [self startMediaBrowserFromViewController:self usingDelegate:self];
+    self.paintView.drawingImages = YES;
 }
 
 
@@ -116,7 +127,7 @@
     mediaUI.delegate = delegate;
     
     UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: mediaUI];
-    [popOverController presentPopoverFromRect: CGRectMake(100, (768/4) *3, 50, 50)  inView: self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [popOverController presentPopoverFromRect: CGRectMake(180, (768/4) *3 - 190, 50, 50)  inView: self.container permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     
     return YES;
 }
