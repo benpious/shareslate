@@ -35,22 +35,22 @@
         
         //create the brush tool
         toolBarItem brush = items[0];
-        brush.label = @"Brush";
+        //brush.label = @"Brush";
         brush.expandedViewController = [[UIViewController alloc] initWithNibName:@"brushToolBarPalette" bundle:nil];
         brush.expandedHeight = [[brush.expandedViewController view] frame].size.height;
         
-        NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
         brush.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
         items[0] = brush;
         
         //create the eraser tool
         
         toolBarItem eraser = items[1];
-        eraser.label = @"Eraser";
+        //eraser.label = @"Eraser";
         eraser.expandedViewController = [[UIViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
         eraser.expandedHeight = [[eraser.expandedViewController view] frame].size.height;
         
-        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
         eraser.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
         items[1] = eraser;
         
@@ -58,9 +58,9 @@
         //create the shape tool
         
         toolBarItem shape = items[2];
-        shape.label = @"Image";
+        //shape.label = @"Image";
         shape.expandedViewController = [[UIViewController alloc] initWithNibName:@"ShapeToolBarPalette" bundle:nil];
-        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
         shape.expandedHeight = [[shape.expandedViewController view] frame].size.height;
         shape.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
         items[2] = shape;
@@ -68,10 +68,10 @@
         //create the chat tool
         
         toolBarItem chat = items[3];
-        chat.label = @"History";
+        //chat.label = @"History";
         chat.expandedViewController = [[UIViewController alloc] initWithNibName:@"VersionControlPalette" bundle:nil];
         chat.expandedHeight = [[chat.expandedViewController view] frame].size.height;
-        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"gplaypattern_@2X.png" ofType: nil];
+        otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
         chat.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
         items[3] = chat;
         

@@ -135,33 +135,81 @@
         ((PaintingView*)(controller.view)).isActive = YES;
     }
 
+    if (_selectedIndex != 0) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Revert to this version?"
+                                                        message:@"Reverting will propogate changes to all other users."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles: @"Cancel" , nil];
+        [alert show];
+        [alert release];
+        
+    }
     
-    [UIView animateWithDuration:0.25
-						  delay:0.75
-						options:UIViewAnimationOptionCurveEaseInOut
-					 animations:^{
-						 ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.transform = CGAffineTransformMakeScale(1.0, 1.0);
-					 }
-					 completion:^(BOOL completed){
-						 //currentViewController.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
-						 
-						 //remove shadow next view controller
-						 ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.masksToBounds = YES;
-						 ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowRadius = 0.0;
-						 ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowOpacity = 0.0;
-						 ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowPath = [UIBezierPath bezierPathWithRect:((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.bounds].CGPath;
-						 ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-						 
-						 [((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]) viewDidAppear:YES];
-					 }];
-    
-    self.isActive = NO;
-    //post notification that version has been selected
-    [center postNotification: [NSNotification notificationWithName:@"viewSelected" object:nil]];
-    [self.view removeGestureRecognizer:tap];
-    [self.view removeGestureRecognizer:swipeLeft];
-    [self.view removeGestureRecognizer:swipeRight];
+    else
+    {
+        [UIView animateWithDuration:0.25
+                              delay:0.75
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                         }
+                         completion:^(BOOL completed){
+                             //currentViewController.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                             
+                             //remove shadow next view controller
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.masksToBounds = YES;
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowRadius = 0.0;
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowOpacity = 0.0;
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowPath = [UIBezierPath bezierPathWithRect:((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.bounds].CGPath;
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+                             
+                             [((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]) viewDidAppear:YES];
+                         }];
+        
+        self.isActive = NO;
+        //post notification that version has been selected
+        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object:nil]];
+        [self.view removeGestureRecognizer:tap];
+        [self.view removeGestureRecognizer:swipeLeft];
+        [self.view removeGestureRecognizer:swipeRight];
 
+    }
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        
+        [UIView animateWithDuration:0.25
+                              delay:0.75
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                         }
+                         completion:^(BOOL completed){
+                             //currentViewController.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                             
+                             //remove shadow next view controller
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.masksToBounds = YES;
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowRadius = 0.0;
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowOpacity = 0.0;
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowPath = [UIBezierPath bezierPathWithRect:((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.bounds].CGPath;
+                             ((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]).view.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+                             
+                             [((UIViewController*)[_viewControllers  objectAtIndex:_selectedIndex]) viewDidAppear:YES];
+                         }];
+        
+        self.isActive = NO;
+        //post notification that version has been selected
+        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object:nil]];
+        [self.view removeGestureRecognizer:tap];
+        [self.view removeGestureRecognizer:swipeLeft];
+        [self.view removeGestureRecognizer:swipeRight];
+        
+    }
 }
 
 - (UIViewController *)viewControllerWithIndex:(NSUInteger)index
