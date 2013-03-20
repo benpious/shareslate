@@ -15,6 +15,7 @@ typedef struct {
     UIViewController* expandedViewController;
     NSString* label;
     UIImage* backGroundImage;
+    UIImage* iconImage;
     
 } toolBarItem;
 

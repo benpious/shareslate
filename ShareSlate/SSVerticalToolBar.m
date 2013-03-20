@@ -41,6 +41,7 @@
         
         NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
         brush.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        brush.iconImage = [UIImage imageNamed:@"brush_alt_32x32"];
         items[0] = brush;
         
         //create the eraser tool
@@ -52,6 +53,8 @@
         
         otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
         eraser.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        eraser.iconImage = [UIImage imageNamed:@"erase"];
+
         items[1] = eraser;
         
         
@@ -63,6 +66,8 @@
         otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
         shape.expandedHeight = [[shape.expandedViewController view] frame].size.height;
         shape.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        shape.iconImage = [UIImage imageNamed:@"camera_32x32"];
+
         items[2] = shape;
         
         //create the chat tool
@@ -73,6 +78,8 @@
         chat.expandedHeight = [[chat.expandedViewController view] frame].size.height;
         otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
         chat.backGroundImage = [[UIImage alloc] initWithContentsOfFile: otherImageNameFullPath];
+        chat.iconImage = [UIImage imageNamed:@"new_window_32x32"];
+
         items[3] = chat;
         
         
@@ -249,6 +256,8 @@
         
         //cell.textLabel.text = item.label;
         cell.iconImage = item.backGroundImage;
+        cell.buttonImage = item.iconImage;
+        
 
     }
     

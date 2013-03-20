@@ -20,7 +20,7 @@
 @property (retain) UIView* otherView;
 @property (assign) BOOL isExpanded;
 @property (retain) NSArray* objects;
-//@property (retain) UIImage* buttonEffect;
+@property (retain) UIImage* buttonImage;
 //@property (retain) UIImage* recessedButtonEffect;
 -(void) deSelected: (id) object;
 

@@ -11,6 +11,11 @@
 		3B03713C16E1A140001E1364 /* SSNetworkingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */; };
 		3B03713F16E1D827001E1364 /* SSConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03713E16E1D827001E1364 /* SSConnectionViewController.m */; };
 		3B0886C216E7BF4100B61EF4 /* brushToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */; };
+		3B17399216F98E6A008CFA68 /* erase.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17398D16F98E6A008CFA68 /* erase.png */; };
+		3B17399316F98E6A008CFA68 /* brush_alt_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17398E16F98E6A008CFA68 /* brush_alt_32x32.png */; };
+		3B17399416F98E6A008CFA68 /* camera_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17398F16F98E6A008CFA68 /* camera_32x32.png */; };
+		3B17399516F98E6A008CFA68 /* cog_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17399016F98E6A008CFA68 /* cog_32x32.png */; };
+		3B17399616F98E6A008CFA68 /* new_window_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17399116F98E6A008CFA68 /* new_window_32x32.png */; };
 		3B1D63D116DF14DF0008D9EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D016DF14DF0008D9EC /* UIKit.framework */; };
 		3B1D63D316DF14DF0008D9EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D216DF14DF0008D9EC /* Foundation.framework */; };
 		3B1D63D516DF14DF0008D9EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1D63D416DF14DF0008D9EC /* CoreGraphics.framework */; };
@@ -75,6 +80,11 @@
 		3B03713D16E1D826001E1364 /* SSConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSConnectionViewController.h; sourceTree = "<group>"; };
 		3B03713E16E1D827001E1364 /* SSConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSConnectionViewController.m; sourceTree = "<group>"; };
 		3B0886C116E7BF4100B61EF4 /* brushToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = brushToolBarPalette.xib; sourceTree = "<group>"; };
+		3B17398D16F98E6A008CFA68 /* erase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erase.png; sourceTree = "<group>"; };
+		3B17398E16F98E6A008CFA68 /* brush_alt_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_alt_32x32.png; sourceTree = "<group>"; };
+		3B17398F16F98E6A008CFA68 /* camera_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_32x32.png; sourceTree = "<group>"; };
+		3B17399016F98E6A008CFA68 /* cog_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog_32x32.png; sourceTree = "<group>"; };
+		3B17399116F98E6A008CFA68 /* new_window_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_window_32x32.png; sourceTree = "<group>"; };
 		3B1D63CD16DF14DF0008D9EC /* ShareSlate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareSlate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1D63D016DF14DF0008D9EC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B1D63D216DF14DF0008D9EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -325,6 +335,11 @@
 				3BD4B2F916F8F79800056FD2 /* orangeButton.png */,
 				3BE4280016F5234800D404B1 /* buttonEffect.png */,
 				3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */,
+				3B17398D16F98E6A008CFA68 /* erase.png */,
+				3B17398E16F98E6A008CFA68 /* brush_alt_32x32.png */,
+				3B17398F16F98E6A008CFA68 /* camera_32x32.png */,
+				3B17399016F98E6A008CFA68 /* cog_32x32.png */,
+				3B17399116F98E6A008CFA68 /* new_window_32x32.png */,
 				3B3CC2E316F504D700ED78AE /* Palettes */,
 			);
 			name = ToolBar;
@@ -427,6 +442,11 @@
 				3BE4280316F5240E00D404B1 /* recessedButtonEffect.png in Resources */,
 				3BC1D03416F781EF00276F8B /* communication_protocol.txt in Resources */,
 				3BD4B2FA16F8F79800056FD2 /* orangeButton.png in Resources */,
+				3B17399216F98E6A008CFA68 /* erase.png in Resources */,
+				3B17399316F98E6A008CFA68 /* brush_alt_32x32.png in Resources */,
+				3B17399416F98E6A008CFA68 /* camera_32x32.png in Resources */,
+				3B17399516F98E6A008CFA68 /* cog_32x32.png in Resources */,
+				3B17399616F98E6A008CFA68 /* new_window_32x32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

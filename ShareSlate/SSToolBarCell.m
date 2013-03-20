@@ -80,7 +80,16 @@
         CGContextScaleCTM(context, 1.0, -1.0);
         
         CGContextDrawImage(context, self.bounds, self.iconImage.CGImage);
-        //CGContextDrawImage(context, self.bounds, self.buttonEffect.CGImage);
+        
+        // draw an image in the center of the cell
+        CGSize imageSize = self.buttonImage.size;
+        CGRect imageRect = CGRectMake(floorf(((bounds.size.width-imageSize.width*2)/2.0)),
+                                      floorf(((bounds.size.height-imageSize.height*2)/2.0)+15),
+                                      imageSize.width*2,
+                                      imageSize.height*2);
+        
+        
+        CGContextDrawImage(context, imageRect, self.buttonImage.CGImage);
 
     }
     
