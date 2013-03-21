@@ -532,6 +532,10 @@
 {
     //self.imageToDraw = [UIImage imageNamed:@"tris"];
     
+    if (self.imageToDraw == nil) {
+        self.imageToDraw = [UIImage imageNamed:@"sampleImage"];
+    }
+    
     //NSLog(@"%d", glGetError());
     glColor4f(1, 1, 1, 1);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
