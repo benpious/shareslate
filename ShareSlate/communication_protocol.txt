@@ -9,14 +9,14 @@ requests:
     add:
     {
         type:"add"
-        shapes
+        data: [Shapes array]
     }
 
     save: 
     {
         type:"save"
         name:"stuff"
-        description:"stuff"
+        desc:"stuff"
     }
             
     propogate
@@ -32,23 +32,32 @@ requests:
     }
     
 responses
-    add: see above
+    add: 
+    {
+        type:"add"
+        data: [Shapes array]
+        success: True
+    }
     save: 
     {
         type:"save"
         name:"stuff"
-        description:"stuff"
         timeStamp: some timestamp format
+        success: True
     }
     propogate
     {
         type:"propogate"
         name:"stuff"
+        desc:"stuff"
+        success: bool
         data: [Shape array]
     }
     getVersion
     {
         type:"getVersion"
         name:"stuff"
+        desc:"stuff"
+        success: bool
         data: [Shape array]
     }
