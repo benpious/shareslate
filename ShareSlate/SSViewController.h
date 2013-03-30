@@ -31,5 +31,6 @@
 -(void) versionControlEvent: (NSNotification*) note;
 -(void) imageSelected: (NSNotification*) note;
 -(void) brushSelected: (NSNotification*) note;
+-(void) colorChanged: (NSNotification*) note;
 
 @end

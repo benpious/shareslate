@@ -28,6 +28,7 @@
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"versionControlOpened:") name:@"versionControlEvent" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"imageSelected:") name:@"imageSelected" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"brushSelected:") name:@"brushSelected" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"colorChanged:") name:@"colorChanged" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -39,7 +40,7 @@
     //[self.slideController.view setFrame:self.canvasView.frame];
     [self.slideController setUp];
     self.paintView = (PaintingView*)((UIViewController*)[self.slideController.viewControllers objectAtIndex:self.slideController.selectedIndex]).view;
-    [self.paintView setBrushColorWithRed:0.1f green:0.1f blue:0.1f];
+    [self.paintView setBrushColorWithRed:0.0f green:0.0f blue:0.0f];
 
 }
 
@@ -53,6 +54,13 @@
 {
     NSString* coordData = [note object];
     [networkingEngine sendMessage:coordData];
+}
+
+-(void) colorChanged: (NSNotification*) note
+{
+    UIColor* color = (UIColor*)(note.object);
+    const float* colors = CGColorGetComponents( color.CGColor );
+    [self.paintView setBrushColorWithRed:colors[0] green:colors[1] blue:colors[2]];
 }
 
 -(void) propogatePaint: (NSNotification*) note

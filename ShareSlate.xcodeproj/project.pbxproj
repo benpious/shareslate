@@ -66,6 +66,7 @@
 		3BC6DCDF17079CB200725975 /* RGB-HSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCD31707982500725975 /* RGB-HSL.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3BC6DCE017079CC200725975 /* NPConicGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCCD1707982500725975 /* NPConicGradient.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3BC6DCE117079CC800725975 /* NPPickerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCCF1707982500725975 /* NPPickerIndicator.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3BC6DCE51707AA0100725975 /* experimentalServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 3BC6DCE41707AA0100725975 /* experimentalServer.py */; };
 		3BC9F35016E5A14200F4B47C /* SSToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */; };
 		3BC9F35316E5A26500F4B47C /* SSVerticalToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */; };
 		3BC9F35616E5A85E00F4B47C /* perforated_white_leather.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */; };
@@ -159,6 +160,7 @@
 		3BC6DCD21707982500725975 /* RGB-HSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RGB-HSL.h"; sourceTree = "<group>"; };
 		3BC6DCD31707982500725975 /* RGB-HSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RGB-HSL.m"; sourceTree = "<group>"; };
 		3BC6DCDA1707986900725975 /* NPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPViewController.xib; sourceTree = "<group>"; };
+		3BC6DCE41707AA0100725975 /* experimentalServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = experimentalServer.py; sourceTree = "<group>"; };
 		3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolBarCell.h; sourceTree = "<group>"; };
 		3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolBarCell.m; sourceTree = "<group>"; };
 		3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVerticalToolBar.h; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				3B03713D16E1D826001E1364 /* SSConnectionViewController.h */,
 				3B03713E16E1D827001E1364 /* SSConnectionViewController.m */,
 				3B5B491316E279B80069062A /* shareSlateServer.py */,
+				3BC6DCE41707AA0100725975 /* experimentalServer.py */,
 				3B03713A16E1A140001E1364 /* SSNetworkingEngine.h */,
 				3B03713B16E1A140001E1364 /* SSNetworkingEngine.m */,
 			);
@@ -504,6 +507,7 @@
 				3B17399616F98E6A008CFA68 /* new_window_32x32.png in Resources */,
 				3B160FD116FACD0400B36CCD /* sampleImage.png in Resources */,
 				3BC6DCDB1707986900725975 /* NPViewController.xib in Resources */,
+				3BC6DCE51707AA0100725975 /* experimentalServer.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

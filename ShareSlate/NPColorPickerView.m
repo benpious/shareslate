@@ -166,7 +166,7 @@ NSString * kColorProperty = @"color";
    
    [donutLayer_ setConicGradient:conicGradient];
    
-   self.donutThickness = 50;
+   self.donutThickness = 30;
    
    [[self layer] addSublayer: donutLayer_];
    
@@ -556,7 +556,8 @@ NSString * kColorProperty = @"color";
       [color_ getHue:NULL saturation:&sat brightness:&brigt alpha:NULL];
       [self setColor:[UIColor colorWithHue:hue saturation:sat brightness:brigt alpha:1.0f]];
    } else if ([recognizer state] == UIGestureRecognizerStateEnded) {
-      [[self delegate] NPColorPickerView:self didSelectColor:color_]; 
+      [[self delegate] NPColorPickerView:self didSelectColor:color_];
+       
    }
 }
 
