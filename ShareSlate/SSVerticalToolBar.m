@@ -36,7 +36,8 @@
         //create the brush tool
         toolBarItem brush = items[0];
         //brush.label = @"Brush";
-        brush.expandedViewController = [[UIViewController alloc] initWithNibName:@"brushToolBarPalette" bundle:nil];
+        brush.expandedViewController = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
+        //[brush.expandedViewController.view setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, 222, 329)];
         brush.expandedHeight = [[brush.expandedViewController view] frame].size.height;
         
         NSString* otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];

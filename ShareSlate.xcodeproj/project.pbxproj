@@ -52,6 +52,20 @@
 		3BAD139016F43A7700898C05 /* SSVersionInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD138F16F43A7700898C05 /* SSVersionInfoView.m */; };
 		3BB7ADD716E7D0F300E47735 /* gplaypattern_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */; };
 		3BC1D03416F781EF00276F8B /* communication_protocol.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3BC1D03316F781EF00276F8B /* communication_protocol.txt */; };
+		3BC6DCC71707981200725975 /* CGColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCC61707981200725975 /* CGColor+Additions.m */; };
+		3BC6DCD41707982500725975 /* NPColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCC91707982500725975 /* NPColorPickerView.m */; };
+		3BC6DCD51707982500725975 /* NPColorQuadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCCB1707982500725975 /* NPColorQuadView.m */; };
+		3BC6DCD61707982500725975 /* NPConicGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCCD1707982500725975 /* NPConicGradient.m */; };
+		3BC6DCD71707982500725975 /* NPPickerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCCF1707982500725975 /* NPPickerIndicator.m */; };
+		3BC6DCD81707982500725975 /* NPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCD11707982500725975 /* NPViewController.m */; };
+		3BC6DCD91707982500725975 /* RGB-HSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCD31707982500725975 /* RGB-HSL.m */; };
+		3BC6DCDB1707986900725975 /* NPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC6DCDA1707986900725975 /* NPViewController.xib */; };
+		3BC6DCDC17079C5400725975 /* NPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCD11707982500725975 /* NPViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3BC6DCDD17079C7100725975 /* NPColorQuadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCCB1707982500725975 /* NPColorQuadView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3BC6DCDE17079C8C00725975 /* NPColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCC91707982500725975 /* NPColorPickerView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3BC6DCDF17079CB200725975 /* RGB-HSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCD31707982500725975 /* RGB-HSL.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3BC6DCE017079CC200725975 /* NPConicGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCCD1707982500725975 /* NPConicGradient.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3BC6DCE117079CC800725975 /* NPPickerIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6DCCF1707982500725975 /* NPPickerIndicator.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3BC9F35016E5A14200F4B47C /* SSToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */; };
 		3BC9F35316E5A26500F4B47C /* SSVerticalToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */; };
 		3BC9F35616E5A85E00F4B47C /* perforated_white_leather.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC9F35416E5A85D00F4B47C /* perforated_white_leather.png */; };
@@ -130,6 +144,21 @@
 		3BAD138F16F43A7700898C05 /* SSVersionInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSVersionInfoView.m; sourceTree = "<group>"; };
 		3BB7ADD616E7D0F300E47735 /* gplaypattern_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gplaypattern_@2X.png"; sourceTree = "<group>"; };
 		3BC1D03316F781EF00276F8B /* communication_protocol.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = communication_protocol.txt; sourceTree = "<group>"; };
+		3BC6DCC51707981200725975 /* CGColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGColor+Additions.h"; sourceTree = "<group>"; };
+		3BC6DCC61707981200725975 /* CGColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGColor+Additions.m"; sourceTree = "<group>"; };
+		3BC6DCC81707982500725975 /* NPColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPColorPickerView.h; sourceTree = "<group>"; };
+		3BC6DCC91707982500725975 /* NPColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPColorPickerView.m; sourceTree = "<group>"; };
+		3BC6DCCA1707982500725975 /* NPColorQuadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPColorQuadView.h; sourceTree = "<group>"; };
+		3BC6DCCB1707982500725975 /* NPColorQuadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPColorQuadView.m; sourceTree = "<group>"; };
+		3BC6DCCC1707982500725975 /* NPConicGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPConicGradient.h; sourceTree = "<group>"; };
+		3BC6DCCD1707982500725975 /* NPConicGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPConicGradient.m; sourceTree = "<group>"; };
+		3BC6DCCE1707982500725975 /* NPPickerIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPPickerIndicator.h; sourceTree = "<group>"; };
+		3BC6DCCF1707982500725975 /* NPPickerIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPPickerIndicator.m; sourceTree = "<group>"; };
+		3BC6DCD01707982500725975 /* NPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPViewController.h; sourceTree = "<group>"; };
+		3BC6DCD11707982500725975 /* NPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPViewController.m; sourceTree = "<group>"; };
+		3BC6DCD21707982500725975 /* RGB-HSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RGB-HSL.h"; sourceTree = "<group>"; };
+		3BC6DCD31707982500725975 /* RGB-HSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RGB-HSL.m"; sourceTree = "<group>"; };
+		3BC6DCDA1707986900725975 /* NPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPViewController.xib; sourceTree = "<group>"; };
 		3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolBarCell.h; sourceTree = "<group>"; };
 		3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSToolBarCell.m; sourceTree = "<group>"; };
 		3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVerticalToolBar.h; sourceTree = "<group>"; };
@@ -255,6 +284,7 @@
 		3B3CC2E316F504D700ED78AE /* Palettes */ = {
 			isa = PBXGroup;
 			children = (
+				3BC6DCC41707980300725975 /* Color Picker */,
 				3B79A4B716F1289700D5DF08 /* colorPicker.png */,
 				3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */,
 				3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */,
@@ -346,6 +376,28 @@
 				3B3CC2E316F504D700ED78AE /* Palettes */,
 			);
 			name = ToolBar;
+			sourceTree = "<group>";
+		};
+		3BC6DCC41707980300725975 /* Color Picker */ = {
+			isa = PBXGroup;
+			children = (
+				3BC6DCDA1707986900725975 /* NPViewController.xib */,
+				3BC6DCC81707982500725975 /* NPColorPickerView.h */,
+				3BC6DCC91707982500725975 /* NPColorPickerView.m */,
+				3BC6DCCA1707982500725975 /* NPColorQuadView.h */,
+				3BC6DCCB1707982500725975 /* NPColorQuadView.m */,
+				3BC6DCCC1707982500725975 /* NPConicGradient.h */,
+				3BC6DCCD1707982500725975 /* NPConicGradient.m */,
+				3BC6DCCE1707982500725975 /* NPPickerIndicator.h */,
+				3BC6DCCF1707982500725975 /* NPPickerIndicator.m */,
+				3BC6DCD01707982500725975 /* NPViewController.h */,
+				3BC6DCD11707982500725975 /* NPViewController.m */,
+				3BC6DCD21707982500725975 /* RGB-HSL.h */,
+				3BC6DCD31707982500725975 /* RGB-HSL.m */,
+				3BC6DCC51707981200725975 /* CGColor+Additions.h */,
+				3BC6DCC61707981200725975 /* CGColor+Additions.m */,
+			);
+			name = "Color Picker";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +503,7 @@
 				3B17399516F98E6A008CFA68 /* cog_32x32.png in Resources */,
 				3B17399616F98E6A008CFA68 /* new_window_32x32.png in Resources */,
 				3B160FD116FACD0400B36CCD /* sampleImage.png in Resources */,
+				3BC6DCDB1707986900725975 /* NPViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +539,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC6DCE117079CC800725975 /* NPPickerIndicator.m in Sources */,
+				3BC6DCE017079CC200725975 /* NPConicGradient.m in Sources */,
+				3BC6DCDF17079CB200725975 /* RGB-HSL.m in Sources */,
+				3BC6DCDE17079C8C00725975 /* NPColorPickerView.m in Sources */,
+				3BC6DCDD17079C7100725975 /* NPColorQuadView.m in Sources */,
+				3BC6DCDC17079C5400725975 /* NPViewController.m in Sources */,
 				3B1D63DD16DF14DF0008D9EC /* main.m in Sources */,
 				3B1D63E116DF14DF0008D9EC /* SSAppDelegate.m in Sources */,
 				3B1D63ED16DF14DF0008D9EC /* SSViewController.m in Sources */,
@@ -506,6 +565,13 @@
 			files = (
 				3B1D640216DF14E00008D9EC /* ShareSlateTests.m in Sources */,
 				3B1D640E16DF16490008D9EC /* PaintingView.m in Sources */,
+				3BC6DCC71707981200725975 /* CGColor+Additions.m in Sources */,
+				3BC6DCD41707982500725975 /* NPColorPickerView.m in Sources */,
+				3BC6DCD51707982500725975 /* NPColorQuadView.m in Sources */,
+				3BC6DCD61707982500725975 /* NPConicGradient.m in Sources */,
+				3BC6DCD71707982500725975 /* NPPickerIndicator.m in Sources */,
+				3BC6DCD81707982500725975 /* NPViewController.m in Sources */,
+				3BC6DCD91707982500725975 /* RGB-HSL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
