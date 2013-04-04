@@ -16,7 +16,7 @@
     self.toolBar = [[ToolBar alloc] initWithOrigin: CGPointMake(0, 20)];
     [self addSubview:self.toolBar];
     [self bringSubviewToFront:self.toolBar];
-    self.versionView = [[SSVersionInfoView alloc] initWithFrame:CGRectMake(0.0, 0.0, 222.0f, 768.f)];
+    self.versionView = [[SSVersionInfoView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50, 768.f)];
     center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"historySelected" object:nil];
     [center addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"viewSelected" object:nil];

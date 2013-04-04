@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NPViewController.h"
 
 @interface ToolBar : UIView
 
@@ -17,6 +18,8 @@
     UISegmentedControl*    SegmentedControl_;
     
     NSArray*    SegmentImageArray_;
+    
+    UIViewController** SegmentPopupArray_;
     
 }
 

@@ -77,6 +77,7 @@
 		3BE4280116F5234800D404B1 /* buttonEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE4280016F5234800D404B1 /* buttonEffect.png */; };
 		3BE4280316F5240E00D404B1 /* recessedButtonEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */; };
 		3BEF154316F51A100008E293 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEF154216F51A100008E293 /* button.png */; };
+		B5AA66DF170D69A500743808 /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AA66DE170D69A500743808 /* ToolBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +174,8 @@
 		3BE4280016F5234800D404B1 /* buttonEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonEffect.png; sourceTree = "<group>"; };
 		3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recessedButtonEffect.png; sourceTree = "<group>"; };
 		3BEF154216F51A100008E293 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		B5AA66DD170D69A400743808 /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
+		B5AA66DE170D69A500743808 /* ToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +365,8 @@
 		3B79A4BF16F1441900D5DF08 /* ToolBar */ = {
 			isa = PBXGroup;
 			children = (
+				B5AA66DD170D69A400743808 /* ToolBar.h */,
+				B5AA66DE170D69A500743808 /* ToolBar.m */,
 				3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */,
 				3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */,
 				3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */,
@@ -560,6 +565,7 @@
 				3B79A4BD16F1440800D5DF08 /* DVSlideViewController.m in Sources */,
 				3BAD138D16F439D800898C05 /* SSToolBarContainer.m in Sources */,
 				3BAD139016F43A7700898C05 /* SSVersionInfoView.m in Sources */,
+				B5AA66DF170D69A500743808 /* ToolBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
