@@ -12,7 +12,8 @@
 
 -(void) awakeFromNib
 {
-    self.toolBar = [[SSVerticalToolBar alloc] initWithFrame: CGRectMake(0.0, 0.0, 222.0f, 768.f)];
+    //self.toolBar = [[SSVerticalToolBar alloc] initWithFrame: CGRectMake(0.0, 0.0, 222.0f, 768.f)];
+    self.toolBar = [[ToolBar alloc] initWithOrigin: CGPointMake(0, 20)];
     [self addSubview:self.toolBar];
     [self bringSubviewToFront:self.toolBar];
     self.versionView = [[SSVersionInfoView alloc] initWithFrame:CGRectMake(0.0, 0.0, 222.0f, 768.f)];
