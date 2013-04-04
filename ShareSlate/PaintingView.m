@@ -144,8 +144,8 @@
 		CGFloat scale = self.contentScaleFactor;
 		// Setup the view port in Pixels
         //assumes a view size of 797 and 753
-		glOrthof(0, 797 * scale, 0, 753 * scale, -1, 1);
-		glViewport(0, 0, 797 * scale, 753 * scale);
+		glOrthof(0, 1024 * scale, 0, 768 * scale, -1, 1);
+		glViewport(0, 0, 1024 * scale, 768 * scale);
 		glMatrixMode(GL_MODELVIEW);
 		glDisable(GL_DITHER);
 		glEnable(GL_TEXTURE_2D);
@@ -242,8 +242,8 @@
 		CGFloat scale = self.contentScaleFactor;
 		// Setup the view port in Pixels
         //assumes a view size of 797 and 753
-		glOrthof(0, 797 * scale, 0, 753 * scale, -1, 1);
-		glViewport(0, 0, 797 * scale, 753 * scale);
+		glOrthof(0, 1024 * scale, 0, 768 * scale, -1, 1);
+		glViewport(0, 0, 1024 * scale, 768 * scale);
 		glMatrixMode(GL_MODELVIEW);
 		glDisable(GL_DITHER);
 		glEnable(GL_TEXTURE_2D);
@@ -339,8 +339,8 @@
 		CGFloat scale = self.contentScaleFactor;
 		// Setup the view port in Pixels
         //assumes a view size of 797 and 753
-		glOrthof(0, 797 * scale, 0, 753 * scale, -1, 1);
-		glViewport(0, 0, 797 * scale, 753 * scale);
+		glOrthof(0, 1024 * scale, 0, 768 * scale, -1, 1);
+		glViewport(0, 0, 1024 * scale, 768 * scale);
 		glMatrixMode(GL_MODELVIEW);
 		glDisable(GL_DITHER);
 		glEnable(GL_TEXTURE_2D);

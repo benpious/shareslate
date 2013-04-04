@@ -101,7 +101,8 @@
 
 - (void)addViewController:(UIViewController *)viewController atIndex:(int)index;
 {
-    viewController.view.frame = CGRectMake(self.view.bounds.size.width * index - (100 * ((index == 0) ? 0 : 1)), 0, self.view.frame.size.width, self.view.frame.size.height);
+
+    viewController.view.frame = CGRectMake(768 * index , 0, (1024-172), 768);
 	[viewsContainer addSubview:viewController.view];
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];
@@ -144,7 +145,6 @@
                                               otherButtonTitles: @"Cancel" , nil];
         [alert show];
         [alert release];
-        
     }
     
     else
@@ -174,8 +174,11 @@
         [self.view removeGestureRecognizer:tap];
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
-
+        
     }
+    
+    [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
+
     
 }
 
@@ -263,9 +266,6 @@
 	
 	CGPoint toPoint = viewsContainer.contentOffset;
 	toPoint.x = toIndex * viewsContainer.bounds.size.width;
-    
-    
-    
 	
 	//Start positions
 	nextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
@@ -279,16 +279,9 @@
 	[currentViewController viewWillDisappear:YES];
 	
     
-    UIViewController *nextnextViewController = [self viewControllerWithIndex:_selectedIndex+1];
+    UIViewController *nextnextViewController = [self viewControllerWithIndex:_selectedIndex+2];
 
-	[UIView animateWithDuration:0.25
-						  delay:0.0
-						options:UIViewAnimationOptionCurveEaseInOut
-					 animations:^{
-						 nextnextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
-					 }
-					 completion:nil];
-    
+    nextnextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
 	
 	//Slide animation
 	[UIView animateWithDuration:0.5
@@ -340,6 +333,8 @@
 
 -(void) historySelected: (NSNotification*) note
 {
+    
+    [self.view setFrame:CGRectMake(172.0, 0.0, 1024-172, 768)];
     
     for (UIViewController* controller in self.viewControllers ) {
         ((PaintingView*)(controller.view)).isActive = NO;
