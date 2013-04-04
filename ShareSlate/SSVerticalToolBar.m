@@ -258,7 +258,7 @@
     if (indexPath.row == selectedRow) {
         cell.otherView = [item.expandedViewController view];
         cell.isExpanded = YES;
-        cell.textLabel.text = nil;
+        cell.textLabel.text = nil; 
     }
     
     else {

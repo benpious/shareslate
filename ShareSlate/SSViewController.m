@@ -160,7 +160,9 @@
     mediaUI.delegate = delegate;
     
     UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: mediaUI];
-    [popOverController presentPopoverFromRect: CGRectMake(180, (768/4) *3 - 190, 50, 50)  inView: self.container permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    
+    //[popOverController presentPopoverFromRect: CGRectMake(180, (768/4) *3 - 190, 50, 50)  inView: self.container permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [popOverController presentPopoverFromRect: CGRectMake(0, (768/10) *7+10, 50, 50)  inView: self.container permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     
     return YES;
 }
