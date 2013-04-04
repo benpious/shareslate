@@ -101,7 +101,7 @@
 
 - (void)addViewController:(UIViewController *)viewController atIndex:(int)index;
 {
-    viewController.view.frame = CGRectMake(self.view.bounds.size.width * index, 0, self.view.frame.size.width, self.view.frame.size.height);
+    viewController.view.frame = CGRectMake(self.view.bounds.size.width * index - (100 * ((index == 0) ? 0 : 1)), 0, self.view.frame.size.width, self.view.frame.size.height);
 	[viewsContainer addSubview:viewController.view];
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];

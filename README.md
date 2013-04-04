@@ -26,11 +26,16 @@ Known Issues:
 
 The connection view which first greets users is not the best design for non technical users who likely don't know what an IP address or port is. We would hope to either have a web server with a static IP that the applicaiton can be hard-coded to connect to, or a server browser of sorts. 
 
-The eraser button does nothing, as do many UI elements.
 
-No matter what image is selected from the camera roll, the image which is drawn is a gray background image. This is because of the headaches involved in sending an image over a network. The specific choice of that image may seem odd, since it is easily confused with the background, and is due to a truly bizarre issue -- the gray linen is the only image I can find which OpenGL ES will draw as anything other than a white rectangle. 
+No matter what image is selected from the camera roll, the image which is drawn is a gray background image. This is because of the headaches involved in sending an image over a network. 
 
-Presently, reverting is accomplished by tapping on the version you wish to return to. This is a terrible idea -- making such a drastic change should be harder. We might add a modal notification which asks if the user is sure that they want to revert. 
+Previous versions are displayed larger than they should be in in the verison control view until they are selected for the first time. 
+
+Canceling a revert allows the user to draw on old versions while in teh version control view. 
+
+In consequence of adding the hint that you can swipe to previous versions, previous versions appear off-center. 
+
+Version control tableview selection should change with the sliding view and vice-versa, not yet implemented. 
 
 Programming issues: As should be expected from a slapped-together protoype, this project is an absolute catastrophe in terms of Object-Oriented-Design, memory management, efficiency, and providing feedback when things go wrong on the programming side. This is the result of trying to get it together in time for the deadline of Tuesday, March 19. 
 
