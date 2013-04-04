@@ -63,4 +63,11 @@
     //NSLog(@"%f", self.slider.value);
     [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"brushSizeChanged" object: [NSNumber numberWithFloat: self.slider.value]]];
 }
+
+-(IBAction)editingStopped:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"brushSizeChangesEnded" object: nil]];
+    
+}
+
 @end

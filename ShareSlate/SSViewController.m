@@ -102,7 +102,7 @@
 {
     [self.paintView setPointSize:[(NSNumber*)(note.object) floatValue]*300];
     
-    self.brushSizePreview.rectToDraw = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, [(NSNumber*)(note.object) floatValue]*100, [(NSNumber*)(note.object) floatValue]*100);
+    self.brushSizePreview.rectToDraw = CGRectMake(self.view.frame.size.width/2 + [(NSNumber*)(note.object) floatValue]*50, self.view.frame.size.height/2 -[(NSNumber*)(note.object) floatValue]*50, [(NSNumber*)(note.object) floatValue]*100, [(NSNumber*)(note.object) floatValue]*100);
     self.brushSizePreview.willDraw = YES;
     [self.brushSizePreview setNeedsDisplay];
     
