@@ -80,6 +80,13 @@
 		3BE4280316F5240E00D404B1 /* recessedButtonEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */; };
 		3BEF154316F51A100008E293 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEF154216F51A100008E293 /* button.png */; };
 		B5AA66DF170D69A500743808 /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AA66DE170D69A500743808 /* ToolBar.m */; };
+		B5AA66E8170DA09400743808 /* brush-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AA66E1170DA09400743808 /* brush-icon.png */; };
+		B5AA66E9170DA09400743808 /* chat-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AA66E2170DA09400743808 /* chat-icon.png */; };
+		B5AA66EA170DA09400743808 /* eraser-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AA66E3170DA09400743808 /* eraser-icon.png */; };
+		B5AA66EB170DA09400743808 /* history-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AA66E4170DA09400743808 /* history-icon.png */; };
+		B5AA66EC170DA09400743808 /* image-upload-icon-black.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AA66E5170DA09400743808 /* image-upload-icon-black.png */; };
+		B5AA66ED170DA09400743808 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AA66E6170DA09400743808 /* settings-icon.png */; };
+		B5AA66EE170DA09400743808 /* text-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AA66E7170DA09400743808 /* text-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +189,13 @@
 		3BEF154216F51A100008E293 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		B5AA66DD170D69A400743808 /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
 		B5AA66DE170D69A500743808 /* ToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBar.m; sourceTree = "<group>"; };
+		B5AA66E1170DA09400743808 /* brush-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush-icon.png"; sourceTree = "<group>"; };
+		B5AA66E2170DA09400743808 /* chat-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat-icon.png"; sourceTree = "<group>"; };
+		B5AA66E3170DA09400743808 /* eraser-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eraser-icon.png"; sourceTree = "<group>"; };
+		B5AA66E4170DA09400743808 /* history-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history-icon.png"; sourceTree = "<group>"; };
+		B5AA66E5170DA09400743808 /* image-upload-icon-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-upload-icon-black.png"; sourceTree = "<group>"; };
+		B5AA66E6170DA09400743808 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
+		B5AA66E7170DA09400743808 /* text-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +399,7 @@
 				3B916701170D6FA70025215B /* SSEraserViewController.m */,
 				3B916703170D75A00025215B /* SSEraserPreviewView.h */,
 				3B916704170D75A10025215B /* SSEraserPreviewView.m */,
+				B5AA66E0170DA09300743808 /* icons-gray */,
 				3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */,
 				3B17398D16F98E6A008CFA68 /* erase.png */,
 				3B17398E16F98E6A008CFA68 /* brush_alt_32x32.png */,
@@ -416,6 +431,20 @@
 				3BC6DCC61707981200725975 /* CGColor+Additions.m */,
 			);
 			name = "Color Picker";
+			sourceTree = "<group>";
+		};
+		B5AA66E0170DA09300743808 /* icons-gray */ = {
+			isa = PBXGroup;
+			children = (
+				B5AA66E1170DA09400743808 /* brush-icon.png */,
+				B5AA66E2170DA09400743808 /* chat-icon.png */,
+				B5AA66E3170DA09400743808 /* eraser-icon.png */,
+				B5AA66E4170DA09400743808 /* history-icon.png */,
+				B5AA66E5170DA09400743808 /* image-upload-icon-black.png */,
+				B5AA66E6170DA09400743808 /* settings-icon.png */,
+				B5AA66E7170DA09400743808 /* text-icon.png */,
+			);
+			path = "icons-gray";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -523,6 +552,13 @@
 				3B160FD116FACD0400B36CCD /* sampleImage.png in Resources */,
 				3BC6DCDB1707986900725975 /* NPViewController.xib in Resources */,
 				3BC6DCE51707AA0100725975 /* experimentalServer.py in Resources */,
+				B5AA66E8170DA09400743808 /* brush-icon.png in Resources */,
+				B5AA66E9170DA09400743808 /* chat-icon.png in Resources */,
+				B5AA66EA170DA09400743808 /* eraser-icon.png in Resources */,
+				B5AA66EB170DA09400743808 /* history-icon.png in Resources */,
+				B5AA66EC170DA09400743808 /* image-upload-icon-black.png in Resources */,
+				B5AA66ED170DA09400743808 /* settings-icon.png in Resources */,
+				B5AA66EE170DA09400743808 /* text-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

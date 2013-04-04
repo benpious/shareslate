@@ -39,24 +39,41 @@
     
 }
 
-
+- (UIImage *)imageWithImage:(UIImage *)image
+               scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 - (void) makeToolBar
 
 {
+    UIImage* brush = [self imageWithImage: [UIImage imageNamed:@"brush-icon.png"] scaledToSize:CGSizeMake(32, 32)];
+    UIImage* eraser = [self imageWithImage: [UIImage imageNamed:@"eraser-icon.png"] scaledToSize:CGSizeMake(32, 32)];
+    UIImage* text = [self imageWithImage: [UIImage imageNamed:@"text-icon.png"] scaledToSize:CGSizeMake(32, 32)];
+    UIImage* image = [self imageWithImage: [UIImage imageNamed:@"image-upload-icon-black.png"] scaledToSize:CGSizeMake(32, 32)];
+    UIImage* history = [self imageWithImage: [UIImage imageNamed:@"history-icon.png"] scaledToSize:CGSizeMake(32, 32)];
+    UIImage* settings = [self imageWithImage: [UIImage imageNamed:@"settings-icon.png"] scaledToSize:CGSizeMake(32, 32)];
+
+    
     
     SegmentImageArray_ = [NSArray arrayWithObjects:
                           
-                          [UIImage imageNamed:@"brush_alt_32x32.png"],
-                          [UIImage imageNamed:@"brush_alt_32x32.png"],
-                          [UIImage imageNamed:@"brush_alt_32x32.png"],
-                          [UIImage imageNamed:@"brush_alt_32x32.png"],
-                          [UIImage imageNamed:@"brush_alt_32x32.png"],
-                          [UIImage imageNamed:@"brush_alt_32x32.png"],
-                          [UIImage imageNamed:@"erase.png"],
-                          [UIImage imageNamed:@"camera_32x32.png"],
-                          [UIImage imageNamed:@"new_window_32x32"],
-                          [UIImage imageNamed:@"cog_32x32.png"], nil];
+                          brush,
+                          brush,
+                          brush,
+                          brush,
+                          brush,
+                          brush,
+                          eraser,
+                          text,
+                          image,
+                          history,
+                          settings, nil];
     
     SegmentedControl_ = [[UISegmentedControl alloc]initWithItems:SegmentImageArray_];
     
@@ -162,7 +179,7 @@
         case 1:
             
         {
-            [self selectBrush : SegmentPopupArray_[1] location: CGRectMake(50, 75*1+45, 0, 0)];
+            [self selectBrush : SegmentPopupArray_[1] location: CGRectMake(50, (750/11)*1+45, 0, 0)];
             
             break;
             
@@ -171,7 +188,7 @@
         case 2:
             
         {
-            [self selectBrush : SegmentPopupArray_[2] location: CGRectMake(50, 75*2+45, 0, 0)];
+            [self selectBrush : SegmentPopupArray_[2] location: CGRectMake(50, (750/11)*2+45, 0, 0)];
             
             break;
             
@@ -180,7 +197,7 @@
         case 3:
             
         {
-            [self selectBrush : SegmentPopupArray_[3] location: CGRectMake(50, 75*3+45, 0, 0)];
+            [self selectBrush : SegmentPopupArray_[3] location: CGRectMake(50, (750/11)*3+45, 0, 0)];
             
             break;
             
@@ -189,7 +206,7 @@
         case 4:
             
         {
-            [self selectBrush : SegmentPopupArray_[4] location: CGRectMake(50, 75*4+45, 0, 0)];
+            [self selectBrush : SegmentPopupArray_[4] location: CGRectMake(50, (750/11)*4+45, 0, 0)];
             
             break;
             
@@ -198,7 +215,7 @@
         case 5:
             
         {
-            [self selectBrush : SegmentPopupArray_[5] location: CGRectMake(50, 75*5+45, 0, 0)];
+            [self selectBrush : SegmentPopupArray_[5] location: CGRectMake(50, (750/11)*5+45, 0, 0)];
             
             break;
             
@@ -214,7 +231,7 @@
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]]];
             
             UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[6]];
-            [popOverController presentPopoverFromRect: CGRectMake(50, 75*6+45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+            [popOverController presentPopoverFromRect: CGRectMake(50, (750/11)*6+45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
             
             //Action for seventh toolbar item
             
@@ -222,7 +239,7 @@
             
         }
             
-        case 7:
+        case 8:
             
         {
             [center postNotification: [NSNotification notificationWithName:@"imageSelected" object:nil]];
@@ -233,7 +250,7 @@
             
         }
             
-        case 8:
+        case 9:
             
         {
             [center postNotification: [NSNotification notificationWithName:@"historySelected" object:nil]];
@@ -243,7 +260,7 @@
             
         }
             
-        case 9:
+        case 10:
             
         {
             
