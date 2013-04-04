@@ -94,7 +94,7 @@
     SegmentPopupArray_[3] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
     SegmentPopupArray_[4] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
     SegmentPopupArray_[5] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
-    SegmentPopupArray_[6] = [[UIViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
+    SegmentPopupArray_[6] = [[SSEraserViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
     
     
     [SegmentPopupArray_[0] setContentSizeForViewInPopover:CGSizeMake(225, 400)];

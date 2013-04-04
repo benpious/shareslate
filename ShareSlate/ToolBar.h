@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NPViewController.h"
+#import "SSEraserViewController.h"
 
 @interface ToolBar : UIView
 
