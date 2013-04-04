@@ -23,5 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet NPColorPickerView *colorPickerView;
 @property (weak, nonatomic) IBOutlet NPColorQuadView *colorQuadView;
+@property (weak) IBOutlet UISlider* slider;
+-(IBAction)sliderValueChanged:(id)sender;
 
 @end

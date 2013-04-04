@@ -185,6 +185,14 @@
         [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
     }
     
+    //hard coded selection of eraser
+    if (indexPath.row == 1 && selectedRow !=1 ) {
+        
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]]];
+
+    }
+
+    
     //hard coded selection of image
     if (indexPath.row == 2 && selectedRow !=2 ) {
         

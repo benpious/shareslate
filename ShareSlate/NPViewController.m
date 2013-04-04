@@ -58,4 +58,9 @@
 
 }
 
+-(IBAction)sliderValueChanged:(id)sender
+{
+    //NSLog(@"%f", self.slider.value);
+    [[NSNotificationCenter defaultCenter] postNotification: [NSNotification notificationWithName:@"brushSizeChanged" object: [NSNumber numberWithFloat: self.slider.value]]];
+}
 @end

@@ -29,6 +29,7 @@
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"imageSelected:") name:@"imageSelected" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"brushSelected:") name:@"brushSelected" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"colorChanged:") name:@"colorChanged" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"setBrushSize:") name:@"brushSizeChanged" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -88,6 +89,11 @@
         
     }
     
+}
+
+-(void) setBrushSize: (NSNotification*) note
+{
+    self.paintView.contentScaleFactor =  [(NSNumber*)(note.object) floatValue];
 }
 
 -(void) sendImage: (NSNotification*) note

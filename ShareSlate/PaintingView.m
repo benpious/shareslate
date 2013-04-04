@@ -456,7 +456,7 @@
 	
 	// Clear the buffer
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
-	glClearColor(0.9, 0.9, 0.9, 0.0);
+	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	// Display the buffer
@@ -530,13 +530,11 @@
 
 -(void) renderImageFrom: (CGPoint) start
 {
-    //self.imageToDraw = [UIImage imageNamed:@"tris"];
     
     if (self.imageToDraw == nil) {
         self.imageToDraw = [UIImage imageNamed:@"sampleImage"];
     }
     
-    //NSLog(@"%d", glGetError());
     glColor4f(1, 1, 1, 1);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     GLubyte			*imageData;
@@ -744,7 +742,5 @@
     return textureCoordsArray;
     
 }
-
-
 
 @end

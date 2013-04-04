@@ -43,3 +43,6 @@ Apple's GLPaint sample application: http://developer.apple.com/library/ios/#samp
 DVSlideViewController: https://github.com/dickverbunt/DVSlideViewController
 
 Ray Wenderlich's tutorial on setting up a python server for an iOS app: http://www.raywenderlich.com/3932/how-to-create-a-socket-based-iphone-app-and-server
+
+
+The NP color picker https://github.com/neopixl/NPColorPicker/tree/master/ColorPicker
