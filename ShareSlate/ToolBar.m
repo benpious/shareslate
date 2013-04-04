@@ -108,6 +108,25 @@
     
 }
 
+-(void) selectBrush: (UIViewController*) palette
+             notify: (NSNotificationCenter*) center
+           location: (CGRect) location
+{
+    
+    UIColor* color = ((NPViewController *)palette).colorPickerView.color;
+    
+    [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
+    if(color != NULL)
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: color]];
+    else
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: UIColor.blackColor]];
+    
+    UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: palette];
+    [popOverController presentPopoverFromRect: location  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    
+}
+
+
 - (void) SegmentControlAction:(id) sender
 
 {
@@ -117,7 +136,7 @@
     (UISegmentedControl *)sender;
     
     NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-    
+        
     switch ([segmentedControl selectedSegmentIndex])
     
     {
@@ -125,12 +144,7 @@
         case 0:
             
         {
-            [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
-            UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[0]];
-            [popOverController presentPopoverFromRect: CGRectMake(50, 10, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-            
-            //Action for first toolbar item
-            
+            [self selectBrush : SegmentPopupArray_[0] notify: center location: CGRectMake(50, 10, 0, 0)];
             break;
             
         }
@@ -138,12 +152,7 @@
         case 1:
             
         {
-            [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
-            UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[1]];
-            [popOverController presentPopoverFromRect: CGRectMake(50, 75 + 45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-            
-
-            //Action for Second toolbar item
+            [self selectBrush : SegmentPopupArray_[1] notify: center location: CGRectMake(50, 75*1+45, 0, 0)];
             
             break;
             
@@ -152,12 +161,7 @@
         case 2:
             
         {
-            [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
-            UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[2]];
-            [popOverController presentPopoverFromRect: CGRectMake(50, 75*2+45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-            
-
-            //Action for third toolbar item
+            [self selectBrush : SegmentPopupArray_[2] notify: center location: CGRectMake(50, 75*2+45, 0, 0)];
             
             break;
             
@@ -166,12 +170,7 @@
         case 3:
             
         {
-            [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
-            UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[3]];
-            [popOverController presentPopoverFromRect: CGRectMake(50, 75*3+45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-            
-
-            //Action for fourth toolbar item;
+            [self selectBrush : SegmentPopupArray_[3] notify: center location: CGRectMake(50, 75*3+45, 0, 0)];
             
             break;
             
@@ -180,12 +179,7 @@
         case 4:
             
         {
-            [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
-            UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[4]];
-            [popOverController presentPopoverFromRect: CGRectMake(50, 75*4+45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-            
-
-            //Action for fifth toolbar item
+            [self selectBrush : SegmentPopupArray_[4] notify: center location: CGRectMake(50, 75*4+45, 0, 0)];
             
             break;
             
@@ -194,12 +188,7 @@
         case 5:
             
         {
-            [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
-            UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[5]];
-            [popOverController presentPopoverFromRect: CGRectMake(50, 75*5+45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-            
-
-            //Action for sixth toolbar item
+            [self selectBrush : SegmentPopupArray_[5] notify: center location: CGRectMake(50, 75*5+45, 0, 0)];
             
             break;
             
@@ -208,6 +197,7 @@
         case 6:
             
         {
+            [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]]];
             
             UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[6]];
