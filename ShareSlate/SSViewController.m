@@ -93,7 +93,7 @@
 
 -(void) setBrushSize: (NSNotification*) note
 {
-    self.paintView.contentScaleFactor =  [(NSNumber*)(note.object) floatValue];
+    [self.paintView setPointSize:[(NSNumber*)(note.object) floatValue]*1000];
 }
 
 -(void) sendImage: (NSNotification*) note

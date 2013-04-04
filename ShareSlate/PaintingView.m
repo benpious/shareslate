@@ -476,6 +476,7 @@
 	[EAGLContext setCurrentContext:context];
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 	
+    
     glBindTexture(GL_TEXTURE_2D, brushTexture);
 
 	// Convert locations from Points to Pixels
@@ -743,4 +744,8 @@
     
 }
 
+-(void) setPointSize:(float) pointsize
+{
+    glPointSize(pointsize / kBrushScale);
+}
 @end

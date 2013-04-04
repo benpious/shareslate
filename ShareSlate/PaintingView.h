@@ -96,6 +96,8 @@
 - (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
 - (void) renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end;
 -(void) renderImageFrom: (CGPoint) start;
+-(void) setPointSize:(float) pointsize;
+
 
 
 
