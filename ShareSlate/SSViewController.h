@@ -13,6 +13,7 @@
 #import "DVSlideViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "SSToolBarContainer.h"
+#import "SSEraserPreviewView.h"
 
 @interface SSViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -26,6 +27,7 @@
 @property (retain) IBOutlet UIView* canvasView;
 @property (retain) IBOutlet SSToolBarContainer* container;  ;
 @property (retain) DVSlideViewController* slideController;
+@property (retain) SSEraserPreviewView* brushSizePreview;
 
 -(void) propogatePaint: (NSNotification*) note;
 -(void) versionControlEvent: (NSNotification*) note;
@@ -33,4 +35,5 @@
 -(void) brushSelected: (NSNotification*) note;
 -(void) colorChanged: (NSNotification*) note;
 -(void) setBrushSize: (NSNotification*) note;
+-(void) brushSizeChangesEnded: (NSNotification*) note;
 @end

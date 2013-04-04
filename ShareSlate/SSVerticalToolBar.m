@@ -49,7 +49,7 @@
         
         toolBarItem eraser = items[1];
         //eraser.label = @"Eraser";
-        eraser.expandedViewController = [[UIViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
+        eraser.expandedViewController = [[SSEraserViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
         eraser.expandedHeight = [[eraser.expandedViewController view] frame].size.height;
         
         otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];

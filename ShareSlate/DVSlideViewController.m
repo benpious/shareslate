@@ -263,6 +263,9 @@
 	
 	CGPoint toPoint = viewsContainer.contentOffset;
 	toPoint.x = toIndex * viewsContainer.bounds.size.width;
+    
+    
+    
 	
 	//Start positions
 	nextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
@@ -275,27 +278,18 @@
 	
 	[currentViewController viewWillDisappear:YES];
 	
-	//Zoom out animation
-    /*
+    
+    UIViewController *nextnextViewController = [self viewControllerWithIndex:_selectedIndex+1];
+
 	[UIView animateWithDuration:0.25
 						  delay:0.0
-						options:UIViewAnimationCurveEaseInOut
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
-						 currentViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
+						 nextnextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
 					 }
-					 completion:^(BOOL completed){
-						 
-						 //Add shadow to next view controller
-						 nextViewController.view.layer.masksToBounds = NO;
-						 nextViewController.view.layer.shadowRadius = 10;
-						 nextViewController.view.layer.shadowOpacity = 0.5;
-						 nextViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:nextViewController.view.bounds].CGPath;
-						 nextViewController.view.layer.shadowOffset = CGSizeMake(5.0, 5.0);
-						 
-						 [nextViewController viewWillAppear:YES];
-					 }];
+					 completion:nil];
+    
 	
-	*/
 	//Slide animation
 	[UIView animateWithDuration:0.5
 						  delay:0.25
@@ -377,6 +371,18 @@
 	[swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
 	[self.view addGestureRecognizer:swipeRight];
 	[swipeRight release];
+    
+    UIViewController *nextViewController = [self viewControllerWithIndex:_selectedIndex+1];
+
+    
+    [UIView animateWithDuration:0.25
+						  delay:0.0
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 nextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
+					 }
+					 completion:nil];
+
 
 
 }

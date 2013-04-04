@@ -37,7 +37,11 @@ In consequence of adding the hint that you can swipe to previous versions, previ
 
 Version control tableview selection should change with the sliding view and vice-versa, not yet implemented. 
 
+Working UI additions do not work over the network -- one cannot send color info or brush size info.
+
 Programming issues: As should be expected from a slapped-together protoype, this project is an absolute catastrophe in terms of Object-Oriented-Design, memory management, efficiency, and providing feedback when things go wrong on the programming side. This is the result of trying to get it together in time for the deadline of Tuesday, March 19. 
+
+The brush size previewer is hard to see, especially on black. It should have an animated dashed line effect. 
 
 Attributions:
 

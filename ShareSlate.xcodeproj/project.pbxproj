@@ -46,6 +46,8 @@
 		3B79A4B816F1289700D5DF08 /* colorPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B716F1289700D5DF08 /* colorPicker.png */; };
 		3B79A4BD16F1440800D5DF08 /* DVSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B79A4BC16F1440800D5DF08 /* DVSlideViewController.m */; };
 		3B79A4C116F1445100D5DF08 /* grayBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4C016F1445100D5DF08 /* grayBackground.png */; };
+		3B916702170D6FA80025215B /* SSEraserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B916701170D6FA70025215B /* SSEraserViewController.m */; };
+		3B916705170D75A30025215B /* SSEraserPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B916704170D75A10025215B /* SSEraserPreviewView.m */; };
 		3BAD138916F4330D00898C05 /* bo_play_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BAD138716F4330D00898C05 /* bo_play_pattern.png */; };
 		3BAD138A16F4330D00898C05 /* bo_play_pattern_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BAD138816F4330D00898C05 /* bo_play_pattern_@2X.png */; };
 		3BAD138D16F439D800898C05 /* SSToolBarContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD138C16F439D800898C05 /* SSToolBarContainer.m */; };
@@ -137,6 +139,10 @@
 		3B79A4BB16F1440800D5DF08 /* DVSlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSlideViewController.h; sourceTree = "<group>"; };
 		3B79A4BC16F1440800D5DF08 /* DVSlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSlideViewController.m; sourceTree = "<group>"; };
 		3B79A4C016F1445100D5DF08 /* grayBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayBackground.png; sourceTree = "<group>"; };
+		3B916700170D6FA70025215B /* SSEraserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEraserViewController.h; sourceTree = "<group>"; };
+		3B916701170D6FA70025215B /* SSEraserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEraserViewController.m; sourceTree = "<group>"; };
+		3B916703170D75A00025215B /* SSEraserPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEraserPreviewView.h; sourceTree = "<group>"; };
+		3B916704170D75A10025215B /* SSEraserPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEraserPreviewView.m; sourceTree = "<group>"; };
 		3BAD138716F4330D00898C05 /* bo_play_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bo_play_pattern.png; sourceTree = "<group>"; };
 		3BAD138816F4330D00898C05 /* bo_play_pattern_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bo_play_pattern_@2X.png"; sourceTree = "<group>"; };
 		3BAD138B16F439D700898C05 /* SSToolBarContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSToolBarContainer.h; sourceTree = "<group>"; };
@@ -370,6 +376,10 @@
 				3BEF154216F51A100008E293 /* button.png */,
 				3BD4B2F916F8F79800056FD2 /* orangeButton.png */,
 				3BE4280016F5234800D404B1 /* buttonEffect.png */,
+				3B916700170D6FA70025215B /* SSEraserViewController.h */,
+				3B916701170D6FA70025215B /* SSEraserViewController.m */,
+				3B916703170D75A00025215B /* SSEraserPreviewView.h */,
+				3B916704170D75A10025215B /* SSEraserPreviewView.m */,
 				3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */,
 				3B17398D16F98E6A008CFA68 /* erase.png */,
 				3B17398E16F98E6A008CFA68 /* brush_alt_32x32.png */,
@@ -560,6 +570,8 @@
 				3B79A4BD16F1440800D5DF08 /* DVSlideViewController.m in Sources */,
 				3BAD138D16F439D800898C05 /* SSToolBarContainer.m in Sources */,
 				3BAD139016F43A7700898C05 /* SSVersionInfoView.m in Sources */,
+				3B916702170D6FA80025215B /* SSEraserViewController.m in Sources */,
+				3B916705170D75A30025215B /* SSEraserPreviewView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

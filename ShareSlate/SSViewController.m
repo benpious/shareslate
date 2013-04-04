@@ -30,10 +30,13 @@
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"brushSelected:") name:@"brushSelected" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"colorChanged:") name:@"colorChanged" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"setBrushSize:") name:@"brushSizeChanged" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"brushSizeChangesEnded:") name:@"brushSizeChangesEnded" object:nil];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
     self.slideController = [[DVSlideViewController alloc] init];
     [self.canvasView addSubview:self.slideController.view];
     [self.canvasView bringSubviewToFront:self.slideController.view];
@@ -42,6 +45,10 @@
     [self.slideController setUp];
     self.paintView = (PaintingView*)((UIViewController*)[self.slideController.viewControllers objectAtIndex:self.slideController.selectedIndex]).view;
     [self.paintView setBrushColorWithRed:0.0f green:0.0f blue:0.0f];
+    self.brushSizePreview = [[SSEraserPreviewView alloc] initWithFrame: self.view.bounds];
+    [self.view addSubview: self.brushSizePreview];
+
+
 
 }
 
@@ -93,7 +100,12 @@
 
 -(void) setBrushSize: (NSNotification*) note
 {
-    [self.paintView setPointSize:[(NSNumber*)(note.object) floatValue]*1000];
+    [self.paintView setPointSize:[(NSNumber*)(note.object) floatValue]*300];
+    
+    self.brushSizePreview.rectToDraw = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, [(NSNumber*)(note.object) floatValue]*100, [(NSNumber*)(note.object) floatValue]*100);
+    self.brushSizePreview.willDraw = YES;
+    [self.brushSizePreview setNeedsDisplay];
+    
 }
 
 -(void) sendImage: (NSNotification*) note
@@ -183,6 +195,10 @@
     [picker release];
 }
 
+-(void) brushSizeChangesEnded: (NSNotification*) note
+{
+    self.brushSizePreview.willDraw = NO;
+}
 
 
 @end
