@@ -584,7 +584,6 @@
     
     free(imageVertexBuffer);
     free(textureVertexBuffer);
-    //NSLog(@"%d", glGetError());
 
     glColor4f(0, 0, 0, 1);
 
@@ -728,14 +727,19 @@
     
     textureCoordsArray[0] = 0.0f;
     textureCoordsArray[1] = 0.0f;
+    
     textureCoordsArray[2] = 1.0f;
     textureCoordsArray[3] = 1.0f;
+    
     textureCoordsArray[4] = 1.0f;
     textureCoordsArray[5] = 0.0f;
+    
     textureCoordsArray[6] = 0.0f;
     textureCoordsArray[7] = 0.0f;
+    
     textureCoordsArray[8] = 0.0f;
     textureCoordsArray[9] = 1.0f;
+    
     textureCoordsArray[10] = 1.0f;
     textureCoordsArray[11] = 1.0f;
     
