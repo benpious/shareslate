@@ -102,7 +102,7 @@
 - (void)addViewController:(UIViewController *)viewController atIndex:(int)index;
 {
 
-    viewController.view.frame = CGRectMake(1024 * index, 0, (1024-50), 768);
+    viewController.view.frame = CGRectMake((1024+50) * index, 0, (1024-50), 768);
 	[viewsContainer addSubview:viewController.view];
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];
@@ -127,7 +127,6 @@
 //i added this method
 -(void) selectViewController: (UITapGestureRecognizer *) gesture
 {
-    
     if (!self.isActive) {
         return;
     }
@@ -135,6 +134,8 @@
     for (UIViewController* controller in self.viewControllers ) {
         ((PaintingView*)(controller.view)).isActive = YES;
     }
+    
+    ((PaintingView*)((UIViewController*)[self.viewControllers objectAtIndex:_selectedIndex]).view).isActive = YES;
 
     if (_selectedIndex != 0) {
         
@@ -149,6 +150,8 @@
     
     else
     {
+
+        
         [UIView animateWithDuration:0.25
                               delay:0.75
                             options:UIViewAnimationOptionCurveEaseInOut
@@ -175,17 +178,26 @@
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
         
-    }
-    
-    [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
+        int i = 0;
+        for (UIViewController* controller in self.viewControllers ) {
+            [controller.view setFrame:CGRectMake((1024+50.0f) * i, 0, (1024.0f-50.0f), 768)];
+            i++;
+        }
+        
+        [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
 
-    
+    }
+
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
         
+        for (UIViewController* controller in self.viewControllers ) {
+            ((PaintingView*)(controller.view)).isActive = YES;
+        }
+        
         [UIView animateWithDuration:0.25
                               delay:0.75
                             options:UIViewAnimationOptionCurveEaseInOut
@@ -211,6 +223,15 @@
         [self.view removeGestureRecognizer:tap];
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
+        
+        int i = 0;
+        for (UIViewController* controller in self.viewControllers ) {
+            [controller.view setFrame:CGRectMake((1024+50.0f) * i, 0, (1024.0f-50.0f), 768)];
+            i++;
+        }
+        
+        [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
+
         
     }
 }
@@ -266,7 +287,6 @@
 	
 	CGPoint toPoint = viewsContainer.contentOffset;
 	toPoint.x = toIndex * viewsContainer.bounds.size.width;
-	
 	//Start positions
 	nextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
 	
@@ -336,8 +356,11 @@
     
     [self.view setFrame:CGRectMake(172.0, 0.0, 1024-172, 768)];
     
+    int i =0;
     for (UIViewController* controller in self.viewControllers ) {
         ((PaintingView*)(controller.view)).isActive = NO;
+        [controller.view setFrame:CGRectMake((1024-172) * i, 0, (1024-172), 768)];
+        i++;
     }
     
     UIViewController *currentViewController = [self viewControllerWithIndex:_selectedIndex];
