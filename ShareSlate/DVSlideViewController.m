@@ -177,15 +177,16 @@
         [self.view removeGestureRecognizer:tap];
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
-        
+                
+        [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
+        /*
         int i = 0;
         for (UIViewController* controller in self.viewControllers ) {
-            [controller.view setFrame:CGRectMake((1024+50.0f) * i, 0, (1024.0f-50.0f), 768)];
+            [controller.view setFrame:CGRectMake(controller.view.frame.origin.x, 0, (1024.0f-50.0f), 768)];
             i++;
         }
-        
-        [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
-
+         */
+    [((UIViewController*)[self.viewControllers objectAtIndex:_selectedIndex]).view setFrame: CGRectMake(((UIViewController*)[self.viewControllers objectAtIndex:_selectedIndex]).view.frame.origin.x, 0, (1024.0f-50.0f),768)];
     }
 
 }
@@ -224,12 +225,13 @@
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
         
+        /*
         int i = 0;
         for (UIViewController* controller in self.viewControllers ) {
-            [controller.view setFrame:CGRectMake((1024+50.0f) * i, 0, (1024.0f-50.0f), 768)];
+            [controller.view setFrame:CGRectMake(controller.view.frame.origin.x, 0, (1024.0f-50.0f), 768)];
             i++;
         }
-        
+        */
         [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
 
         
@@ -300,7 +302,6 @@
 	
     
     UIViewController *nextnextViewController = [self viewControllerWithIndex:_selectedIndex+2];
-
     nextnextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
 	
 	//Slide animation
@@ -323,8 +324,7 @@
 						 
 						 [currentViewController viewDidDisappear:YES];
 					 }];
-	
-
+    
 }
 
 #pragma mark - UIScrollView Delegate
@@ -400,9 +400,6 @@
 						 nextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
 					 }
 					 completion:nil];
-
-
-
 }
 
 @end

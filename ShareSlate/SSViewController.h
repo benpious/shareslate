@@ -25,7 +25,7 @@
 @property (retain) NSString* ip;
 @property (assign) int port;
 @property (retain) IBOutlet UIView* canvasView;
-@property (retain) IBOutlet SSToolBarContainer* container;  ;
+@property (retain) IBOutlet SSToolBarContainer* container;
 @property (retain) DVSlideViewController* slideController;
 @property (retain) SSEraserPreviewView* brushSizePreview;
 
