@@ -171,10 +171,24 @@
 
         self.brushPoints = malloc(sizeof(pointData) * self.brushPointsCapacity);
         self.colorForBrushPoints = malloc(sizeof(colorData) * self.brushPointsCapacity);
-
+        self.versionIndices =  [[NSMutableArray alloc] initWithCapacity:5] ;
+        self.autoVersionTimer = [NSTimer timerWithTimeInterval: 5.0 target:self selector:@selector(addNewVersion:) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.autoVersionTimer forMode:NSDefaultRunLoopMode];
     }
     
+    
     return self;
+}
+
+-(void) addNewVersion: (NSTimer*) timer
+{
+    [self.versionIndices insertObject: [NSNumber numberWithLong:self.numBrushPoints] atIndex:0];
+}
+
+-(void) revertToIndex: (NSNumber*) version
+{
+    self.numBrushPoints = [((NSNumber*)[self.versionIndices objectAtIndex: version.intValue]) intValue];
+    [self renderLines];
 }
 
 // If our view is resized, we'll be asked to layout subviews.
@@ -370,10 +384,69 @@
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
     glDisableClientState(GL_COLOR_ARRAY);
+    
+    
 
 
     
 }
+
+-(UIImage*) renderLinesFromIndex: (NSNumber*) index
+{
+    
+    if (index.intValue > self.numBrushPoints) {
+        return nil;
+    }
+    
+    
+    float width = self.frame.size.width;
+    float height = self.frame.size.height;
+
+    
+    glEnableClientState(GL_COLOR_ARRAY);
+    glBindTexture(GL_TEXTURE_2D, brushTexture);
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    // Render the vertex array
+    glColorPointer(4, GL_FLOAT, sizeof(colorData), self.colorForBrushPoints);
+	glVertexPointer(2, GL_FLOAT, sizeof(pointData), self.brushPoints);
+	glDrawArrays(GL_POINTS, 0, index.intValue);
+	// Display the buffer
+	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
+	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
+    glDisableClientState(GL_COLOR_ARRAY);
+        
+    //CGImageRef imgRef = CGBitmapContextCreateImage(context);
+    
+    
+    NSInteger dataLength = width * height * 4;
+    GLubyte *data = (GLubyte*)malloc(dataLength * sizeof(GLubyte));
+
+    glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    
+    CGDataProviderRef ref = CGDataProviderCreateWithData(NULL, data, dataLength, NULL);
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGImageRef iref = CGImageCreate(width, height, 8, 32, width * 4, colorspace, kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast,
+                                    ref, NULL, true, kCGRenderingIntentDefault);
+    
+    
+    UIGraphicsBeginImageContext(CGSizeMake(width, height));
+    CGContextRef cgcontext = UIGraphicsGetCurrentContext();
+    CGContextSetBlendMode(cgcontext, kCGBlendModeCopy);
+    CGContextDrawImage(cgcontext, CGRectMake(0.0, 0.0, width, height), iref);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    free(data);
+    CFRelease(ref);
+    CFRelease(colorspace);
+    CGImageRelease(iref);
+
+    
+    //return [[UIImage alloc] initWithCGImage:imgRef];
+    return image;
+}
+
 
 
 -(void) renderImageFrom: (CGPoint) start
@@ -603,4 +676,45 @@
 {
     glPointSize(pointsize / kBrushScale);
 }
+
+/*
+    Draws previous versions into offscreen opengl es contexts, then gets a bitmap of the 
+    result and puts it into the array as a uiimageview to return
+ 
+ */
+-(NSMutableArray*) makeVersionPreviews
+{
+    NSMutableArray* imageViews = [[NSMutableArray alloc] initWithCapacity: [self.versionIndices count]];
+    GLuint framebuffer;
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    
+    float width = self.frame.size.width;
+    float height = self.frame.size.height;
+
+    GLuint colorRenderbuffer;
+    glGenRenderbuffers(1, &colorRenderbuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA4, width, height);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderbuffer);
+    
+    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
+    if(status != GL_FRAMEBUFFER_COMPLETE) {
+        NSLog(@"failed to make complete framebuffer object %x", status);
+    }
+
+    for (NSNumber* currIndex in self.versionIndices)
+    {
+    
+        UIImageView* currView = [[UIImageView alloc] initWithImage: [self renderLinesFromIndex:currIndex]];
+        UIViewController* currController = [[UIViewController alloc] init];
+        currController.view = currView;
+        [imageViews addObject:currController];
+    }
+    
+    //fix opengl state
+    
+    return imageViews;
+}
+
 @end

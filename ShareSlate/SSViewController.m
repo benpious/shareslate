@@ -25,7 +25,8 @@
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"propogatePaint:") name:@"serverData" object:nil];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"sendPaint:") name:@"drawingEvent" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"sendImage:") name:@"imageDrawingEvent" object:nil];
-    [notificationCenter addObserver:self selector:NSSelectorFromString(@"versionControlOpened:") name:@"versionControlEvent" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"versionSelected:") name:@"viewSelected" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"versionControlOpened:") name:@"historySelected" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"imageSelected:") name:@"imageSelected" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"brushSelected:") name:@"brushSelected" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"colorChanged:") name:@"colorChanged" object:nil];
@@ -37,13 +38,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     
-    self.slideController = [[DVSlideViewController alloc] init];
-    [self.canvasView addSubview:self.slideController.view];
-    [self.canvasView bringSubviewToFront:self.slideController.view];
-    //[self.slideController.view setBounds:self.canvasView.bounds];
-    //[self.slideController.view setFrame:self.canvasView.frame];
     [self.slideController setUp];
-    self.paintView = (PaintingView*)((UIViewController*)[self.slideController.viewControllers objectAtIndex:self.slideController.selectedIndex]).view;
+    self.paintView = [[PaintingView alloc] initWithFrame:CGRectMake(0, 0, 1024-50, 768)];
+    [self.canvasView addSubview: self.paintView];
     [self.paintView setBrushColorWithRed:0.0f green:0.0f blue:0.0f];
     self.brushSizePreview = [[SSEraserPreviewView alloc] initWithFrame: self.view.bounds];
     [self.view addSubview: self.brushSizePreview];
@@ -63,6 +60,8 @@
     NSString* coordData = [note object];
     [networkingEngine sendMessage:coordData];
 }
+
+#pragma mark notification center methods
 
 -(void) colorChanged: (NSNotification*) note
 {
@@ -120,9 +119,37 @@
     self.paintView.drawingImages = NO;
 }
 
+
 -(void) versionControlEvent: (NSNotification*) note
 {
-    self.slideController.isActive = !(self.slideController.isActive);
+    [self.slideController removeFromParentViewController];
+    [self.canvasView addSubview:self.paintView];
+    [self.canvasView bringSubviewToFront:self.paintView];
+    self.paintView.isActive = YES;
+}
+
+-(void) versionSelected: (NSNotification*) note
+{
+    [self.paintView revertToIndex: (NSNumber*)note.object];
+}
+
+-(void) brushSizeChangesEnded: (NSNotification*) note
+{
+    self.brushSizePreview.willDraw = NO;
+}
+
+-(void) versionControlOpened: (NSNotification*) note
+{
+    NSMutableArray* versionPreviews =  [self.paintView makeVersionPreviews];
+    self.slideController = [[DVSlideViewController alloc] initWithArray: versionPreviews];
+    [self.slideController setUp];
+    [self.slideController.view setFrame:CGRectMake(172, 0, 1024-172, 768)];
+    [self.canvasView addSubview:self.slideController.view];
+    [self.paintView removeFromSuperview];
+    [self.canvasView bringSubviewToFront:self.slideController.view];
+    //for testing -- delete later
+    [self.slideController historySelected: nil];
+
 }
 
 #pragma mark camera methods
@@ -161,7 +188,6 @@
     
     UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: mediaUI];
     
-    //[popOverController presentPopoverFromRect: CGRectMake(180, (768/4) *3 - 190, 50, 50)  inView: self.container permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     [popOverController presentPopoverFromRect: CGRectMake(0, (750/11)*8+10, 50, 50)  inView: self.container permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     
     return YES;
@@ -195,11 +221,6 @@
     
     [[picker parentViewController] dismissViewControllerAnimated:NO completion:NULL];
     [picker release];
-}
-
--(void) brushSizeChangesEnded: (NSNotification*) note
-{
-    self.brushSizePreview.willDraw = NO;
 }
 
 

@@ -30,10 +30,11 @@
 @property (retain) SSEraserPreviewView* brushSizePreview;
 
 -(void) propogatePaint: (NSNotification*) note;
--(void) versionControlEvent: (NSNotification*) note;
+//-(void) versionControlEvent: (NSNotification*) note;
 -(void) imageSelected: (NSNotification*) note;
 -(void) brushSelected: (NSNotification*) note;
 -(void) colorChanged: (NSNotification*) note;
 -(void) setBrushSize: (NSNotification*) note;
 -(void) brushSizeChangesEnded: (NSNotification*) note;
+-(void) versionSelected: (NSNotification*) note;
 @end

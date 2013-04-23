@@ -108,17 +108,23 @@ typedef struct {
 @property (retain) UIImage* imageToDraw;
 
 @property (assign) BOOL drawingImages;
+
+//version control/undo/redo support
+@property (assign) colorData* currColor;
+@property (assign) colorData* colorForBrushPoints;
 @property (assign) pointData* brushPoints;
 @property (assign) long numBrushPoints;
 @property (assign) long brushPointsCapacity;
-@property (assign) colorData* currColor;
-@property (assign) colorData* colorForBrushPoints;
+@property (retain) NSMutableArray* versionIndices;
+@property (retain) NSTimer* autoVersionTimer;
 
+-(void) revertToIndex: (NSNumber*) version;
 - (void)erase;
 - (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
 - (void) renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end;
 -(void) renderImageFrom: (CGPoint) start;
 -(void) setPointSize:(float) pointsize;
+-(NSMutableArray*) makeVersionPreviews;
 
 
 

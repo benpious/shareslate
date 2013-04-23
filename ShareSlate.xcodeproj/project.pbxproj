@@ -387,14 +387,8 @@
 			children = (
 				B5AA66DD170D69A400743808 /* ToolBar.h */,
 				B5AA66DE170D69A500743808 /* ToolBar.m */,
-				3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */,
-				3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */,
-				3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */,
-				3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */,
+				3BAD4D0E1725C29700551FCE /* Old Toolbar */,
 				3B160FD016FACD0400B36CCD /* sampleImage.png */,
-				3BEF154216F51A100008E293 /* button.png */,
-				3BD4B2F916F8F79800056FD2 /* orangeButton.png */,
-				3BE4280016F5234800D404B1 /* buttonEffect.png */,
 				3B916700170D6FA70025215B /* SSEraserViewController.h */,
 				3B916701170D6FA70025215B /* SSEraserViewController.m */,
 				3B916703170D75A00025215B /* SSEraserPreviewView.h */,
@@ -409,6 +403,20 @@
 				3B3CC2E316F504D700ED78AE /* Palettes */,
 			);
 			name = ToolBar;
+			sourceTree = "<group>";
+		};
+		3BAD4D0E1725C29700551FCE /* Old Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */,
+				3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */,
+				3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */,
+				3BC9F34F16E5A14200F4B47C /* SSToolBarCell.m */,
+				3BEF154216F51A100008E293 /* button.png */,
+				3BD4B2F916F8F79800056FD2 /* orangeButton.png */,
+				3BE4280016F5234800D404B1 /* buttonEffect.png */,
+			);
+			name = "Old Toolbar";
 			sourceTree = "<group>";
 		};
 		3BC6DCC41707980300725975 /* Color Picker */ = {

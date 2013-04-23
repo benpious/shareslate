@@ -133,7 +133,7 @@
     UIColor* color = ((NPViewController *)palette).colorPickerView.color;
     NSNumber* size = [NSNumber numberWithFloat: ((NPViewController*) palette).slider.value];
 
-    NSLog(@"ASSASDASD");
+    //NSLog(@"ASSASDASD");
     
     [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
     

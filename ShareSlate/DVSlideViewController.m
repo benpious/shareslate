@@ -39,18 +39,29 @@
 	return self;
 }
 
+-(id) initWithArray: (NSMutableArray*) array
+{
+    self = [super init];
+	if (self)
+	{
+        self.isActive = NO;
+        _selectedIndex = 0;
+        _scaleFactor = 0.8;
+        
+        self.viewControllers = array;
+        
+        
+	}
+	
+	return self;
+
+}
+
 -(void) setUp
 {
     center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"historySelected" object:nil];
-    for (int i=0; i < 4 ; i++) {
-        
-        UIViewController* controller = [[UIViewController alloc] init];
-        controller.view = [[PaintingView alloc] initWithFrame:[self.view bounds]];
-        [self.viewControllers setObject: controller atIndexedSubscript: i];
-        
-    }
-
+    
     [self setupViews];
     [self setupViewControllers];
 }
@@ -102,7 +113,7 @@
 - (void)addViewController:(UIViewController *)viewController atIndex:(int)index;
 {
 
-    viewController.view.frame = CGRectMake((1024+50) * index, 0, (1024-50), 768);
+    viewController.view.frame = CGRectMake((1024-172) * index, 0, (1024-172), 768);
 	[viewsContainer addSubview:viewController.view];
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];
@@ -131,11 +142,6 @@
         return;
     }
     
-    for (UIViewController* controller in self.viewControllers ) {
-        ((PaintingView*)(controller.view)).isActive = YES;
-    }
-    
-    ((PaintingView*)((UIViewController*)[self.viewControllers objectAtIndex:_selectedIndex]).view).isActive = YES;
 
     if (_selectedIndex != 0) {
         
@@ -179,13 +185,6 @@
         [self.view removeGestureRecognizer:swipeRight];
                 
         [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
-        /*
-        int i = 0;
-        for (UIViewController* controller in self.viewControllers ) {
-            [controller.view setFrame:CGRectMake(controller.view.frame.origin.x, 0, (1024.0f-50.0f), 768)];
-            i++;
-        }
-         */
     [((UIViewController*)[self.viewControllers objectAtIndex:_selectedIndex]).view setFrame: CGRectMake(((UIViewController*)[self.viewControllers objectAtIndex:_selectedIndex]).view.frame.origin.x, 0, (1024.0f-50.0f),768)];
     }
 
@@ -194,11 +193,12 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        
+       
+        /*
         for (UIViewController* controller in self.viewControllers ) {
             ((PaintingView*)(controller.view)).isActive = YES;
         }
-        
+        */
         [UIView animateWithDuration:0.25
                               delay:0.75
                             options:UIViewAnimationOptionCurveEaseInOut
@@ -225,13 +225,6 @@
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
         
-        /*
-        int i = 0;
-        for (UIViewController* controller in self.viewControllers ) {
-            [controller.view setFrame:CGRectMake(controller.view.frame.origin.x, 0, (1024.0f-50.0f), 768)];
-            i++;
-        }
-        */
         [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
 
         
@@ -353,16 +346,6 @@
 
 -(void) historySelected: (NSNotification*) note
 {
-    
-    [self.view setFrame:CGRectMake(172.0, 0.0, 1024-172, 768)];
-    
-    int i =0;
-    for (UIViewController* controller in self.viewControllers ) {
-        ((PaintingView*)(controller.view)).isActive = NO;
-        [controller.view setFrame:CGRectMake((1024-172) * i, 0, (1024-172), 768)];
-        i++;
-    }
-    
     UIViewController *currentViewController = [self viewControllerWithIndex:_selectedIndex];
 
     [UIView animateWithDuration:0.25

@@ -23,6 +23,7 @@
 
 
 //- (id)init;
+-(id) initWithArray: (NSMutableArray*) array;
 - (void)nextViewController;
 - (void)prevViewController;
 - (void) setUp;
