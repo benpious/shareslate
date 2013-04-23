@@ -44,9 +44,6 @@
     [self.paintView setBrushColorWithRed:0.0f green:0.0f blue:0.0f];
     self.brushSizePreview = [[SSEraserPreviewView alloc] initWithFrame: self.view.bounds];
     [self.view addSubview: self.brushSizePreview];
-
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,18 +116,14 @@
     self.paintView.drawingImages = NO;
 }
 
-
--(void) versionControlEvent: (NSNotification*) note
+-(void) versionSelected: (NSNotification*) note
 {
+    [self.paintView revertToIndex: (NSNumber*)note.object];
     [self.slideController removeFromParentViewController];
     [self.canvasView addSubview:self.paintView];
     [self.canvasView bringSubviewToFront:self.paintView];
     self.paintView.isActive = YES;
-}
-
--(void) versionSelected: (NSNotification*) note
-{
-    [self.paintView revertToIndex: (NSNumber*)note.object];
+    [self.slideController release];
 }
 
 -(void) brushSizeChangesEnded: (NSNotification*) note

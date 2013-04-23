@@ -187,7 +187,7 @@
 
 -(void) revertToIndex: (NSNumber*) version
 {
-    self.numBrushPoints = [((NSNumber*)[self.versionIndices objectAtIndex: version.intValue]) intValue];
+    self.numBrushPoints = [((NSNumber*)[self.versionIndices objectAtIndex: version.intValue]) longValue];
     [self renderLines];
 }
 
@@ -615,7 +615,7 @@
     self.currColor->r = red;
     self.currColor->g = green;
     self.currColor->b = blue;
-    self.currColor->a = 1.0f;
+    self.currColor->a = kBrushOpacity;
 }
 
 

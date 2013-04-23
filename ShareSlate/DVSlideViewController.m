@@ -142,7 +142,6 @@
         return;
     }
     
-
     if (_selectedIndex != 0) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Revert to this version?"
@@ -179,13 +178,11 @@
         
         self.isActive = NO;
         //post notification that version has been selected
-        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object:nil]];
+        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object: [NSNumber numberWithInt: _selectedIndex ]]];
         [self.view removeGestureRecognizer:tap];
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
-                
-        [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
-    [((UIViewController*)[self.viewControllers objectAtIndex:_selectedIndex]).view setFrame: CGRectMake(((UIViewController*)[self.viewControllers objectAtIndex:_selectedIndex]).view.frame.origin.x, 0, (1024.0f-50.0f),768)];
+        
     }
 
 }
@@ -193,12 +190,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-       
-        /*
-        for (UIViewController* controller in self.viewControllers ) {
-            ((PaintingView*)(controller.view)).isActive = YES;
-        }
-        */
+        
         [UIView animateWithDuration:0.25
                               delay:0.75
                             options:UIViewAnimationOptionCurveEaseInOut
@@ -220,13 +212,10 @@
         
         self.isActive = NO;
         //post notification that version has been selected
-        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object:nil]];
+        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object: [NSNumber numberWithInt: _selectedIndex ]]];
         [self.view removeGestureRecognizer:tap];
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
-        
-        [self.view setFrame:CGRectMake(0.0, 0.0, 1024-50, 768)];
-
         
     }
 }
