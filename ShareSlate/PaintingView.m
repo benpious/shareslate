@@ -172,7 +172,7 @@
         self.brushPoints = malloc(sizeof(pointData) * self.brushPointsCapacity);
         self.colorForBrushPoints = malloc(sizeof(colorData) * self.brushPointsCapacity);
         self.versionIndices =  [[NSMutableArray alloc] initWithCapacity:5] ;
-        self.autoVersionTimer = [NSTimer timerWithTimeInterval: 5.0 target:self selector:@selector(addNewVersion:) userInfo:nil repeats:YES];
+        self.autoVersionTimer = [NSTimer timerWithTimeInterval: 2.0 target:self selector:@selector(addNewVersion:) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:self.autoVersionTimer forMode:NSDefaultRunLoopMode];
     }
     
@@ -703,9 +703,14 @@
         NSLog(@"failed to make complete framebuffer object %x", status);
     }
 
+    //test int to limit amount of versions made
+    int i =0;
     for (NSNumber* currIndex in self.versionIndices)
     {
-    
+        if (i > 5) {
+            break;
+        }
+        i++;
         UIImageView* currView = [[UIImageView alloc] initWithImage: [self renderLinesFromIndex:currIndex]];
         UIViewController* currController = [[UIViewController alloc] init];
         currController.view = currView;

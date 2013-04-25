@@ -11,5 +11,6 @@
 @interface SSVersionHistoryViewController : UIViewController
 -(id) initWithArray: (NSArray*) viewControllerArray;
 -(void) historySelected;
+-(void) setUpViewControllers;
 
 @end

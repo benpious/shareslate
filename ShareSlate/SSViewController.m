@@ -19,7 +19,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     networkingEngine = [[SSNetworkingEngine alloc] initWithHostName:self.ip port:self.port];
     notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector: NSSelectorFromString(@"propogatePaint:") name:@"serverData" object:nil];
@@ -38,7 +37,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     
-    [self.slideController setUp];
     self.paintView = [[PaintingView alloc] initWithFrame:CGRectMake(0, 0, 1024-50, 768)];
     [self.canvasView addSubview: self.paintView];
     [self.paintView setBrushColorWithRed:0.0f green:0.0f blue:0.0f];
@@ -119,11 +117,11 @@
 -(void) versionSelected: (NSNotification*) note
 {
     [self.paintView revertToIndex: (NSNumber*)note.object];
-    [self.slideController removeFromParentViewController];
+    [self.historyController removeFromParentViewController];
     [self.canvasView addSubview:self.paintView];
     [self.canvasView bringSubviewToFront:self.paintView];
     self.paintView.isActive = YES;
-    [self.slideController release];
+    [self.historyController release];
 }
 
 -(void) brushSizeChangesEnded: (NSNotification*) note
@@ -134,15 +132,13 @@
 -(void) versionControlOpened: (NSNotification*) note
 {
     NSMutableArray* versionPreviews =  [self.paintView makeVersionPreviews];
-    self.slideController = [[DVSlideViewController alloc] initWithArray: versionPreviews];
-    [self.slideController setUp];
-    [self.slideController.view setFrame:CGRectMake(172, 0, 1024-172, 768)];
-    [self.canvasView addSubview:self.slideController.view];
+    self.historyController = [[SSVersionHistoryViewController alloc] initWithArray:versionPreviews];
+    [self.historyController.view setFrame:CGRectMake(172, 0, 1024-172, 768)];
+    [self.historyController setUpViewControllers];
     [self.paintView removeFromSuperview];
-    [self.canvasView bringSubviewToFront:self.slideController.view];
-    //for testing -- delete later
-    [self.slideController historySelected: nil];
-
+    [self.canvasView addSubview:self.historyController.view];
+    [self.canvasView bringSubviewToFront:self.historyController.view];
+    [self.historyController historySelected];
 }
 
 #pragma mark camera methods
