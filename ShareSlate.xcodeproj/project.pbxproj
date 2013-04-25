@@ -39,6 +39,7 @@
 		3B1D641416DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B1D641516DF19210008D9EC /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D641316DF19210008D9EC /* Particle.png */; };
 		3B25C4E516F286110018795A /* IpadStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B25C4E416F286110018795A /* IpadStoryBoard.storyboard */; };
+		3B34EA5E172973F7000DEE6C /* SSVersionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B34EA5D172973F7000DEE6C /* SSVersionHistoryViewController.m */; };
 		3B3CC2E616F5055700ED78AE /* VersionControlInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */; };
 		3B5B491416E279B80069062A /* shareSlateServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B491316E279B80069062A /* shareSlateServer.py */; };
 		3B79A4B416F1237400D5DF08 /* EraserToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */; };
@@ -139,6 +140,8 @@
 		3B1D641116DF17DC0008D9EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B1D641316DF19210008D9EC /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
 		3B25C4E416F286110018795A /* IpadStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IpadStoryBoard.storyboard; sourceTree = "<group>"; };
+		3B34EA5C172973F7000DEE6C /* SSVersionHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVersionHistoryViewController.h; sourceTree = "<group>"; };
+		3B34EA5D172973F7000DEE6C /* SSVersionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSVersionHistoryViewController.m; sourceTree = "<group>"; };
 		3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VersionControlInfoView.xib; sourceTree = "<group>"; };
 		3B5B491316E279B80069062A /* shareSlateServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = shareSlateServer.py; sourceTree = "<group>"; };
 		3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EraserToolBarPalette.xib; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 				3BAD138C16F439D800898C05 /* SSToolBarContainer.m */,
 				3B79A4BB16F1440800D5DF08 /* DVSlideViewController.h */,
 				3B79A4BC16F1440800D5DF08 /* DVSlideViewController.m */,
+				3B34EA5C172973F7000DEE6C /* SSVersionHistoryViewController.h */,
+				3B34EA5D172973F7000DEE6C /* SSVersionHistoryViewController.m */,
 			);
 			name = "Version Control";
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 				B5AA66DF170D69A500743808 /* ToolBar.m in Sources */,
 				3B916702170D6FA80025215B /* SSEraserViewController.m in Sources */,
 				3B916705170D75A30025215B /* SSEraserPreviewView.m in Sources */,
+				3B34EA5E172973F7000DEE6C /* SSVersionHistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
