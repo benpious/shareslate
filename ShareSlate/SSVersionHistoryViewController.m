@@ -63,8 +63,10 @@
         self.view.layer.sublayerTransform = [self get3DTransform];
         
         for (UIViewController* currViewController in self.viewControllers) {
-            CGAffineTransform scale =  CGAffineTransformMakeScale(.7, .7);
-            currViewController.view.transform = CGAffineTransformTranslate(scale, -bounds.size.width/4, 0.0);
+            //CGAffineTransform scale =  CGAffineTransformMakeScale(.7, .7);
+            //currViewController.view.transform = CGAffineTransformTranslate(scale, -bounds.size.width/4, 0.0);
+            
+            currViewController.view.layer.transform = CATransform3DTranslate(currViewController.view.layer.transform, -bounds.size.width/4, 0.0, -700.0);
             
             currViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
             currViewController.view.layer.shadowOffset = CGSizeMake(0,10);
@@ -75,35 +77,27 @@
         
         [UIView animateWithDuration: 1.0 animations:^{
             
-            CGFloat xOffset = bounds.size.width/[self.viewControllers count]/10.0;
-            //CGFloat yOffset = bounds.size.height/[self.viewControllers count];
+            CGFloat xOffset = bounds.size.width/[self.viewControllers count];
             
             int i = 0;
             for (UIViewController* currViewController in self.viewControllers) {
                 //rotate 45 degrees, then translate
                 if (i != self.selectedIndex) {
                     if (i < self.selectedIndex) {
-                        currViewController.view.layer.transform = CATransform3DTranslate(CATransform3DRotate(currViewController.view.layer.transform,-0.34 , 0.0, 1.0, 0.0), -xOffset*i, 0.0, -250);
-
-
+                        currViewController.view.layer.transform = CATransform3DTranslate(CATransform3DMakeRotation(-0.34 , 0.0, 1.0, 0.0), -xOffset*(i-self.selectedIndex) -bounds.size.width/4, 0.0, - 200 * fabs(i - self.selectedIndex) - 700);
                     }
                     else {
-                        currViewController.view.layer.transform = CATransform3DTranslate(CATransform3DRotate(currViewController.view.layer.transform,0.34 , 0.0, 1.0, 0.0), xOffset*i, 0.0, -250);
-
+                        currViewController.view.layer.transform = CATransform3DTranslate(CATransform3DMakeRotation(0.34 , 0.0, 1.0, 0.0), -xOffset*(i-self.selectedIndex) -bounds.size.width/4, 0.0, -200 * fabs(i - self.selectedIndex) - 700);
                     }
-                    
                 }
                 i++;
             }
-            
         }];
     }];
 }
 
 -(void) moveToIndex: (int) index
 {
-    
-    NSLog(@"selected index before normalize: %d", index);
     
     if(index > [self.viewControllers count]-1) {
         return;
@@ -113,47 +107,31 @@
         return;
     }
     
-    NSLog(@"selected index after normalize: %d", index);
-
     CGRect bounds = [self.view bounds];
     
     [UIView animateWithDuration: 1.0 animations:^{
         
-        CGFloat xOffset = bounds.size.width/[self.viewControllers count]/10.0;
-        
-        int i = 0;
-        
-        CATransform3D prevIndexTrans =   ((UIViewController*)[self.viewControllers objectAtIndex:self.selectedIndex]).view.layer.transform;
-        prevIndexTrans = CATransform3DTranslate(prevIndexTrans , 0.0, 0.0, -250.0);
+        CGFloat xOffset = bounds.size.width/[self.viewControllers count];
 
+        int i = 0;
         for (UIViewController* currViewController in self.viewControllers) {
-            
-            CATransform3D transform;
-            float currentXOffset = [[currViewController.view.layer valueForKeyPath:@"transform.translation.x"] floatValue];
-            
-            if (i == self.selectedIndex) {
-                transform =  CATransform3DTranslate(prevIndexTrans, -xOffset*(i - index) - currentXOffset - bounds.size.width/4, 0 , 0.0);
-            }
-            else {
-                transform =  CATransform3DTranslate(currViewController.view.layer.transform, -xOffset*(i - index) - currentXOffset - bounds.size.width/4, 0 , 0.0);
-            }
-            
-            //reset the rotation
-            float currentAngle = [[currViewController.view.layer valueForKeyPath:@"transform.rotation.y"] floatValue];
-            
+                        
             //rotate 45 degrees
             if (i != index) {
+                
                 if (i < index) {
-                    currViewController.view.layer.transform = CATransform3DRotate(transform, -0.34 - currentAngle, 0.0, 1.0, 0.0);
+                    
+                    currViewController.view.layer.transform = CATransform3DTranslate(CATransform3DMakeRotation(-0.34, 0.0, 1.0, 0.0), -xOffset*(i - index) - bounds.size.width/4, 0.0, -200 * fabs(i-index) -700.0);
                     
                 }
                 else {
-                    currViewController.view.layer.transform = CATransform3DRotate(transform, 0.34 - currentAngle, 0.0, 1.0, 0.0);
+                    
+                    currViewController.view.layer.transform = CATransform3DTranslate(CATransform3DMakeRotation(0.34, 0.0, 1.0, 0.0), -xOffset*(i - index) - bounds.size.width/4, 0.0, -200 * fabs(i-index) -700.0);
                 }
             }
             
             else {
-                currViewController.view.layer.transform =  CATransform3DTranslate(CATransform3DRotate(transform, -currentAngle, 0.0, 1.0, 0.0), 0.0, 0.0, 250.0);
+                currViewController.view.layer.transform =  CATransform3DMakeTranslation(- bounds.size.width/4, 0.0, -700);
             }
             
             i++;
@@ -228,7 +206,7 @@
     
     int index = self.selectedIndex;
     
-    if (movement < 0) {
+    if (movement > 0) {
         index-= 1;
     }
     
