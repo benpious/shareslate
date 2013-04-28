@@ -58,9 +58,10 @@
 -(void) sendPaint: (NSNotification*) note
 {
     //NSString* coordData = [note object];
-    NSArray* coordData = [note object];
-    NSDictionary* brushData = @{@"type" : @"brushStroke", @"color" : @0.0, @"positions" : coordData, @"lineSize" : @0.0};
-    NSDictionary* toSend = @{@"type": @"shape", @"data": brushData};
+    //NSLog(@"sendpaint called");
+    //placeholders for color and linesize
+    NSDictionary* brushData = @{@"type": @"brushStroke", @"color" : @0.0, @"positions" : [note object], @"lineSize" : @0.0};
+    NSDictionary* toSend = @{@"type": @"add", @"data": @[brushData]};
     
     [networkingEngine sendMessage: toSend];
 }
@@ -76,6 +77,7 @@
 
 -(void) propogatePaint: (NSNotification*) note
 {
+    NSLog(@"propogate paint");
     /*
     NSString* coordData = [note object];
     NSArray* strokes = [coordData componentsSeparatedByString:@"C"];
@@ -127,7 +129,7 @@
 
 -(void) sendImage: (NSNotification*) note
 {
-    NSString* coordData = [note object];
+    //NSString* coordData = [note object];
     //[networkingEngine sendMessage: coordData];
 }
 

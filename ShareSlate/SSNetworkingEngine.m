@@ -85,9 +85,19 @@
 {
     //NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
     NSError* error;
-    NSData* data = [NSJSONSerialization dataWithJSONObject:message options:NSJSONWritingPrettyPrinted error: &error];
+    /*
+    if ([message objectForKey:@"type"]  != nil) {
+        NSLog(@"%@",[message objectForKey:@"type"] );
+    }
+     */
+    NSData* data = [NSJSONSerialization dataWithJSONObject:message options:0 error: &error];
+    
+    if (data == nil) {
+        NSLog(@"data == nil");
+    }
+    //NSLog(@"about to send");
+    
 	[outputStream write:[data bytes] maxLength:[data length]];
-    [data release];
 
 }
 
