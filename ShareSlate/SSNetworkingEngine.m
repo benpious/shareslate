@@ -16,6 +16,16 @@
         CFReadStreamRef readStream;
         CFWriteStreamRef writeStream;
         NSLog(@"%@, %d", hostname, port);
+        
+        if ([hostname isEqual:@""]) {
+            hostname = @"localhost";
+            //hostname = @"benpious.wv.cc.cmu.edu";
+        }
+        
+        if (port == 0) {
+            port = 1700;
+        }
+        
         CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)hostname, port, &readStream, &writeStream);
         inputStream = (NSInputStream *)readStream;
         outputStream = (NSOutputStream *)writeStream;
@@ -91,7 +101,6 @@
     }
      */
     NSData* data = [NSJSONSerialization dataWithJSONObject:message options:0 error: &error];
-    
     if (data == nil) {
         NSLog(@"data == nil");
     }

@@ -30,6 +30,7 @@ class PassMessage(Protocol):
     def dataReceived(self, data):
         request = json.loads(data)
         response = Packet()
+	print request
         response.type = request.type
         response.name = request.name
 
