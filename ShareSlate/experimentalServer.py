@@ -29,13 +29,14 @@ class PassMessage(Protocol):
     
     def dataReceived(self, data):
         request = json.loads(data)
-        response = Packet()
-        response.type = request["type"]
+        response = {}
+        response["type"] = request["type"]
+
 
         if(request["type"] == "add"):
             self.factory.shapeArr.extend(request["data"])
-            response.data = request["data"]
-            response.success = True
+            response["data"] = request["data"]
+            response["success"] = True
             for c in self.factory.clients:
                 if c != self:
                     c.message(json.dumps(response))
@@ -48,43 +49,43 @@ class PassMessage(Protocol):
             curSave.end = len(self.factory.shapeArr)
             self.factory.saveDict[request["name"]] = curSave
 
-            response.name = request["name"]
-            response.desc = request["desc"]
-            response.timeStamp = str(datetime.datetime.now())
-            response.success = True
+            response["name"] = request["name"]
+            response["desc"] = request["desc"]
+            response["timeStamp"] = str(datetime.datetime.now())
+            response["success"] = True
             for c in self.factory.clients:
                 c.message(json.dumps(response))
 
         elif(request["type"] == "getVersion"):
             if(request["name"] not in self.factory.saveDict):
-                response.success = False
+                response["success"] = False
                 self.message(json.dumps(response))
             else:
                 reqSave = self.factory.saveDict[request["name"]]
-                response.name = request["name"]
-                response.desc = reqSave.desc
-                response.data = self.factory.shapeArr[reqSave.start:reqSave.end]
-                response.success = True
+                response["name"] = request["name"]
+                response["desc"] = reqSave.desc
+                response["data"] = self.factory.shapeArr[reqSave.start:reqSave.end]
+                response["success"] = True
                 self.message(json.dumps(response))
 
         elif(request["type"] == "propogate"):
             if(request["name"] not in self.factory.saveDict):
-                response.success = False
+                response["success"] = False
                 self.message(json.dumps(response))
             else:
                 reqSave = self.factory.saveDict[request["name"]]
-                response.name = request["name"]
-                response.desc = reqSave.desc
-                response.data = self.factory.shapeArr[reqSave.start:reqSave.end]
-                response.success = True
+                response["name"] = request["name"]
+                response["desc"] = reqSave.desc
+                response["data"] = self.factory.shapeArr[reqSave.start:reqSave.end]
+                response["success"] = True
                 for c in self.factory.clients:
                     c.message(json.dumps(response))
 
                 self.factory.curStart = len(self.factory.shapeArr)
-                self.factory.shapeArr.extend(response.data)
+                self.factory.shapeArr.extend(response["data"])
 
         elif(request["type"] == "remove"):
-            response.index = request["index"]
+            response["index"] = request["index"]
             for c in self.factory.clients:
                 c.message(json.dumps(response))
 
