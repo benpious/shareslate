@@ -41,6 +41,8 @@
 		3B25C4E516F286110018795A /* IpadStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B25C4E416F286110018795A /* IpadStoryBoard.storyboard */; };
 		3B34EA5E172973F7000DEE6C /* SSVersionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B34EA5D172973F7000DEE6C /* SSVersionHistoryViewController.m */; };
 		3B3CC2E616F5055700ED78AE /* VersionControlInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */; };
+		3B44EF64172D9D9C00419E06 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B44EF63172D9D9C00419E06 /* SettingsView.xib */; };
+		3B44EF67172D9E5E00419E06 /* SSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B44EF66172D9E5E00419E06 /* SSSettingsViewController.m */; };
 		3B5B491416E279B80069062A /* shareSlateServer.py in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B491316E279B80069062A /* shareSlateServer.py */; };
 		3B79A4B416F1237400D5DF08 /* EraserToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */; };
 		3B79A4B616F123F400D5DF08 /* ShapeToolBarPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */; };
@@ -143,6 +145,9 @@
 		3B34EA5C172973F7000DEE6C /* SSVersionHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVersionHistoryViewController.h; sourceTree = "<group>"; };
 		3B34EA5D172973F7000DEE6C /* SSVersionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSVersionHistoryViewController.m; sourceTree = "<group>"; };
 		3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VersionControlInfoView.xib; sourceTree = "<group>"; };
+		3B44EF63172D9D9C00419E06 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
+		3B44EF65172D9E5D00419E06 /* SSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSSettingsViewController.h; sourceTree = "<group>"; };
+		3B44EF66172D9E5E00419E06 /* SSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSSettingsViewController.m; sourceTree = "<group>"; };
 		3B5B491316E279B80069062A /* shareSlateServer.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = shareSlateServer.py; sourceTree = "<group>"; };
 		3B79A4B316F1237400D5DF08 /* EraserToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EraserToolBarPalette.xib; sourceTree = "<group>"; };
 		3B79A4B516F123F400D5DF08 /* ShapeToolBarPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShapeToolBarPalette.xib; sourceTree = "<group>"; };
@@ -336,6 +341,26 @@
 			name = Backgrounds;
 			sourceTree = "<group>";
 		};
+		3B44EF62172D9D0500419E06 /* Old Version Control View */ = {
+			isa = PBXGroup;
+			children = (
+				3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */,
+				3B79A4BB16F1440800D5DF08 /* DVSlideViewController.h */,
+				3B79A4BC16F1440800D5DF08 /* DVSlideViewController.m */,
+			);
+			name = "Old Version Control View";
+			sourceTree = "<group>";
+		};
+		3B44EF68172D9E6400419E06 /* Settings View */ = {
+			isa = PBXGroup;
+			children = (
+				3B44EF63172D9D9C00419E06 /* SettingsView.xib */,
+				3B44EF65172D9E5D00419E06 /* SSSettingsViewController.h */,
+				3B44EF66172D9E5E00419E06 /* SSSettingsViewController.m */,
+			);
+			name = "Settings View";
+			sourceTree = "<group>";
+		};
 		3B691A7216E54F5E0098E75E /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,11 +401,9 @@
 			children = (
 				3BAD138E16F43A7700898C05 /* SSVersionInfoView.h */,
 				3BAD138F16F43A7700898C05 /* SSVersionInfoView.m */,
-				3B3CC2E516F5055700ED78AE /* VersionControlInfoView.xib */,
 				3BAD138B16F439D700898C05 /* SSToolBarContainer.h */,
 				3BAD138C16F439D800898C05 /* SSToolBarContainer.m */,
-				3B79A4BB16F1440800D5DF08 /* DVSlideViewController.h */,
-				3B79A4BC16F1440800D5DF08 /* DVSlideViewController.m */,
+				3B44EF62172D9D0500419E06 /* Old Version Control View */,
 				3B34EA5C172973F7000DEE6C /* SSVersionHistoryViewController.h */,
 				3B34EA5D172973F7000DEE6C /* SSVersionHistoryViewController.m */,
 			);
@@ -398,13 +421,8 @@
 				3B916701170D6FA70025215B /* SSEraserViewController.m */,
 				3B916703170D75A00025215B /* SSEraserPreviewView.h */,
 				3B916704170D75A10025215B /* SSEraserPreviewView.m */,
+				3B44EF68172D9E6400419E06 /* Settings View */,
 				B5AA66E0170DA09300743808 /* icons-gray */,
-				3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */,
-				3B17398D16F98E6A008CFA68 /* erase.png */,
-				3B17398E16F98E6A008CFA68 /* brush_alt_32x32.png */,
-				3B17398F16F98E6A008CFA68 /* camera_32x32.png */,
-				3B17399016F98E6A008CFA68 /* cog_32x32.png */,
-				3B17399116F98E6A008CFA68 /* new_window_32x32.png */,
 				3B3CC2E316F504D700ED78AE /* Palettes */,
 			);
 			name = ToolBar;
@@ -413,6 +431,12 @@
 		3BAD4D0E1725C29700551FCE /* Old Toolbar */ = {
 			isa = PBXGroup;
 			children = (
+				3B17398D16F98E6A008CFA68 /* erase.png */,
+				3B17398E16F98E6A008CFA68 /* brush_alt_32x32.png */,
+				3B17398F16F98E6A008CFA68 /* camera_32x32.png */,
+				3B17399016F98E6A008CFA68 /* cog_32x32.png */,
+				3B17399116F98E6A008CFA68 /* new_window_32x32.png */,
+				3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */,
 				3BC9F35116E5A26500F4B47C /* SSVerticalToolBar.h */,
 				3BC9F35216E5A26500F4B47C /* SSVerticalToolBar.m */,
 				3BC9F34E16E5A14200F4B47C /* SSToolBarCell.h */,
@@ -572,6 +596,7 @@
 				B5AA66EC170DA09400743808 /* image-upload-icon-black.png in Resources */,
 				B5AA66ED170DA09400743808 /* settings-icon.png in Resources */,
 				B5AA66EE170DA09400743808 /* text-icon.png in Resources */,
+				3B44EF64172D9D9C00419E06 /* SettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +653,7 @@
 				3B916702170D6FA80025215B /* SSEraserViewController.m in Sources */,
 				3B916705170D75A30025215B /* SSEraserPreviewView.m in Sources */,
 				3B34EA5E172973F7000DEE6C /* SSVersionHistoryViewController.m in Sources */,
+				3B44EF67172D9E5E00419E06 /* SSSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

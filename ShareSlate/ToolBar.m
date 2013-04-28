@@ -265,6 +265,7 @@
         {
             
             //Action for tenth toolbar item
+            [center postNotification: [NSNotification notificationWithName:@"settingsSelected" object:nil]];
             
             break;
             

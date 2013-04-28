@@ -7,6 +7,7 @@
 //
 
 #import "SSVersionInfoView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SSVersionInfoView
 
@@ -41,6 +42,11 @@
 
         self.versions.delegate = self;
         self.versions.dataSource = self;
+        
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOffset = CGSizeMake(0,10);
+        self.layer.shadowOpacity = .55;
+
 
     }
     return self;

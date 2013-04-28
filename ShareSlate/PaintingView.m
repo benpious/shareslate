@@ -369,26 +369,24 @@
 
 -(void) renderLines
 {
-    [EAGLContext setCurrentContext:context];
+    
+    [EAGLContext setCurrentContext: context];
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
     
     glEnableClientState(GL_COLOR_ARRAY);
     glBindTexture(GL_TEXTURE_2D, brushTexture);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+    
     // Render the vertex array
     glColorPointer(4, GL_FLOAT, sizeof(colorData), self.colorForBrushPoints);
 	glVertexPointer(2, GL_FLOAT, sizeof(pointData), self.brushPoints);
 	glDrawArrays(GL_POINTS, 0, self.numBrushPoints);
+    
 	// Display the buffer
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
     glDisableClientState(GL_COLOR_ARRAY);
-    
-    
-
-
-    
 }
 
 -(UIImage*) renderLinesFromIndex: (NSNumber*) index
@@ -717,6 +715,7 @@
         [imageViews addObject:currController];
     }
     
+    glDeleteFramebuffersOES(1, &framebuffer);
     //fix opengl state
     
     return imageViews;

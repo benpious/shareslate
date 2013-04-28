@@ -31,6 +31,10 @@
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"colorChanged:") name:@"colorChanged" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"setBrushSize:") name:@"brushSizeChanged" object:nil];
     [notificationCenter addObserver:self selector:NSSelectorFromString(@"brushSizeChangesEnded:") name:@"brushSizeChangesEnded" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"settingsSelected:") name:@"settingsSelected" object:nil];
+    [notificationCenter addObserver:self selector:NSSelectorFromString(@"settingsDismissed:") name:@"settingsDismissed" object:nil];
+
+
 
 }
 
@@ -42,6 +46,7 @@
     [self.paintView setBrushColorWithRed:0.0f green:0.0f blue:0.0f];
     self.brushSizePreview = [[SSEraserPreviewView alloc] initWithFrame: self.view.bounds];
     [self.view addSubview: self.brushSizePreview];
+    self.settingsController = [[SSSettingsViewController alloc] initWithNibName:@"SettingsView" bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -139,6 +144,18 @@
     [self.canvasView addSubview:self.historyController.view];
     [self.canvasView bringSubviewToFront:self.historyController.view];
     [self.historyController historySelected];
+}
+
+-(void) settingsSelected: (NSNotification*) note
+{
+    [self.view addSubview: self.settingsController.view];
+    [self.view bringSubviewToFront:self.settingsController.view];
+    [self.settingsController expand];
+}
+
+-(void) settingsDismissed: (NSNotification*) note
+{
+    [self.settingsController.view removeFromSuperview];
 }
 
 #pragma mark camera methods

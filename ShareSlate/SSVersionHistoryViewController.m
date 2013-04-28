@@ -34,7 +34,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 }
 
@@ -63,8 +62,6 @@
         self.view.layer.sublayerTransform = [self get3DTransform];
         
         for (UIViewController* currViewController in self.viewControllers) {
-            //CGAffineTransform scale =  CGAffineTransformMakeScale(.7, .7);
-            //currViewController.view.transform = CGAffineTransformTranslate(scale, -bounds.size.width/4, 0.0);
             
             currViewController.view.layer.transform = CATransform3DTranslate(currViewController.view.layer.transform, -bounds.size.width/4, 0.0, -700.0);
             
@@ -166,6 +163,8 @@
                      }];
 }
 
+//in the interest of proper attribution, I got this from: http://watchingapple.com/2008/04/core-animation-3d-perspective/
+//he got it from apple's core animation guide
 - (CATransform3D) get3DTransform {
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = 1.0 / -2000;
