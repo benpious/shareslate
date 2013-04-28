@@ -1,5 +1,5 @@
 Shape:
-    type: "brushStroke" or "rectangle" or "circle"
+    type: "brushStroke" or "rectangle" or "circle" or "picture"
     color: rgb value
     positions: [int int int int]
     lineSize: number
@@ -9,6 +9,7 @@ requests:
     add:
     {
         type:"add"
+        username:"username"
         data: [Shapes array]
     }
 
