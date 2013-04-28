@@ -10,9 +10,11 @@
 #import "PaintingView.h"
 #import "SSNetworkingEngine.h"
 #import "SSVerticalToolBar.h"
-#import "DVSlideViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "SSToolBarContainer.h"
+#import "SSEraserPreviewView.h"
+#import "SSVersionHistoryViewController.h"
+#import "SSSettingsViewController.h"
 
 @interface SSViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -24,13 +26,18 @@
 @property (retain) NSString* ip;
 @property (assign) int port;
 @property (retain) IBOutlet UIView* canvasView;
-@property (retain) IBOutlet SSToolBarContainer* container;  ;
-@property (retain) DVSlideViewController* slideController;
+@property (retain) IBOutlet SSToolBarContainer* container;
+@property (retain) SSVersionHistoryViewController* historyController;
+@property (retain) SSEraserPreviewView* brushSizePreview;
+@property (retain) SSSettingsViewController* settingsController;
 
 -(void) propogatePaint: (NSNotification*) note;
--(void) versionControlEvent: (NSNotification*) note;
 -(void) imageSelected: (NSNotification*) note;
 -(void) brushSelected: (NSNotification*) note;
 -(void) colorChanged: (NSNotification*) note;
-
+-(void) setBrushSize: (NSNotification*) note;
+-(void) brushSizeChangesEnded: (NSNotification*) note;
+-(void) versionSelected: (NSNotification*) note;
+-(void) settingsSelected: (NSNotification*) note;
+-(void) settingsDismissed: (NSNotification*) note;
 @end

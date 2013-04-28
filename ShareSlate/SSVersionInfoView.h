@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SSVersionInfoView : UIView
+@interface SSVersionInfoView : UIView <UITableViewDelegate, UITableViewDataSource>
 @property(retain) UISearchBar* searchBar;
 @property (retain) UITableView* versions;
+@property (retain) UIButton* saveButton;
+@property (retain) NSMutableArray* versionData;
 @end

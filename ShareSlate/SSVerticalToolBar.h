@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SSToolBarCell.h"
 #import "NPViewController.h"
+#import "SSEraserViewController.h"
 
 typedef struct {
     CGFloat expandedHeight;

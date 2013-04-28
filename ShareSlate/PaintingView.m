@@ -77,7 +77,6 @@
 - (id)initWithFrame:(CGRect)frame
 {
     
-    NSMutableArray*	recordedPaths;
 	CGImageRef		brushImage;
 	CGContextRef	brushContext;
 	GLubyte			*brushData;
@@ -144,8 +143,8 @@
 		CGFloat scale = self.contentScaleFactor;
 		// Setup the view port in Pixels
         //assumes a view size of 797 and 753
-		glOrthof(0, 797 * scale, 0, 753 * scale, -1, 1);
-		glViewport(0, 0, 797 * scale, 753 * scale);
+		glOrthof(0, 1024 * scale, 0, 768 * scale, -1, 1);
+		glViewport(0, 0, 1024 * scale, 768 * scale);
 		glMatrixMode(GL_MODELVIEW);
 		glDisable(GL_DITHER);
 		glEnable(GL_TEXTURE_2D);
@@ -159,214 +158,37 @@
 		glEnable(GL_POINT_SPRITE_OES);
 		glTexEnvf(GL_POINT_SPRITE_OES, GL_COORD_REPLACE_OES, GL_TRUE);
 		glPointSize(width / kBrushScale);
-		
+
 		// Make sure to start with a cleared buffer
 		needsErase = YES;
 		
-		// Playback recorded path, which is "Shake Me"
-		recordedPaths = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Recording" ofType:@"data"]];
-		if([recordedPaths count])
-			[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.2];
-        
         notificationCenter = [NSNotificationCenter defaultCenter];
+        self.currColor = malloc(sizeof(colorData));
+		//glEnableClientState(GL_COLOR_ARRAY);
         [self setBrushColorWithRed:0.1f green:0.1f blue:0.1f];
+        
+        self.brushPointsCapacity = 1000;
 
+        self.brushPoints = malloc(sizeof(pointData) * self.brushPointsCapacity);
+        self.colorForBrushPoints = malloc(sizeof(colorData) * self.brushPointsCapacity);
+        self.versionIndices =  [[NSMutableArray alloc] initWithCapacity:5] ;
+        self.autoVersionTimer = [NSTimer timerWithTimeInterval: 2.0 target:self selector:@selector(addNewVersion:) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.autoVersionTimer forMode:NSDefaultRunLoopMode];
     }
+    
+    
     return self;
 }
 
-
-- (id)init
+-(void) addNewVersion: (NSTimer*) timer
 {
-    
-    NSMutableArray*	recordedPaths;
-	CGImageRef		brushImage;
-	CGContextRef	brushContext;
-	GLubyte			*brushData;
-	size_t			width, height;
-
-    self = [super init];
-    if (self) {
-        CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
-        self.isActive = YES;
-		eaglLayer.opaque = YES;
-		// In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
-		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-										[NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
-		
-		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
-		
-		if (!context || ![EAGLContext setCurrentContext:context]) {
-			[self release];
-			return nil;
-		}
-		
-		// Create a texture from an image
-		// First create a UIImage object from the data in a image file, and then extract the Core Graphics image
-		brushImage = [UIImage imageNamed:@"Particle.png"].CGImage;
-		
-		// Get the width and height of the image
-		width = CGImageGetWidth(brushImage);
-		height = CGImageGetHeight(brushImage);
-		
-		// Texture dimensions must be a power of 2. If you write an application that allows users to supply an image,
-		// you'll want to add code that checks the dimensions and takes appropriate action if they are not a power of 2.
-		
-		// Make sure the image exists
-		if(brushImage) {
-			// Allocate  memory needed for the bitmap context
-			brushData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
-			// Use  the bitmatp creation function provided by the Core Graphics framework.
-			brushContext = CGBitmapContextCreate(brushData, width, height, 8, width * 4, CGImageGetColorSpace(brushImage), kCGImageAlphaPremultipliedLast);
-			// After you create the context, you can draw the  image to the context.
-			CGContextDrawImage(brushContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), brushImage);
-			// You don't need the context at this point, so you need to release it to avoid memory leaks.
-			CGContextRelease(brushContext);
-			// Use OpenGL ES to generate a name for the texture.
-			glGenTextures(1, &brushTexture);
-			// Bind the texture name.
-			glBindTexture(GL_TEXTURE_2D, brushTexture);
-			// Set the texture parameters to use a minifying filter and a linear filer (weighted average)
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			// Specify a 2D texture image, providing the a pointer to the image data in memory
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, brushData);
-			// Release  the image data; it's no longer needed
-            free(brushData);
-		}
-		
-		// Set the view's scale factor
-		self.contentScaleFactor = 1.0;
-        
-		// Setup OpenGL states
-		glMatrixMode(GL_PROJECTION);
-		CGFloat scale = self.contentScaleFactor;
-		// Setup the view port in Pixels
-        //assumes a view size of 797 and 753
-		glOrthof(0, 797 * scale, 0, 753 * scale, -1, 1);
-		glViewport(0, 0, 797 * scale, 753 * scale);
-		glMatrixMode(GL_MODELVIEW);
-		glDisable(GL_DITHER);
-		glEnable(GL_TEXTURE_2D);
-        
-		glEnableClientState(GL_VERTEX_ARRAY);
-		
-	    glEnable(GL_BLEND);
-		// Set a blending function appropriate for premultiplied alpha pixel data
-		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-		
-		glEnable(GL_POINT_SPRITE_OES);
-		glTexEnvf(GL_POINT_SPRITE_OES, GL_COORD_REPLACE_OES, GL_TRUE);
-		glPointSize(width / kBrushScale);
-		
-		// Make sure to start with a cleared buffer
-		needsErase = YES;
-		
-		// Playback recorded path, which is "Shake Me"
-		recordedPaths = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Recording" ofType:@"data"]];
-		if([recordedPaths count])
-			[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.2];
-        
-        notificationCenter = [NSNotificationCenter defaultCenter];
-    }
-    return self;
+    [self.versionIndices insertObject: [NSNumber numberWithLong:self.numBrushPoints] atIndex:0];
 }
 
-
-// The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
-- (id)initWithCoder:(NSCoder*)coder {
-	
-	NSMutableArray*	recordedPaths;
-	CGImageRef		brushImage;
-	CGContextRef	brushContext;
-	GLubyte			*brushData;
-	size_t			width, height;
-    
-    if ((self = [super initWithCoder:coder])) {
-		CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
-        self.isActive = YES;
-		eaglLayer.opaque = YES;
-		// In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
-		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-										[NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
-		
-		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
-		
-		if (!context || ![EAGLContext setCurrentContext:context]) {
-			[self release];
-			return nil;
-		}
-		
-		// Create a texture from an image
-		// First create a UIImage object from the data in a image file, and then extract the Core Graphics image
-		brushImage = [UIImage imageNamed:@"Particle.png"].CGImage;
-		
-		// Get the width and height of the image
-		width = CGImageGetWidth(brushImage);
-		height = CGImageGetHeight(brushImage);
-		
-		// Texture dimensions must be a power of 2. If you write an application that allows users to supply an image,
-		// you'll want to add code that checks the dimensions and takes appropriate action if they are not a power of 2.
-		
-		// Make sure the image exists
-		if(brushImage) {
-			// Allocate  memory needed for the bitmap context
-			brushData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
-			// Use  the bitmatp creation function provided by the Core Graphics framework. 
-			brushContext = CGBitmapContextCreate(brushData, width, height, 8, width * 4, CGImageGetColorSpace(brushImage), kCGImageAlphaPremultipliedLast);
-			// After you create the context, you can draw the  image to the context.
-			CGContextDrawImage(brushContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), brushImage);
-			// You don't need the context at this point, so you need to release it to avoid memory leaks.
-			CGContextRelease(brushContext);
-			// Use OpenGL ES to generate a name for the texture.
-			glGenTextures(1, &brushTexture);
-			// Bind the texture name. 
-			glBindTexture(GL_TEXTURE_2D, brushTexture);
-			// Set the texture parameters to use a minifying filter and a linear filer (weighted average)
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			// Specify a 2D texture image, providing the a pointer to the image data in memory
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, brushData);
-			// Release  the image data; it's no longer needed
-            free(brushData);
-		}
-		
-		// Set the view's scale factor
-		self.contentScaleFactor = 1.0;
-	
-		// Setup OpenGL states
-		glMatrixMode(GL_PROJECTION);
-		//CGRect frame = self.bounds;
-        //NSLog(@"%f,%f", frame.size.height, frame.size.width);
-		CGFloat scale = self.contentScaleFactor;
-		// Setup the view port in Pixels
-        //assumes a view size of 797 and 753
-		glOrthof(0, 797 * scale, 0, 753 * scale, -1, 1);
-		glViewport(0, 0, 797 * scale, 753 * scale);
-		glMatrixMode(GL_MODELVIEW);
-		glDisable(GL_DITHER);
-		glEnable(GL_TEXTURE_2D);
-        
-		glEnableClientState(GL_VERTEX_ARRAY);
-		
-	    glEnable(GL_BLEND);
-		// Set a blending function appropriate for premultiplied alpha pixel data
-		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-		
-		glEnable(GL_POINT_SPRITE_OES);
-		glTexEnvf(GL_POINT_SPRITE_OES, GL_COORD_REPLACE_OES, GL_TRUE);
-		glPointSize(width / kBrushScale);
-		
-		// Make sure to start with a cleared buffer
-		needsErase = YES;
-		
-		// Playback recorded path, which is "Shake Me"
-		recordedPaths = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Recording" ofType:@"data"]];
-		if([recordedPaths count])
-			[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.2];
-        
-        notificationCenter = [NSNotificationCenter defaultCenter];
-	}
-	
-	return self;
+-(void) revertToIndex: (NSNumber*) version
+{
+    self.numBrushPoints = [((NSNumber*)[self.versionIndices objectAtIndex: version.intValue]) longValue];
+    [self renderLines];
 }
 
 // If our view is resized, we'll be asked to layout subviews.
@@ -456,7 +278,7 @@
 	
 	// Clear the buffer
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
-	glClearColor(0.9, 0.9, 0.9, 0.0);
+	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	// Display the buffer
@@ -464,19 +286,30 @@
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
 }
 
-// Drawings a line onscreen based on where the user touches
+// Draws a line onscreen based on where the user touches
+/*
+    This method records the touches twice -- once to draw the first time, and 
+    once to handle revisions such as undo/redo and version control reverts
+ */
 - (void) renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end
 {
-	static GLfloat*		vertexBuffer = NULL;
-	static NSUInteger	vertexMax = 64;
+
 	NSUInteger			vertexCount = 0,
 						count,
 						i;
-	
-	[EAGLContext setCurrentContext:context];
+    
+    static GLfloat*		vertexBuffer = NULL;
+	static NSUInteger	vertexMax = 64;
+
+    [EAGLContext setCurrentContext:context];
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
-	
+
     glBindTexture(GL_TEXTURE_2D, brushTexture);
+
+    if(vertexBuffer == NULL)
+		vertexBuffer = malloc(vertexMax * 2 * sizeof(GLfloat));
+
+	
 
 	// Convert locations from Points to Pixels
 	CGFloat scale = self.contentScaleFactor;
@@ -485,58 +318,142 @@
 	end.x *= scale;
 	end.y *= scale;
 	
-	// Allocate vertex array buffer
-	if(vertexBuffer == NULL)
-		vertexBuffer = malloc(vertexMax * 2 * sizeof(GLfloat));
-	
 	// Add points to the buffer so there are drawing points every X pixels
 	count = MAX(ceilf(sqrtf((end.x - start.x) * (end.x - start.x) + (end.y - start.y) * (end.y - start.y)) / kBrushPixelStep), 1);
 	for(i = 0; i < count; ++i) {
-		if(vertexCount == vertexMax) {
+        
+        //record for immediate drawing
+        if(vertexCount == vertexMax) {
 			vertexMax = 2 * vertexMax;
 			vertexBuffer = realloc(vertexBuffer, vertexMax * 2 * sizeof(GLfloat));
 		}
-		
-		vertexBuffer[2 * vertexCount + 0] = start.x + (end.x - start.x) * ((GLfloat)i / (GLfloat)count);
+        
+        vertexBuffer[2 * vertexCount + 0] = start.x + (end.x - start.x) * ((GLfloat)i / (GLfloat)count);
 		vertexBuffer[2 * vertexCount + 1] = start.y + (end.y - start.y) * ((GLfloat)i / (GLfloat)count);
-		vertexCount += 1;
+        vertexCount += 1;
+
+        
+        //record for later drawing 
+        if(self.numBrushPoints == self.brushPointsCapacity) {
+            self.brushPointsCapacity = 2 * self.brushPointsCapacity;
+            self.brushPoints = realloc(self.brushPoints, self.brushPointsCapacity * sizeof(pointData));
+            self.colorForBrushPoints = realloc(self.colorForBrushPoints, self.brushPointsCapacity * sizeof(colorData));
+		}
+        
+        pointData* curr = malloc(sizeof(pointData));
+        colorData* currColor = malloc(sizeof(colorData));
+        curr->x = start.x + (end.x - start.x) * ((GLfloat)i / (GLfloat)count);
+        curr->y = start.y + (end.y - start.y) * ((GLfloat)i / (GLfloat)count);
+        currColor->r = self.currColor->r;
+        currColor->g = self.currColor->g;
+        currColor->b = self.currColor->b;
+        currColor->a = self.currColor->a;
+        self.brushPoints[self.numBrushPoints] = *curr;
+        free(curr);
+        self.colorForBrushPoints[self.numBrushPoints] = *currColor;
+        free(currColor);
+        self.numBrushPoints+=1;
+        
+        
 	}
-	
+    glDisableClientState(GL_COLOR_ARRAY);
 	// Render the vertex array
 	glVertexPointer(2, GL_FLOAT, 0, vertexBuffer);
 	glDrawArrays(GL_POINTS, 0, vertexCount);
 	// Display the buffer
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
+     
+
 }
 
-// Reads previously recorded points and draws them onscreen. This is the Shake Me message that appears when the application launches.
-- (void) playback:(NSMutableArray*)recordedPaths
+-(void) renderLines
 {
-	NSData*				data = [recordedPaths objectAtIndex:0];
-	CGPoint*			point = (CGPoint*)[data bytes];
-	NSUInteger			count = [data length] / sizeof(CGPoint),
-						i;
-	
-	// Render the current path
-	for(i = 0; i < count - 1; ++i, ++point)
-		[self renderLineFromPoint:*point toPoint:*(point + 1)];
-	
-	// Render the next path after a short delay 
-	[recordedPaths removeObjectAtIndex:0];
-	if([recordedPaths count])
-		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.01];
+    
+    [EAGLContext setCurrentContext: context];
+	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
+    
+    glEnableClientState(GL_COLOR_ARRAY);
+    glBindTexture(GL_TEXTURE_2D, brushTexture);
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    // Render the vertex array
+    glColorPointer(4, GL_FLOAT, sizeof(colorData), self.colorForBrushPoints);
+	glVertexPointer(2, GL_FLOAT, sizeof(pointData), self.brushPoints);
+	glDrawArrays(GL_POINTS, 0, self.numBrushPoints);
+    
+	// Display the buffer
+	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
+	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
+    glDisableClientState(GL_COLOR_ARRAY);
 }
+
+-(UIImage*) renderLinesFromIndex: (NSNumber*) index
+{
+    
+    if (index.intValue > self.numBrushPoints) {
+        return nil;
+    }
+    
+    
+    float width = self.frame.size.width;
+    float height = self.frame.size.height;
+
+    
+    glEnableClientState(GL_COLOR_ARRAY);
+    glBindTexture(GL_TEXTURE_2D, brushTexture);
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    // Render the vertex array
+    glColorPointer(4, GL_FLOAT, sizeof(colorData), self.colorForBrushPoints);
+	glVertexPointer(2, GL_FLOAT, sizeof(pointData), self.brushPoints);
+	glDrawArrays(GL_POINTS, 0, index.intValue);
+	// Display the buffer
+	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
+	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
+    glDisableClientState(GL_COLOR_ARRAY);
+        
+    //CGImageRef imgRef = CGBitmapContextCreateImage(context);
+    
+    
+    NSInteger dataLength = width * height * 4;
+    GLubyte *data = (GLubyte*)malloc(dataLength * sizeof(GLubyte));
+
+    glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    
+    CGDataProviderRef ref = CGDataProviderCreateWithData(NULL, data, dataLength, NULL);
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGImageRef iref = CGImageCreate(width, height, 8, 32, width * 4, colorspace, kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast,
+                                    ref, NULL, true, kCGRenderingIntentDefault);
+    
+    
+    UIGraphicsBeginImageContext(CGSizeMake(width, height));
+    CGContextRef cgcontext = UIGraphicsGetCurrentContext();
+    CGContextSetBlendMode(cgcontext, kCGBlendModeCopy);
+    CGContextDrawImage(cgcontext, CGRectMake(0.0, 0.0, width, height), iref);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    free(data);
+    CFRelease(ref);
+    CFRelease(colorspace);
+    CGImageRelease(iref);
+
+    
+    //return [[UIImage alloc] initWithCGImage:imgRef];
+    return image;
+}
+
+
 
 -(void) renderImageFrom: (CGPoint) start
 {
-    //self.imageToDraw = [UIImage imageNamed:@"tris"];
     
     if (self.imageToDraw == nil) {
         self.imageToDraw = [UIImage imageNamed:@"sampleImage"];
     }
     
-    //NSLog(@"%d", glGetError());
     glColor4f(1, 1, 1, 1);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     GLubyte			*imageData;
@@ -585,7 +502,6 @@
     
     free(imageVertexBuffer);
     free(textureVertexBuffer);
-    //NSLog(@"%d", glGetError());
 
     glColor4f(0, 0, 0, 1);
 
@@ -694,6 +610,10 @@
 			  green * kBrushOpacity,
 			  blue	* kBrushOpacity,
 			  kBrushOpacity);
+    self.currColor->r = red;
+    self.currColor->g = green;
+    self.currColor->b = blue;
+    self.currColor->a = kBrushOpacity;
 }
 
 
@@ -729,14 +649,19 @@
     
     textureCoordsArray[0] = 0.0f;
     textureCoordsArray[1] = 0.0f;
+    
     textureCoordsArray[2] = 1.0f;
     textureCoordsArray[3] = 1.0f;
+    
     textureCoordsArray[4] = 1.0f;
     textureCoordsArray[5] = 0.0f;
+    
     textureCoordsArray[6] = 0.0f;
     textureCoordsArray[7] = 0.0f;
+    
     textureCoordsArray[8] = 0.0f;
     textureCoordsArray[9] = 1.0f;
+    
     textureCoordsArray[10] = 1.0f;
     textureCoordsArray[11] = 1.0f;
     
@@ -745,6 +670,55 @@
     
 }
 
+-(void) setPointSize:(float) pointsize
+{
+    glPointSize(pointsize / kBrushScale);
+}
 
+/*
+    Draws previous versions into offscreen opengl es contexts, then gets a bitmap of the 
+    result and puts it into the array as a uiimageview to return
+ 
+ */
+-(NSMutableArray*) makeVersionPreviews
+{
+    NSMutableArray* imageViews = [[NSMutableArray alloc] initWithCapacity: [self.versionIndices count]];
+    GLuint framebuffer;
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    
+    float width = self.frame.size.width;
+    float height = self.frame.size.height;
+
+    GLuint colorRenderbuffer;
+    glGenRenderbuffers(1, &colorRenderbuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA4, width, height);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderbuffer);
+    
+    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
+    if(status != GL_FRAMEBUFFER_COMPLETE) {
+        NSLog(@"failed to make complete framebuffer object %x", status);
+    }
+
+    //test int to limit amount of versions made
+    int i =0;
+    for (NSNumber* currIndex in self.versionIndices)
+    {
+        if (i > 5) {
+            break;
+        }
+        i++;
+        UIImageView* currView = [[UIImageView alloc] initWithImage: [self renderLinesFromIndex:currIndex]];
+        UIViewController* currController = [[UIViewController alloc] init];
+        currController.view = currView;
+        [imageViews addObject:currController];
+    }
+    
+    glDeleteFramebuffersOES(1, &framebuffer);
+    //fix opengl state
+    
+    return imageViews;
+}
 
 @end

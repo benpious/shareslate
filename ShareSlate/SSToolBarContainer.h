@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SSVerticalToolBar.h"
+//#import "SSVerticalToolBar.h"
+#import "ToolBar.h"
 #import "SSVersionInfoView.h"
 
 
@@ -15,7 +16,8 @@
 {
     NSNotificationCenter* center;
 }
-@property (retain) SSVerticalToolBar* toolBar;
+//@property (retain) SSVerticalToolBar* toolBar;
+@property (retain) ToolBar* toolBar;
 @property (retain) SSVersionInfoView* versionView;
 -(void) historySelected: (NSNotification*) note;
 

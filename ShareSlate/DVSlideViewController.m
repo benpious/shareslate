@@ -39,18 +39,29 @@
 	return self;
 }
 
+-(id) initWithArray: (NSMutableArray*) array
+{
+    self = [super init];
+	if (self)
+	{
+        self.isActive = NO;
+        _selectedIndex = 0;
+        _scaleFactor = 0.8;
+        
+        self.viewControllers = array;
+        
+        
+	}
+	
+	return self;
+
+}
+
 -(void) setUp
 {
     center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"historySelected" object:nil];
-    for (int i=0; i < 4 ; i++) {
-        
-        UIViewController* controller = [[UIViewController alloc] init];
-        controller.view = [[PaintingView alloc] initWithFrame:[self.view bounds]];
-        [self.viewControllers setObject: controller atIndexedSubscript: i];
-        
-    }
-
+    
     [self setupViews];
     [self setupViewControllers];
 }
@@ -101,7 +112,8 @@
 
 - (void)addViewController:(UIViewController *)viewController atIndex:(int)index;
 {
-    viewController.view.frame = CGRectMake(self.view.bounds.size.width * index, 0, self.view.frame.size.width, self.view.frame.size.height);
+
+    viewController.view.frame = CGRectMake((1024-172) * index, 0, (1024-172), 768);
 	[viewsContainer addSubview:viewController.view];
 	if ([viewController respondsToSelector:@selector(setSlideViewController:)]) {
 		[viewController performSelector:@selector(setSlideViewController:) withObject:self];
@@ -126,15 +138,10 @@
 //i added this method
 -(void) selectViewController: (UITapGestureRecognizer *) gesture
 {
-    
     if (!self.isActive) {
         return;
     }
     
-    for (UIViewController* controller in self.viewControllers ) {
-        ((PaintingView*)(controller.view)).isActive = YES;
-    }
-
     if (_selectedIndex != 0) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Revert to this version?"
@@ -144,11 +151,12 @@
                                               otherButtonTitles: @"Cancel" , nil];
         [alert show];
         [alert release];
-        
     }
     
     else
     {
+
+        
         [UIView animateWithDuration:0.25
                               delay:0.75
                             options:UIViewAnimationOptionCurveEaseInOut
@@ -170,13 +178,13 @@
         
         self.isActive = NO;
         //post notification that version has been selected
-        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object:nil]];
+        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object: [NSNumber numberWithInt: _selectedIndex ]]];
         [self.view removeGestureRecognizer:tap];
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
-
+        
     }
-    
+
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -204,7 +212,7 @@
         
         self.isActive = NO;
         //post notification that version has been selected
-        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object:nil]];
+        [center postNotification: [NSNotification notificationWithName:@"viewSelected" object: [NSNumber numberWithInt: _selectedIndex ]]];
         [self.view removeGestureRecognizer:tap];
         [self.view removeGestureRecognizer:swipeLeft];
         [self.view removeGestureRecognizer:swipeRight];
@@ -263,7 +271,6 @@
 	
 	CGPoint toPoint = viewsContainer.contentOffset;
 	toPoint.x = toIndex * viewsContainer.bounds.size.width;
-	
 	//Start positions
 	nextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
 	
@@ -275,27 +282,10 @@
 	
 	[currentViewController viewWillDisappear:YES];
 	
-	//Zoom out animation
-    /*
-	[UIView animateWithDuration:0.25
-						  delay:0.0
-						options:UIViewAnimationCurveEaseInOut
-					 animations:^{
-						 currentViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
-					 }
-					 completion:^(BOOL completed){
-						 
-						 //Add shadow to next view controller
-						 nextViewController.view.layer.masksToBounds = NO;
-						 nextViewController.view.layer.shadowRadius = 10;
-						 nextViewController.view.layer.shadowOpacity = 0.5;
-						 nextViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:nextViewController.view.bounds].CGPath;
-						 nextViewController.view.layer.shadowOffset = CGSizeMake(5.0, 5.0);
-						 
-						 [nextViewController viewWillAppear:YES];
-					 }];
+    
+    UIViewController *nextnextViewController = [self viewControllerWithIndex:_selectedIndex+2];
+    nextnextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
 	
-	*/
 	//Slide animation
 	[UIView animateWithDuration:0.5
 						  delay:0.25
@@ -316,8 +306,7 @@
 						 
 						 [currentViewController viewDidDisappear:YES];
 					 }];
-	
-
+    
 }
 
 #pragma mark - UIScrollView Delegate
@@ -346,11 +335,6 @@
 
 -(void) historySelected: (NSNotification*) note
 {
-    
-    for (UIViewController* controller in self.viewControllers ) {
-        ((PaintingView*)(controller.view)).isActive = NO;
-    }
-    
     UIViewController *currentViewController = [self viewControllerWithIndex:_selectedIndex];
 
     [UIView animateWithDuration:0.25
@@ -377,8 +361,17 @@
 	[swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
 	[self.view addGestureRecognizer:swipeRight];
 	[swipeRight release];
+    
+    UIViewController *nextViewController = [self viewControllerWithIndex:_selectedIndex+1];
 
-
+    
+    [UIView animateWithDuration:0.25
+						  delay:0.0
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 nextViewController.view.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
+					 }
+					 completion:nil];
 }
 
 @end

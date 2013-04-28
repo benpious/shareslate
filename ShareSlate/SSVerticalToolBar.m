@@ -49,7 +49,7 @@
         
         toolBarItem eraser = items[1];
         //eraser.label = @"Eraser";
-        eraser.expandedViewController = [[UIViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
+        eraser.expandedViewController = [[SSEraserViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
         eraser.expandedHeight = [[eraser.expandedViewController view] frame].size.height;
         
         otherImageNameFullPath = [[NSBundle mainBundle] pathForResource:@"orangeButton.png" ofType: nil];
@@ -185,6 +185,14 @@
         [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
     }
     
+    //hard coded selection of eraser
+    if (indexPath.row == 1 && selectedRow !=1 ) {
+        
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]]];
+
+    }
+
+    
     //hard coded selection of image
     if (indexPath.row == 2 && selectedRow !=2 ) {
         
@@ -250,7 +258,7 @@
     if (indexPath.row == selectedRow) {
         cell.otherView = [item.expandedViewController view];
         cell.isExpanded = YES;
-        cell.textLabel.text = nil;
+        cell.textLabel.text = nil; 
     }
     
     else {
