@@ -31,7 +31,6 @@ class PassMessage(Protocol):
         request = json.loads(data)
         response = Packet()
         response.type = request["type"]
-        response.name = request["name"]
 
         if(request["type"] == "add"):
             self.factory.shapeArr.extend(request["data"])
@@ -49,6 +48,7 @@ class PassMessage(Protocol):
             curSave.end = len(self.factory.shapeArr)
             self.factory.saveDict[request["name"]] = curSave
 
+            response.name = request["name"]
             response.desc = request["desc"]
             response.timeStamp = str(datetime.datetime.now())
             response.success = True
@@ -61,6 +61,7 @@ class PassMessage(Protocol):
                 self.message(json.dumps(response))
             else:
                 reqSave = self.factory.saveDict[request["name"]]
+                response.name = request["name"]
                 response.desc = reqSave.desc
                 response.data = self.factory.shapeArr[reqSave.start:reqSave.end]
                 response.success = True
@@ -72,6 +73,7 @@ class PassMessage(Protocol):
                 self.message(json.dumps(response))
             else:
                 reqSave = self.factory.saveDict[request["name"]]
+                response.name = request["name"]
                 response.desc = reqSave.desc
                 response.data = self.factory.shapeArr[reqSave.start:reqSave.end]
                 response.success = True
