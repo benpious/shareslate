@@ -22,6 +22,8 @@
     
     UIViewController** SegmentPopupArray_;
     
+    size_t prevSelectedIndex;
+    
 }
 
 
@@ -29,7 +31,7 @@
 - (id) initWithOrigin:(CGPoint) origin;
 
 - (void) makeToolBar;
-
+-(void)revertToPreviousSelection: (NSNotification*) note;
 
 
 @end

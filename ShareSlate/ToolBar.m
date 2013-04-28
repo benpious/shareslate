@@ -30,6 +30,8 @@
         
         // this will create the toolbar
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"revertToPreviousSelection:") name:@"revertToOldSelection" object:nil];
+        
         [self  makeToolBar];
         [self makePopups];
         
@@ -163,7 +165,8 @@
     (UISegmentedControl *)sender;
     
     NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        
+    
+    
     switch ([segmentedControl selectedSegmentIndex])
     
     {
@@ -172,6 +175,8 @@
             
         {
             [self selectBrush : SegmentPopupArray_[0] location: CGRectMake(50, 10, 0, 0)];
+            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
+
             break;
             
         }
@@ -180,7 +185,8 @@
             
         {
             [self selectBrush : SegmentPopupArray_[1] location: CGRectMake(50, (750/11)*1+45, 0, 0)];
-            
+            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
+
             break;
             
         }
@@ -189,7 +195,8 @@
             
         {
             [self selectBrush : SegmentPopupArray_[2] location: CGRectMake(50, (750/11)*2+45, 0, 0)];
-            
+            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
+
             break;
             
         }
@@ -198,7 +205,8 @@
             
         {
             [self selectBrush : SegmentPopupArray_[3] location: CGRectMake(50, (750/11)*3+45, 0, 0)];
-            
+            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
+
             break;
             
         }
@@ -207,7 +215,8 @@
             
         {
             [self selectBrush : SegmentPopupArray_[4] location: CGRectMake(50, (750/11)*4+45, 0, 0)];
-            
+            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
+
             break;
             
         }
@@ -216,7 +225,8 @@
             
         {
             [self selectBrush : SegmentPopupArray_[5] location: CGRectMake(50, (750/11)*5+45, 0, 0)];
-            
+            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
+
             break;
             
         }
@@ -234,7 +244,8 @@
             [popOverController presentPopoverFromRect: CGRectMake(50, (750/11)*6+45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
             
             //Action for seventh toolbar item
-            
+            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
+
             break;
             
         }
@@ -278,6 +289,12 @@
     }
     
 } 
+
+
+-(void)revertToPreviousSelection: (NSNotification*) note
+{
+    SegmentedControl_.selectedSegmentIndex = prevSelectedIndex;
+}
 
 - (void)dealloc 
 

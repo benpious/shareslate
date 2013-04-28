@@ -127,6 +127,7 @@
     [self.canvasView bringSubviewToFront:self.paintView];
     self.paintView.isActive = YES;
     [self.historyController release];
+    [notificationCenter postNotification: [NSNotification notificationWithName:@"revertToOldSelection" object:nil]];
 }
 
 -(void) brushSizeChangesEnded: (NSNotification*) note
@@ -156,6 +157,8 @@
 -(void) settingsDismissed: (NSNotification*) note
 {
     [self.settingsController.view removeFromSuperview];
+    [notificationCenter postNotification: [NSNotification notificationWithName:@"revertToOldSelection" object:nil]];
+
 }
 
 #pragma mark camera methods

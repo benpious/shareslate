@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.view.frame = CGRectMake(50, 50, 1024-100, 768-100);
+        self.view.frame = CGRectMake(25, 25, 1024-50, 768-50);
         self.view.transform = CGAffineTransformMakeScale(0.0, 0.0);
         [self.view.layer setCornerRadius:30.0f];
         self.view.layer.shadowColor = [UIColor blackColor].CGColor;
