@@ -57,8 +57,12 @@
 
 -(void) sendPaint: (NSNotification*) note
 {
-    NSString* coordData = [note object];
-    [networkingEngine sendMessage:coordData];
+    //NSString* coordData = [note object];
+    NSArray* coordData = [note object];
+    NSDictionary* brushData = @{@"type" : @"brushStroke", @"color" : @0.0, @"positions" : coordData, @"lineSize" : @0.0};
+    NSDictionary* toSend = @{@"type": @"shape", @"data": brushData};
+    
+    [networkingEngine sendMessage: toSend];
 }
 
 #pragma mark notification center methods
@@ -72,7 +76,7 @@
 
 -(void) propogatePaint: (NSNotification*) note
 {
-    
+    /*
     NSString* coordData = [note object];
     NSArray* strokes = [coordData componentsSeparatedByString:@"C"];
     
@@ -94,6 +98,20 @@
         }
         
     }
+     */
+    
+    NSDictionary* data = [note object];
+    NSString* type = [data objectForKey:@"type"];
+    
+    if ([type isEqual: @"add"]) {
+        NSArray* shapeData = [data objectForKey:@"data"];
+        for (NSDictionary* currShape in shapeData) {
+            if ([[currShape objectForKey:@"type"] isEqual:@"brushStroke"]) {
+                NSArray* coords = [currShape objectForKey: @"positions"];
+                [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:1] floatValue], [[coords objectAtIndex:2] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:3] floatValue], [[coords objectAtIndex:4] floatValue])];
+            }
+        }
+    }
     
 }
 
@@ -110,7 +128,7 @@
 -(void) sendImage: (NSNotification*) note
 {
     NSString* coordData = [note object];
-    [networkingEngine sendMessage:coordData];
+    //[networkingEngine sendMessage: coordData];
 }
 
 

@@ -590,7 +590,8 @@
 		previousLocation = [touch previousLocationInView:self];
 		previousLocation.y = bounds.size.height - previousLocation.y;
 		[self renderLineFromPoint:previousLocation toPoint:location];
-        NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%fC", previousLocation.x, previousLocation.y, location.x, location.y];
+        NSArray* coords = @[[NSNumber numberWithFloat: previousLocation.x], [NSNumber numberWithFloat: previousLocation.y], [NSNumber numberWithFloat: location.x], [NSNumber numberWithFloat:location.y]];
+        //NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%fC", previousLocation.x, previousLocation.y, location.x, location.y];
         //NSLog(@"%@",coords);
         [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
 	}

@@ -51,10 +51,12 @@
                     len = [inputStream read:buffer maxLength:sizeof(buffer)];
                     if (len > 0) {
                             
-                        NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+                        //NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+                        
+                        NSError* error;
+                        NSDictionary* output = [NSJSONSerialization JSONObjectWithData: [NSData dataWithBytes:buffer length:len]  options:NSJSONReadingMutableContainers error:&error];
                         
                         if (nil != output) {
-                            //NSLog(@"server said: %@", output);
                             NSNotification* notification = [NSNotification notificationWithName:@"serverData" object:output];
                             [notificationCenter postNotification:notification];
                         }
@@ -79,10 +81,11 @@
     
 }
 
--(void) sendMessage: (NSString*) message
+-(void) sendMessage: (NSDictionary*) message
 {
-    NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
-    //NSLog(@"%@", message);
+    //NSData *data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
+    NSError* error;
+    NSData* data = [NSJSONSerialization dataWithJSONObject:message options:NSJSONWritingPrettyPrinted error: &error];
 	[outputStream write:[data bytes] maxLength:[data length]];
     [data release];
 

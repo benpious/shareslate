@@ -47,9 +47,8 @@ This project uses code from several sources, including:
 
 Apple's GLPaint sample application: http://developer.apple.com/library/ios/#samplecode/GLPaint/Introduction/Intro.html
 
-DVSlideViewController: https://github.com/dickverbunt/DVSlideViewController
+DVSlideViewController: https://github.com/dickverbunt/DVSlideViewController (In fact, we no longer use any code from this project, but reading it was extremely helpful)
 
 Ray Wenderlich's tutorial on setting up a python server for an iOS app: http://www.raywenderlich.com/3932/how-to-create-a-socket-based-iphone-app-and-server
-
 
 The NP color picker https://github.com/neopixl/NPColorPicker/tree/master/ColorPicker

@@ -17,7 +17,7 @@
     
 }
 -(id) initWithHostName: (NSString*) hostname port: (int) port;
--(void) sendMessage: (NSString*) message;
+-(void) sendMessage: (NSDictionary*) message;
 
 
 @end
