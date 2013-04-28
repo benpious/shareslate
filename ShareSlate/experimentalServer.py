@@ -83,6 +83,11 @@ class PassMessage(Protocol):
                 self.factory.curStart = len(self.factory.shapeArr)
                 self.factory.shapeArr.extend(response.data)
 
+        elif(request["type"] == "remove"):
+            response.index = request["index"]
+            for c in self.factory.clients:
+                c.message(json.dumps(response))
+
     def message(self, message):
         self.transport.write(message)
 

@@ -16,20 +16,24 @@ requests:
     save: 
     {
         type:"save"
+        username:"username"
         name:"stuff"
         desc:"stuff"
     }
-            
     propogate
     {
         type:"propogate"
         name:"stuff"
     }
-
     getVersion
     {
         type:"getVersion"
         name:"stuff"
+    }
+    remove
+    {
+        type: "remove"
+        index: int
     }
     
 responses
@@ -61,4 +65,9 @@ responses
         desc:"stuff"
         success: bool
         data: [Shape array]
+    }
+    remove
+    {
+        type: "remove"
+        index: int
     }
