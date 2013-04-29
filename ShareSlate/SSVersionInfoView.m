@@ -23,12 +23,12 @@
         [background release];
         
         self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 222.0f, 40.0f)];
-        self.versions = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 80.0f, 222.0f, 768.0f-80.0f)];
-        self.saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [self.saveButton setFrame:CGRectMake(222/2-111, 40, 222, 40)];
-        [self.saveButton setTitle:@"Save Version" forState:UIControlStateNormal];
+        self.versions = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 40.0f, 222.0f, 768.0f-40.0f)];
+        //self.saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        //[self.saveButton setFrame:CGRectMake(222/2-111, 40, 222, 40)];
+        //[self.saveButton setTitle:@"Save Version" forState:UIControlStateNormal];
         
-        [self addSubview:self.saveButton];
+        //[self addSubview:self.saveButton];
         [self addSubview:self.searchBar];
         [self addSubview:self.versions];
         [self.versions setOpaque:NO];

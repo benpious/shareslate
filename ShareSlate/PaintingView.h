@@ -125,6 +125,7 @@ typedef struct {
 -(void) renderImageFrom: (CGPoint) start;
 -(void) setPointSize:(float) pointsize;
 -(NSMutableArray*) makeVersionPreviews;
+-(void) manuallyAddNewVersion: (NSNotification*) note;
 
 
 

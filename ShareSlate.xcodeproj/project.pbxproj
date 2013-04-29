@@ -81,6 +81,8 @@
 		3BD9899416F3DAF10084B6E6 /* VersionControlPalette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */; };
 		3BE4280116F5234800D404B1 /* buttonEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE4280016F5234800D404B1 /* buttonEffect.png */; };
 		3BE4280316F5240E00D404B1 /* recessedButtonEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */; };
+		3BE810E0172EF94A00775AF6 /* SSVersionControlToolbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE810DE172EF94A00775AF6 /* SSVersionControlToolbarViewController.m */; };
+		3BE810E1172EF94A00775AF6 /* SSVersionControlToolbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BE810DF172EF94A00775AF6 /* SSVersionControlToolbarViewController.xib */; };
 		3BEF154316F51A100008E293 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEF154216F51A100008E293 /* button.png */; };
 		B5AA66DF170D69A500743808 /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AA66DE170D69A500743808 /* ToolBar.m */; };
 		B5AA66E8170DA09400743808 /* brush-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AA66E1170DA09400743808 /* brush-icon.png */; };
@@ -194,6 +196,9 @@
 		3BD9899316F3DAF10084B6E6 /* VersionControlPalette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VersionControlPalette.xib; sourceTree = "<group>"; };
 		3BE4280016F5234800D404B1 /* buttonEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonEffect.png; sourceTree = "<group>"; };
 		3BE4280216F5240E00D404B1 /* recessedButtonEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recessedButtonEffect.png; sourceTree = "<group>"; };
+		3BE810DD172EF94900775AF6 /* SSVersionControlToolbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSVersionControlToolbarViewController.h; sourceTree = "<group>"; };
+		3BE810DE172EF94A00775AF6 /* SSVersionControlToolbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSVersionControlToolbarViewController.m; sourceTree = "<group>"; };
+		3BE810DF172EF94A00775AF6 /* SSVersionControlToolbarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSVersionControlToolbarViewController.xib; sourceTree = "<group>"; };
 		3BEF154216F51A100008E293 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		B5AA66DD170D69A400743808 /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
 		B5AA66DE170D69A500743808 /* ToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBar.m; sourceTree = "<group>"; };
@@ -418,6 +423,9 @@
 				3BAD4D0E1725C29700551FCE /* Old Toolbar */,
 				3B160FD016FACD0400B36CCD /* sampleImage.png */,
 				3B916700170D6FA70025215B /* SSEraserViewController.h */,
+				3BE810DD172EF94900775AF6 /* SSVersionControlToolbarViewController.h */,
+				3BE810DE172EF94A00775AF6 /* SSVersionControlToolbarViewController.m */,
+				3BE810DF172EF94A00775AF6 /* SSVersionControlToolbarViewController.xib */,
 				3B916701170D6FA70025215B /* SSEraserViewController.m */,
 				3B916703170D75A00025215B /* SSEraserPreviewView.h */,
 				3B916704170D75A10025215B /* SSEraserPreviewView.m */,
@@ -597,6 +605,7 @@
 				B5AA66ED170DA09400743808 /* settings-icon.png in Resources */,
 				B5AA66EE170DA09400743808 /* text-icon.png in Resources */,
 				3B44EF64172D9D9C00419E06 /* SettingsView.xib in Resources */,
+				3BE810E1172EF94A00775AF6 /* SSVersionControlToolbarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +663,7 @@
 				3B916705170D75A30025215B /* SSEraserPreviewView.m in Sources */,
 				3B34EA5E172973F7000DEE6C /* SSVersionHistoryViewController.m in Sources */,
 				3B44EF67172D9E5E00419E06 /* SSSettingsViewController.m in Sources */,
+				3BE810E0172EF94A00775AF6 /* SSVersionControlToolbarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
