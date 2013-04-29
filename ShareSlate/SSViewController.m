@@ -161,6 +161,7 @@
     self.historyController = [[SSVersionHistoryViewController alloc] initWithArray:versionPreviews];
     [self.historyController.view setFrame:CGRectMake(172, 0, 1024-172, 768)];
     [self.historyController setUpViewControllers];
+    self.paintView.isActive = NO;
     [self.paintView removeFromSuperview];
     [self.canvasView addSubview:self.historyController.view];
     [self.canvasView bringSubviewToFront:self.historyController.view];

@@ -34,11 +34,6 @@
         [self.versions setOpaque:NO];
         
         self.versionData = [[NSMutableArray alloc] initWithCapacity:5];
-        [self.versionData addObject:@"Autosave 11/16/12"];
-        [self.versionData addObject:@"Autosave 11/30/12"];
-        [self.versionData addObject:@"Milestone"];
-        [self.versionData addObject:@"Autosave 12/01/12"];
-        [self.versionData addObject:@"Autosave 11/14/12"];
 
         self.versions.delegate = self;
         self.versions.dataSource = self;
@@ -46,7 +41,8 @@
         self.layer.shadowColor = [UIColor blackColor].CGColor;
         self.layer.shadowOffset = CGSizeMake(0,10);
         self.layer.shadowOpacity = .55;
-
+        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(addVersion:) name:@"versionAdded" object:nil];
 
     }
     return self;
@@ -81,6 +77,12 @@
     
     
     return cell;
+}
+
+-(void)addVersion: (NSNotification*) version
+{
+    [self.versionData addObject:[version object]];
+    [self.versions reloadData];
 }
 
 

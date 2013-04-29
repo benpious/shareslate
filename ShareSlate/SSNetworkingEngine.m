@@ -15,11 +15,12 @@
         
         CFReadStreamRef readStream;
         CFWriteStreamRef writeStream;
+        
         NSLog(@"%@, %d", hostname, port);
         
         if ([hostname isEqual:@""]) {
             hostname = @"localhost";
-            //hostname = @"benpious.wv.cc.cmu.edu";
+            //hostname = @"128.237.191.52";
         }
         
         if (port == 0) {
@@ -101,12 +102,13 @@
     }
      */
     NSData* data = [NSJSONSerialization dataWithJSONObject:message options:0 error: &error];
-    if (data == nil) {
-        NSLog(@"data == nil");
-    }
+    //if (data == nil) {
+    //    NSLog(@"data == nil");
+    //}
     //NSLog(@"about to send");
     
 	[outputStream write:[data bytes] maxLength:[data length]];
+    //[NSJSONSerialization writeJSONObject:message toStream:outputStream options:0 error:&error];
 
 }
 
