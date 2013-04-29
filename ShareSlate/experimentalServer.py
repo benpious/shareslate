@@ -17,6 +17,20 @@ class Packet:
     timeStamp = ""
     success = False
 
+def seperateJSON(inString):
+    curlyDepth = 0
+    outString = ""
+    for c in inString:
+        outString += c
+        if(c == "{"):
+            curlyDepth += 1
+        elif(c == "}"):
+            curlyDepth -= 1
+
+        if(curlyDepth == 0):
+            outString += "\n"
+    return outString
+
 class PassMessage(Protocol):
     def connectionMade(self):
         print "connected"
@@ -28,10 +42,17 @@ class PassMessage(Protocol):
         self.factory.clients.remove(self)
     
     def dataReceived(self, data):
-        request = json.loads(data)
+        print "received data = <<<\"" + data + "\">>>"
+        sepdData = seperateJSON(data)
+        jsonList = sepdData.split("\n")
+        for reqStr in jsonList:
+            processRequest(reqStr)
+
+    def processRequest(reqStr):
+        print "processing req = <<<\"" + reqStr + "\">>>"
+        request = json.loads(reqStr)
         response = {}
         response["type"] = request["type"]
-
 
         if(request["type"] == "add"):
             self.factory.shapeArr.extend(request["data"])
