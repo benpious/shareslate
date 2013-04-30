@@ -17,7 +17,7 @@ class Packet:
     timeStamp = ""
     success = False
 
-def seperateJSON(inString):
+def separateJSON(inString):
     curlyDepth = 0
     outString = ""
     for c in inString:
@@ -29,6 +29,8 @@ def seperateJSON(inString):
 
         if(curlyDepth == 0):
             outString += "\n"
+    
+    outString = outString[:-1]
     return outString
 
 class PassMessage(Protocol):
@@ -43,12 +45,12 @@ class PassMessage(Protocol):
     
     def dataReceived(self, data):
         print "received data = <<<\"" + data + "\">>>"
-        sepdData = seperateJSON(data)
+        sepdData = separateJSON(data)
         jsonList = sepdData.split("\n")
         for reqStr in jsonList:
-            processRequest(reqStr)
+            self.processRequest(reqStr)
 
-    def processRequest(reqStr):
+    def processRequest(self, reqStr):
         print "processing req = <<<\"" + reqStr + "\">>>"
         request = json.loads(reqStr)
         response = {}
