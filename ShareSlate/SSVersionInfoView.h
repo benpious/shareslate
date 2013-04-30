@@ -13,4 +13,6 @@
 @property (retain) UITableView* versions;
 @property (retain) UIButton* saveButton;
 @property (retain) NSMutableArray* versionData;
+-(void)addVersion: (NSNotification*) version;
+
 @end

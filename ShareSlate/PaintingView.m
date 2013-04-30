@@ -174,6 +174,7 @@
         self.versionIndices =  [[NSMutableArray alloc] initWithCapacity:5] ;
         self.autoVersionTimer = [NSTimer timerWithTimeInterval: 2.0 target:self selector:@selector(addNewVersion:) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:self.autoVersionTimer forMode:NSDefaultRunLoopMode];
+        [notificationCenter addObserver:self selector:@selector(manuallyAddNewVersion:) name:@"saveVersion" object:nil];
     }
     
     
@@ -182,8 +183,27 @@
 
 -(void) addNewVersion: (NSTimer*) timer
 {
-    [self.versionIndices insertObject: [NSNumber numberWithLong:self.numBrushPoints] atIndex:0];
+    if (self.isActive) {
+        
+        
+        [self.versionIndices insertObject: [NSNumber numberWithLong:self.numBrushPoints] atIndex:0];
+        NSString* currDate =  [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+        [notificationCenter postNotification: [NSNotification notificationWithName:@"versionAdded" object: currDate]];
+    }
 }
+
+-(void) manuallyAddNewVersion: (NSNotification*) note
+{
+    if (self.isActive) {
+        
+        
+        [self.versionIndices insertObject: [NSNumber numberWithLong:self.numBrushPoints] atIndex:0];
+        NSString* currDate =  [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+        NSString* versionName = [NSString stringWithFormat:@"Milestone: %@" , currDate];
+        [notificationCenter postNotification: [NSNotification notificationWithName:@"versionAdded" object: versionName]];
+    }
+}
+
 
 -(void) revertToIndex: (NSNumber*) version
 {

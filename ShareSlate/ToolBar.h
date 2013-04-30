@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NPViewController.h"
 #import "SSEraserViewController.h"
+#import "SSVersionControlToolbarViewController.h"
 
 @interface ToolBar : UIView
 
@@ -32,6 +33,9 @@
 
 - (void) makeToolBar;
 -(void)revertToPreviousSelection: (NSNotification*) note;
+-(void) historySelected: (NSNotification*)note;
+
+@property(retain) UIPopoverController* versionControlPopOver;
 
 
 @end

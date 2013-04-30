@@ -31,6 +31,7 @@
         // this will create the toolbar
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"revertToPreviousSelection:") name:@"revertToOldSelection" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"historySelected" object:nil];
         
         [self  makeToolBar];
         [self makePopups];
@@ -105,7 +106,7 @@
 
 - (void) makePopups
 {
-    SegmentPopupArray_ = malloc(sizeof(UIViewController*) * 7);
+    SegmentPopupArray_ = malloc(sizeof(UIViewController*) * 8);
     
     SegmentPopupArray_[0] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
     SegmentPopupArray_[1] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
@@ -114,7 +115,8 @@
     SegmentPopupArray_[4] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
     SegmentPopupArray_[5] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
     SegmentPopupArray_[6] = [[SSEraserViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
-    
+    SegmentPopupArray_[7] = [[SSVersionControlToolbarViewController alloc] initWithNibName:@"SSVersionControlToolbarViewController" bundle:nil];
+
     
     [SegmentPopupArray_[0] setContentSizeForViewInPopover:CGSizeMake(225, 400)];
     [SegmentPopupArray_[1] setContentSizeForViewInPopover:CGSizeMake(225, 400)];
@@ -123,6 +125,7 @@
     [SegmentPopupArray_[4] setContentSizeForViewInPopover:CGSizeMake(225, 400)];
     [SegmentPopupArray_[5] setContentSizeForViewInPopover:CGSizeMake(225, 400)];
     [SegmentPopupArray_[6] setContentSizeForViewInPopover:CGSizeMake(225, 100)];
+    [SegmentPopupArray_[7] setContentSizeForViewInPopover:CGSizeMake(400, 100)];
 
     
 }
@@ -256,7 +259,7 @@
             [center postNotification: [NSNotification notificationWithName:@"imageSelected" object:nil]];
 
             //Action for eight toolbar item
-            
+
             break;
             
         }
@@ -264,9 +267,11 @@
         case 9:
             
         {
-            [center postNotification: [NSNotification notificationWithName:@"historySelected" object:nil]];
+            //[center postNotification: [NSNotification notificationWithName:@"historySelected" object:nil]];
+            self.versionControlPopOver = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[7]];
+            [self.versionControlPopOver presentPopoverFromRect: CGRectMake(50, (750/11)*9+45, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+
             //Action for ninth toolbar item;
-            
             break;
             
         }
@@ -288,8 +293,13 @@
             
     }
     
-} 
+}
 
+-(void) historySelected: (NSNotification*)note
+{
+    [self.versionControlPopOver dismissPopoverAnimated:NO];
+    [self.versionControlPopOver release];
+}
 
 -(void)revertToPreviousSelection: (NSNotification*) note
 {
