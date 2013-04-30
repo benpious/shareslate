@@ -17,11 +17,9 @@
     
     CGPoint    origin_;
     
-    UISegmentedControl*    SegmentedControl_;
-    
-    NSArray*    SegmentImageArray_;
-    
-    UIViewController** SegmentPopupArray_;
+    UIToolbar*    Toolbar_;
+        
+    UIViewController** PopupArray_;
     
     size_t prevSelectedIndex;
     
@@ -30,7 +28,7 @@
 
 
 - (id) initWithOrigin:(CGPoint) origin;
-
+- (void) selectBrush;
 - (void) makeToolBar;
 -(void)revertToPreviousSelection: (NSNotification*) note;
 -(void) historySelected: (NSNotification*)note;

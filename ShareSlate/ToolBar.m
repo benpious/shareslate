@@ -26,7 +26,7 @@
         
         origin = origin;
         
-        self.frame = CGRectMake(origin_.x, origin_.y, 40, 748);
+        self.frame = CGRectMake(0, 0, 40, 768);
         
         // this will create the toolbar
         
@@ -63,57 +63,155 @@
     UIImage* undo = [UIImage imageNamed:@"arrow-small-17.png"];
     UIImage* redo = [UIImage imageNamed:@"arrow-small-18.png"];
     
+    Toolbar_ = [[UIToolbar alloc]init];
+    Toolbar_.barStyle = UIBarStyleBlack;
+    Toolbar_.translucent = true;
     
-    SegmentImageArray_ = [NSArray arrayWithObjects:
-                          brush,
-                          eraser,
-                          image,
-                          undo,
-                          redo,
-                          history,
-                          settings, nil];
+    UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    SegmentedControl_ = [[UISegmentedControl alloc]initWithItems:SegmentImageArray_];
+    UIBarButtonItem *brushButton = [[UIBarButtonItem alloc]
+                                    initWithImage:brush
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(selectBrush)];
     
-    SegmentedControl_.frame = CGRectMake(0, 15, 748, 40);
+    UIBarButtonItem *eraserButton = [[UIBarButtonItem alloc]
+                                     initWithImage:eraser
+                                     style:UIBarButtonItemStylePlain
+                                     target:self
+                                     action:@selector(selectEraser)];
     
-    SegmentedControl_.segmentedControlStyle = UISegmentedControlStyleBezeled;
+    UIBarButtonItem *imageButton = [[UIBarButtonItem alloc]
+                                    initWithImage:image
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(selectImage)];
     
-    SegmentedControl_.momentary = 0;
+    UIBarButtonItem *undoButton = [[UIBarButtonItem alloc]
+                                   initWithImage:undo
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(selectUndo)];
     
-    [SegmentedControl_ addTarget:self action:@selector(SegmentControlAction:) forControlEvents:UIControlEventValueChanged];
+    UIBarButtonItem *redoButton = [[UIBarButtonItem alloc]
+                                   initWithImage:redo
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(selectRedo)];
+    
+    UIBarButtonItem *historyButton = [[UIBarButtonItem alloc]
+                                      initWithImage:history
+                                      style:UIBarButtonItemStylePlain
+                                      target:self
+                                      action:@selector(selectHistory)];
+    
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc]
+                                       initWithImage:settings
+                                       style:UIBarButtonItemStylePlain
+                                       target:self
+                                       action:@selector(selectSettings)];
     
     
     
-    // This is where you set your toolbar control
+    [Toolbar_ setItems:[NSArray arrayWithObjects:
+                        flexibleSpace,
+                        brushButton,
+                        flexibleSpace,
+                        eraserButton,
+                        flexibleSpace,
+                        imageButton,
+                        flexibleSpace,
+                        undoButton,
+                        flexibleSpace,
+                        redoButton,
+                        flexibleSpace,
+                        historyButton,
+                        flexibleSpace,
+                        settingsButton,
+                        flexibleSpace,
+                        nil]];
     
+    Toolbar_.frame = CGRectMake(0, 0, 768, 50);
     
-    
-    CGAffineTransform SegmentTransform =
-    
-    CGAffineTransformMake(0, 1, -1, 0, -348, 349);
-    
-    SegmentedControl_.transform = SegmentTransform;
-    
-    [self addSubview:SegmentedControl_];
-    
+    //Rotate toolbar
+    CGAffineTransform SegmentTransform = CGAffineTransformMake(0, 1, -1, 0, -360, 359);
+    Toolbar_.transform = SegmentTransform;
+
+    [self addSubview:Toolbar_];
 }
+
 
 - (void) makePopups
 {
-    SegmentPopupArray_ = malloc(sizeof(UIViewController*) * 3);
+    PopupArray_ = malloc(sizeof(UIViewController*) * 3);
     
-    SegmentPopupArray_[0] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
-    SegmentPopupArray_[1] = [[SSEraserViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
-    SegmentPopupArray_[2] = [[SSVersionControlToolbarViewController alloc] initWithNibName:@"SSVersionControlToolbarViewController" bundle:nil];
-
+    PopupArray_[0] = [[NPViewController alloc] initWithNibName:@"NPViewController" bundle:nil];
+    PopupArray_[1] = [[SSEraserViewController alloc] initWithNibName:@"EraserToolBarPalette" bundle:nil];
+    PopupArray_[2] = [[SSVersionControlToolbarViewController alloc] initWithNibName:@"SSVersionControlToolbarViewController" bundle:nil];
     
-    [SegmentPopupArray_[0] setContentSizeForViewInPopover:CGSizeMake(225, 400)];
-    [SegmentPopupArray_[1] setContentSizeForViewInPopover:CGSizeMake(225, 100)];
-    [SegmentPopupArray_[2] setContentSizeForViewInPopover:CGSizeMake(300, 100)];
-
     
+    [PopupArray_[0] setContentSizeForViewInPopover:CGSizeMake(225, 400)];
+    [PopupArray_[1] setContentSizeForViewInPopover:CGSizeMake(225, 100)];
+    [PopupArray_[2] setContentSizeForViewInPopover:CGSizeMake(300, 100)];
 }
+
+- (void) selectBrush
+{
+    [self selectBrush : PopupArray_[0] location: CGRectMake(50, 10, 0, 0)];
+    prevSelectedIndex = 0;
+}
+
+- (void) selectEraser
+{
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+
+    NSNumber* size = [NSNumber numberWithFloat: ((SSEraserViewController*) PopupArray_[1]).eraserSize.value];
+    
+    [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
+    [center postNotification: [NSNotification notificationWithName:@"brushSizeChanged" object: size]];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]]];
+    
+    UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: PopupArray_[1]];
+    [popOverController presentPopoverFromRect: CGRectMake(50, (750/7)*1+60, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+}
+
+- (void) selectImage
+{
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+
+    [center postNotification: [NSNotification notificationWithName:@"imageSelected" object:nil]];
+}
+
+- (void) selectUndo
+{
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+
+    [center postNotification: [NSNotification notificationWithName:@"undoSelected" object:nil]];
+}
+
+- (void) selectRedo
+{
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+
+    [center postNotification: [NSNotification notificationWithName:@"redoSelected" object:nil]];
+}
+
+- (void) selectHistory
+{
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+
+    self.versionControlPopOver = [[UIPopoverController alloc] initWithContentViewController: PopupArray_[2]];
+    [self.versionControlPopOver presentPopoverFromRect: CGRectMake(50, (750/7)*5+60, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [center postNotification: [NSNotification notificationWithName:@"disableBrush" object:nil]];
+}
+
+- (void) selectSettings
+{
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+
+    [center postNotification: [NSNotification notificationWithName:@"settingsSelected" object:nil]];
+}
+
 
 -(void) selectBrush: (UIViewController*) palette
            location: (CGRect) location
@@ -144,105 +242,6 @@
 }
 
 
-- (void) SegmentControlAction:(id) sender
-
-{
-    
-    UISegmentedControl *segmentedControl =
-    
-    (UISegmentedControl *)sender;
-    
-    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-    
-    
-    switch ([segmentedControl selectedSegmentIndex])
-    
-    {
-            
-        case 0:
-        //Brush
-        {
-            [self selectBrush : SegmentPopupArray_[0] location: CGRectMake(50, 10, 0, 0)];
-            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
-
-            break;
-            
-        }
-        case 1:
-        //Eraser
-        {
-            NSNumber* size = [NSNumber numberWithFloat: ((SSEraserViewController*) SegmentPopupArray_[1]).eraserSize.value];
-            
-            [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
-            [center postNotification: [NSNotification notificationWithName:@"brushSizeChanged" object: size]];
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]]];
-            
-            UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[1]];
-            [popOverController presentPopoverFromRect: CGRectMake(50, (750/7)*1+60, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-            
-            //Action for seventh toolbar item
-            prevSelectedIndex = [segmentedControl selectedSegmentIndex];
-
-            break;
-            
-        }
-            
-        case 2:
-        //Image
-        {
-            [center postNotification: [NSNotification notificationWithName:@"imageSelected" object:nil]];
-
-            //Action for eight toolbar item
-
-            break;
-            
-        }
-            
-        case 3:
-        // Undo
-        {
-            [center postNotification: [NSNotification notificationWithName:@"undoSelected" object:nil]];
-
-            break;
-        }
-        case 4:
-        // Redo
-        {
-            [center postNotification: [NSNotification notificationWithName:@"redoSelected" object:nil]];
-
-            break;
-        }
-        case 5:
-        //Version Control
-        {
-            //[center postNotification: [NSNotification notificationWithName:@"historySelected" object:nil]];
-            self.versionControlPopOver = [[UIPopoverController alloc] initWithContentViewController: SegmentPopupArray_[2]];
-            [self.versionControlPopOver presentPopoverFromRect: CGRectMake(50, (750/7)*5+60, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-
-            //Action for ninth toolbar item;
-            break;
-            
-        }
-            
-        case 6:
-        //Settings
-        {
-            
-            //Action for tenth toolbar item
-            [center postNotification: [NSNotification notificationWithName:@"settingsSelected" object:nil]];
-            
-            break;
-            
-        }
-            
-        default:
-            
-            break;
-            
-    }
-    
-}
-
 -(void) historySelected: (NSNotification*)note
 {
     [self.versionControlPopOver dismissPopoverAnimated:NO];
@@ -251,21 +250,17 @@
 
 -(void)revertToPreviousSelection: (NSNotification*) note
 {
-    SegmentedControl_.selectedSegmentIndex = prevSelectedIndex;
+    //SegmentedControl_.selectedSegmentIndex = prevSelectedIndex;
 }
 
 - (void)dealloc 
 
 {
     
-    [SegmentedControl_ release];
+    [Toolbar_ release];
     
-    SegmentedControl_ = nil;
-    
-    [SegmentImageArray_ release];
-    
-    SegmentImageArray_ = nil;
-    
+    Toolbar_ = nil;
+        
     [super dealloc];
     
 }
