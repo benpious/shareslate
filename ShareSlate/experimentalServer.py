@@ -29,6 +29,8 @@ def seperateJSON(inString):
 
         if(curlyDepth == 0):
             outString += "\n"
+    
+    outString = outString[:-2]
     return outString
 
 class PassMessage(Protocol):
