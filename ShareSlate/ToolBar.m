@@ -271,7 +271,7 @@
 -(void) brushColorChanged: (NSNotification*) note
 {
     UIColor* color = (UIColor*)(note.object);
-    brushButton.tintColor = [self lightenColor:color byPercentage:150];
+    brushButton.tintColor = [self lightenColor:color byPercentage:50];
 }
 
 -(void) historySelected: (NSNotification*)note
