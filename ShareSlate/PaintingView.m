@@ -173,7 +173,7 @@
         self.colorForBrushPoints = malloc(sizeof(colorData) * self.brushPointsCapacity);
         self.versionIndices =  [[NSMutableArray alloc] initWithCapacity:5] ;
         self.autoVersionTimer = [NSTimer timerWithTimeInterval: 2.0 target:self selector:@selector(addNewVersion:) userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:self.autoVersionTimer forMode:NSDefaultRunLoopMode];
+        //[[NSRunLoop mainRunLoop] addTimer:self.autoVersionTimer forMode:NSDefaultRunLoopMode];
         [notificationCenter addObserver:self selector:@selector(manuallyAddNewVersion:) name:@"saveVersion" object:nil];
     }
     
