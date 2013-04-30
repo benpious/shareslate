@@ -157,7 +157,7 @@
 
 - (void) selectBrush
 {
-    [self selectBrush : PopupArray_[0] location: CGRectMake(50, 10, 0, 0)];
+    [self selectBrush : PopupArray_[0] location: CGRectMake(50, 85, 0, 0)];
     prevSelectedIndex = 0;
 }
 
@@ -172,7 +172,7 @@
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]]];
     
     UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: PopupArray_[1]];
-    [popOverController presentPopoverFromRect: CGRectMake(50, (750/7)*1+60, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [popOverController presentPopoverFromRect: CGRectMake(50, (768/7)*1+75, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
 - (void) selectImage
@@ -201,7 +201,7 @@
     NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
 
     self.versionControlPopOver = [[UIPopoverController alloc] initWithContentViewController: PopupArray_[2]];
-    [self.versionControlPopOver presentPopoverFromRect: CGRectMake(50, (750/7)*5+60, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self.versionControlPopOver presentPopoverFromRect: CGRectMake(50, (768/7)*5+35, 0, 0)  inView: self permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     [center postNotification: [NSNotification notificationWithName:@"disableBrush" object:nil]];
 }
 
