@@ -46,9 +46,9 @@ class PassMessage(Protocol):
         sepdData = seperateJSON(data)
         jsonList = sepdData.split("\n")
         for reqStr in jsonList:
-            processRequest(reqStr)
+            self.processRequest(reqStr)
 
-    def processRequest(reqStr):
+    def processRequest(self, reqStr):
         print "processing req = <<<\"" + reqStr + "\">>>"
         request = json.loads(reqStr)
         response = {}
