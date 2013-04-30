@@ -547,7 +547,10 @@
     
     if (self.drawingImages) {
         [self renderImageFrom: location];
-        NSString* coords = [[NSString alloc] initWithFormat:@"i:%f:%fC", location.x, location.y];
+        //NSString* coords = [[NSString alloc] initWithFormat:@"i:%f:%fC", location.x, location.y];
+        
+        NSArray* coords = @[[NSNumber numberWithFloat: location.x] , [NSNumber numberWithFloat: location.y], [NSNumber numberWithFloat: location.x] , [NSNumber numberWithFloat: location.y]];
+        
         [notificationCenter postNotification: [NSNotification notificationWithName:@"imageDrawingEvent" object:coords ]];
 
         return;
@@ -584,7 +587,8 @@
 	}
 		
 	// Render the stroke
-    NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%fC", previousLocation.x, previousLocation.y, location.x, location.y];
+    //NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%fC", previousLocation.x, previousLocation.y, location.x, location.y];
+    NSArray* coords = @[[NSNumber numberWithFloat: previousLocation.x] , [NSNumber numberWithFloat: previousLocation.y], [NSNumber numberWithFloat: location.x] , [NSNumber numberWithFloat: location.y]];
     [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
 
 	[self renderLineFromPoint:previousLocation toPoint:location];

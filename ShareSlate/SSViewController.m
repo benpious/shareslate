@@ -110,7 +110,7 @@
         for (NSDictionary* currShape in shapeData) {
             if ([[currShape objectForKey:@"type"] isEqual:@"brushStroke"]) {
                 NSArray* coords = [currShape objectForKey: @"positions"];
-                [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:1] floatValue], [[coords objectAtIndex:2] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:3] floatValue], [[coords objectAtIndex:4] floatValue])];
+                [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:0] floatValue], [[coords objectAtIndex:1] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:2] floatValue], [[coords objectAtIndex:3] floatValue])];
             }
         }
     }
