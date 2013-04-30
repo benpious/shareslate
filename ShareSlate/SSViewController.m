@@ -218,7 +218,7 @@
     
     UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: mediaUI];
     
-    [popOverController presentPopoverFromRect: CGRectMake(0, (750/11)*8+10, 50, 50)  inView: self.container permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [popOverController presentPopoverFromRect: CGRectMake(0, (750/7)*2+30, 50, 50)  inView: self.container permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     
     return YES;
 }
