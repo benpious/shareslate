@@ -18,7 +18,8 @@
     CGPoint    origin_;
     
     UIToolbar*    Toolbar_;
-        
+    UIBarButtonItem *brushButton;
+    
     UIViewController** PopupArray_;
     
     size_t prevSelectedIndex;
@@ -30,6 +31,7 @@
 - (id) initWithOrigin:(CGPoint) origin;
 - (void) selectBrush;
 - (void) makeToolBar;
+-(void) brushColorChanged: (NSNotification*) note;
 -(void)revertToPreviousSelection: (NSNotification*) note;
 -(void) historySelected: (NSNotification*)note;
 

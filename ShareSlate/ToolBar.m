@@ -32,6 +32,8 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"revertToPreviousSelection:") name:@"revertToOldSelection" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"historySelected:") name:@"historySelected" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(@"brushColorChanged:") name:@"brushColorChanged" object:nil];
+
         
         [self  makeToolBar];
         [self makePopups];
@@ -42,15 +44,7 @@
     
 }
 
-- (UIImage *)imageWithImage:(UIImage *)image
-               scaledToSize:(CGSize)newSize
-{
-    UIGraphicsBeginImageContext(newSize);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
+
 
 - (void) makeToolBar
 
@@ -67,13 +61,18 @@
     Toolbar_.barStyle = UIBarStyleBlack;
     Toolbar_.translucent = true;
     
-    UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    UIBarButtonItem *brushButton = [[UIBarButtonItem alloc]
-                                    initWithImage:brush
-                                    style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(selectBrush)];
+    UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+   
+    
+    brushButton = [[UIBarButtonItem alloc]
+                   initWithImage:brush
+                   style:UIBarButtonItemStylePlain
+                   target:self
+                   action:@selector(selectBrush)];
+    
+    brushButton.tintColor = [UIColor blackColor];
+    
     
     UIBarButtonItem *eraserButton = [[UIBarButtonItem alloc]
                                      initWithImage:eraser
@@ -129,7 +128,8 @@
                         flexibleSpace,
                         settingsButton,
                         flexibleSpace,
-                        nil]];
+                        nil]
+              animated:YES];
     
     Toolbar_.frame = CGRectMake(0, 0, 768, 50);
     
@@ -241,6 +241,11 @@
     
 }
 
+-(void) brushColorChanged: (NSNotification*) note
+{
+    UIColor* color = (UIColor*)(note.object);
+    brushButton.tintColor = color;
+}
 
 -(void) historySelected: (NSNotification*)note
 {

@@ -53,8 +53,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(void)NPColorPickerView:(NPColorPickerView *)view didSelectColor:(UIColor *)color {
-   [[self colorQuadView] pushColor:color];
+    [[self colorQuadView] pushColor:color];
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object:colorPickerView.color]];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"brushColorChanged" object: colorPickerView.color]];
 
 }
 
