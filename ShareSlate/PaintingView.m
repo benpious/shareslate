@@ -175,6 +175,10 @@
         self.autoVersionTimer = [NSTimer timerWithTimeInterval: 2.0 target:self selector:@selector(addNewVersion:) userInfo:nil repeats:YES];
         //[[NSRunLoop mainRunLoop] addTimer:self.autoVersionTimer forMode:NSDefaultRunLoopMode];
         [notificationCenter addObserver:self selector:@selector(manuallyAddNewVersion:) name:@"saveVersion" object:nil];
+        [notificationCenter addObserver:self selector:@selector(undoSelected:) name:@"undoSelected" object:nil];
+        
+        self.undoStack = malloc(sizeof(node));
+        self.undoStack[0].index = 0;
     }
     
     
@@ -204,6 +208,12 @@
     }
 }
 
+-(void) undoSelected: (NSNotification*) note
+{
+    self.numBrushPoints = self.undoStack->index;
+    [self renderLines];
+    self.undoStack =  pop(self.undoStack);
+}
 
 -(void) revertToIndex: (NSNumber*) version
 {
@@ -314,6 +324,11 @@
 - (void) renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end
 {
 
+    
+    node* currIndex = malloc(sizeof(node));
+    currIndex->index = self.numBrushPoints;
+    self.undoStack =  push(currIndex, self.undoStack);
+
 	NSUInteger			vertexCount = 0,
 						count,
 						i;
@@ -383,6 +398,7 @@
 	// Display the buffer
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
+    
      
 
 }
@@ -745,5 +761,30 @@
     
     return imageViews;
 }
+
+#pragma mark stack methods
+
+node* push(node* newHead, node* oldHead) {
+	
+        
+    newHead->next = oldHead;
+    
+	return newHead;
+}
+
+
+/*
+ this method is somewhat misnamed -- doesn't actually return the head, but rather a pointer to the next node
+ so that it can be assigned as the next head
+ also note that this does not free the heads coords -- this must be done elsewere -- this is to prevent
+ freeing memory which is already in use
+ */
+node* pop(node* head) {
+	
+	node* toReturn = head->next;
+    free(head);
+	return toReturn;
+}
+
 
 @end

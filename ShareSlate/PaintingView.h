@@ -76,6 +76,14 @@ typedef struct {
     
 } colorData;
 
+typedef struct node node;
+
+struct node{
+	long index;
+	node* next;
+};
+
+
 //CLASS INTERFACES:
 
 @interface PaintingView : UIView
@@ -117,6 +125,7 @@ typedef struct {
 @property (assign) long brushPointsCapacity;
 @property (retain) NSMutableArray* versionIndices;
 @property (retain) NSTimer* autoVersionTimer;
+@property (assign) node* undoStack;
 
 -(void) revertToIndex: (NSNumber*) version;
 - (void)erase;
@@ -126,6 +135,7 @@ typedef struct {
 -(void) setPointSize:(float) pointsize;
 -(NSMutableArray*) makeVersionPreviews;
 -(void) manuallyAddNewVersion: (NSNotification*) note;
+-(void) undoSelected: (NSNotification*) note;
 
 
 
