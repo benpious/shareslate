@@ -133,11 +133,13 @@ struct node{
 - (void)erase;
 - (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
 - (void) renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end;
+- (void) renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end withColor: (NSArray*) RGB withBrushSize: (float) brushSize;
 -(void) renderImageFrom: (CGPoint) start;
 -(void) setPointSize:(float) pointsize;
 -(NSMutableArray*) makeVersionPreviews;
 -(void) manuallyAddNewVersion: (NSNotification*) note;
 -(void) undoSelected: (NSNotification*) note;
+-(NSArray*) currBrushColor;
 
 
 

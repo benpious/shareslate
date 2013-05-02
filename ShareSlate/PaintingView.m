@@ -326,6 +326,21 @@
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
 }
 
+//setting view properties here is probably a really, really bad idea
+- (void) renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end withColor: (NSArray*) RGB withBrushSize: (float) brushSize
+{
+    float oldBrushSize = self.brushSize;
+    self.brushSize = brushSize;
+    glPointSize(self.brushSize);
+    colorData oldCurrColor = *(self.currColor);
+    [self setBrushColorWithRed: [((NSNumber*)[RGB objectAtIndex: 0]) floatValue ]   green:[((NSNumber*)[RGB objectAtIndex: 1]) floatValue] blue:[((NSNumber*)[RGB objectAtIndex: 2]) floatValue]];
+    [self renderLineFromPoint:start toPoint:end];
+    
+    self.brushSize = oldBrushSize;
+    glPointSize(self.brushSize);
+    [self setBrushColorWithRed:oldCurrColor.r green:oldCurrColor.g blue:oldCurrColor.b];
+}
+
 // Draws a line onscreen based on where the user touches
 /*
     This method records the touches twice -- once to draw the first time, and 
@@ -348,8 +363,6 @@
 
     if(vertexBuffer == NULL)
 		vertexBuffer = malloc(vertexMax * 2 * sizeof(GLfloat));
-
-	
 
 	// Convert locations from Points to Pixels
 	CGFloat scale = self.contentScaleFactor;
@@ -615,7 +628,7 @@
 	// Render the stroke
     //NSString* coords = [[NSString alloc] initWithFormat:@"b:%f:%f:%f:%fC", previousLocation.x, previousLocation.y, location.x, location.y];
     NSArray* coords = @[[NSNumber numberWithFloat: previousLocation.x] , [NSNumber numberWithFloat: previousLocation.y], [NSNumber numberWithFloat: location.x] , [NSNumber numberWithFloat: location.y]];
-    [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords ]];
+    [notificationCenter postNotification: [NSNotification notificationWithName:@"drawingEvent" object:coords]];
 
 	[self renderLineFromPoint:previousLocation toPoint:location];
 }
@@ -671,6 +684,10 @@
     self.currColor->a = kBrushOpacity;
 }
 
+-(NSArray*) currBrushColor
+{
+    return @[[NSNumber numberWithFloat:self.currColor->r], [NSNumber numberWithFloat:self.currColor->g] , [NSNumber numberWithFloat:self.currColor->b]];
+}
 
 -(GLfloat*) populateArraysWithScaleFactor: (GLfloat) scaleFactor xOffset: (GLfloat) xOffset yOffset: (GLfloat) yOffset withScreenSize: (CGRect) screenSize CGImage: (CGImageRef) ref
 {

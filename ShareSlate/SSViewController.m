@@ -60,7 +60,7 @@
     //NSString* coordData = [note object];
     //NSLog(@"sendpaint called");
     //placeholders for color and linesize
-    NSDictionary* brushData = @{@"type": @"brushStroke", @"color" : @0.0, @"positions" : [note object], @"lineSize" : @0.0};
+    NSDictionary* brushData = @{@"type": @"brushStroke", @"color" : [self.paintView  currBrushColor] , @"positions" : [note object], @"lineSize" : [NSNumber numberWithFloat: self.paintView.brushSize]};
     NSDictionary* toSend = @{@"type": @"add", @"data": @[brushData]};
     
     [networkingEngine sendMessage: toSend];
@@ -77,7 +77,7 @@
 
 -(void) propogatePaint: (NSNotification*) note
 {
-    NSLog(@"propogate paint");
+    //NSLog(@"propogate paint");
     /*
     NSString* coordData = [note object];
     NSArray* strokes = [coordData componentsSeparatedByString:@"C"];
@@ -110,7 +110,9 @@
         for (NSDictionary* currShape in shapeData) {
             if ([[currShape objectForKey:@"type"] isEqual:@"brushStroke"]) {
                 NSArray* coords = [currShape objectForKey: @"positions"];
-                [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:0] floatValue], [[coords objectAtIndex:1] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:2] floatValue], [[coords objectAtIndex:3] floatValue])];
+                NSArray* colors = [currShape objectForKey:@"color"];
+                NSNumber* size = [currShape objectForKey:@"lineSize"];
+                [self.paintView renderLineFromPoint: CGPointMake([[coords objectAtIndex:0] floatValue], [[coords objectAtIndex:1] floatValue]) toPoint: CGPointMake([[coords objectAtIndex:2] floatValue], [[coords objectAtIndex:3] floatValue]) withColor:colors withBrushSize:[size floatValue] ];
             }
         }
     }
