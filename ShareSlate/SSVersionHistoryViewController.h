@@ -12,5 +12,5 @@
 -(id) initWithArray: (NSArray*) viewControllerArray;
 -(void) historySelected;
 -(void) setUpViewControllers;
-
+-(void)backPressed: (UIEvent*) event;
 @end

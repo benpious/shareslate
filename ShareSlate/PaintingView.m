@@ -208,6 +208,8 @@
     }
 }
 
+
+//presently this can create issues when used in concert with reverting
 -(void) undoSelected: (NSNotification*) note
 {
     self.numBrushPoints = self.undoStack->index;
@@ -450,7 +452,6 @@
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
     glDisableClientState(GL_COLOR_ARRAY);
         
-    //CGImageRef imgRef = CGBitmapContextCreateImage(context);
     
     
     NSInteger dataLength = width * height * 4;
@@ -477,7 +478,6 @@
     CGImageRelease(iref);
 
     
-    //return [[UIImage alloc] initWithCGImage:imgRef];
     return image;
 }
 
@@ -776,8 +776,6 @@ node* push(node* newHead, node* oldHead) {
 /*
  this method is somewhat misnamed -- doesn't actually return the head, but rather a pointer to the next node
  so that it can be assigned as the next head
- also note that this does not free the heads coords -- this must be done elsewere -- this is to prevent
- freeing memory which is already in use
  */
 node* pop(node* head) {
 	

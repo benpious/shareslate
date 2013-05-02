@@ -35,6 +35,17 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"Cancel" forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    button.frame = CGRectMake(1024 - 350, 20, 100, 50);
+    
+    button.layer.shadowColor = [UIColor blackColor].CGColor;
+    button.layer.shadowOffset = CGSizeMake(0,10);
+    button.layer.shadowOpacity = .55;
+    [button addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+    
 }
 
 -(void) setUpViewControllers
@@ -221,6 +232,12 @@
 {
     UITouch* aTouch = [touches anyObject];
     self.lastTouch = [aTouch locationInView:nil];
+}
+
+-(void)backPressed: (UIEvent*) event
+{
+    [self moveToIndex:0];
+    [self selectCurrViewController];
 }
 
 -(void) dealloc
