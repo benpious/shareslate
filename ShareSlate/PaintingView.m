@@ -213,8 +213,13 @@
 -(void) undoSelected: (NSNotification*) note
 {
     self.numBrushPoints = self.undoStack->index;
+    //if we're at zero there is nothing to undo
+    if (self.undoStack->index != 0) {
+        self.undoStack =  pop(self.undoStack);
+    }
+    
     [self renderLines];
-    self.undoStack =  pop(self.undoStack);
+
 }
 
 -(void) revertToIndex: (NSNumber*) version
@@ -325,11 +330,6 @@
  */
 - (void) renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end
 {
-
-    
-    node* currIndex = malloc(sizeof(node));
-    currIndex->index = self.numBrushPoints;
-    self.undoStack =  push(currIndex, self.undoStack);
 
 	NSUInteger			vertexCount = 0,
 						count,
@@ -622,6 +622,10 @@
         
         return;
     }
+    
+    node* currIndex = malloc(sizeof(node));
+    currIndex->index = self.numBrushPoints;
+    self.undoStack =  push(currIndex, self.undoStack);
     
 	CGRect				bounds = [self bounds];
     UITouch*	touch = [[event touchesForView:self] anyObject];
