@@ -154,6 +154,19 @@
 {
     CGRect bounds = [self.view bounds];
 
+    
+    if (self.selectedIndex !=0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Revert to this version?"
+                                                        message:@"Reverting will propogate changes to all other users."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles: @"Cancel" , nil];
+        [alert show];
+        [alert release];
+        return;
+
+    }
+    
     [UIView animateWithDuration:1.0 animations:^{
         int i = 0;
         for (UIViewController* currController in self.viewControllers) {
@@ -172,6 +185,36 @@
                          
                          [self.center postNotificationName:@"viewSelected" object: [NSNumber numberWithInt:self.selectedIndex]];
                      }];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        
+        CGRect bounds = [self.view bounds];
+
+        [UIView animateWithDuration:1.0 animations:^{
+            int i = 0;
+            for (UIViewController* currController in self.viewControllers) {
+                
+                if (i != self.selectedIndex) {
+                    [currController.view.layer setOpacity:0.0];
+                }
+                else {
+                    currController.view.layer.transform =  CATransform3DTranslate(CATransform3DMakeScale(1.0, 1.0, 1.0), -bounds.size.width/4, 0.0, 0.0);
+                }
+                
+                i++;
+            }
+        }
+                         completion:^(BOOL complete) {
+                             
+                             [self.center postNotificationName:@"viewSelected" object: [NSNumber numberWithInt:self.selectedIndex]];
+                         }];
+
+    }
+    
 }
 
 //in the interest of proper attribution, I got this from: http://watchingapple.com/2008/04/core-animation-3d-perspective/
