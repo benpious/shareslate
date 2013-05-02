@@ -655,9 +655,9 @@
 			  green * kBrushOpacity,
 			  blue	* kBrushOpacity,
 			  kBrushOpacity);
-    self.currColor->r = red;
-    self.currColor->g = green;
-    self.currColor->b = blue;
+    self.currColor->r = red * kBrushOpacity;
+    self.currColor->g = green * kBrushOpacity;
+    self.currColor->b = blue * kBrushOpacity;
     self.currColor->a = kBrushOpacity;
 }
 
@@ -717,6 +717,7 @@
 
 -(void) setPointSize:(float) pointsize
 {
+    NSLog(@"set point size");
     glPointSize(pointsize / kBrushScale);
 }
 

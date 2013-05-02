@@ -163,7 +163,7 @@
     NSNumber* size = [NSNumber numberWithFloat: ((SSEraserViewController*) PopupArray_[1]).eraserSize.value];
     
     [center postNotification: [NSNotification notificationWithName:@"brushSelected" object:nil]];
-    [center postNotification: [NSNotification notificationWithName:@"brushSizeChanged" object: size]];
+    //[center postNotification: [NSNotification notificationWithName:@"brushSizeChanged" object: size]];
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]]];
     
     UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController: PopupArray_[1]];
@@ -222,12 +222,12 @@
     
     if(color != NULL){
         [center postNotification:[NSNotification notificationWithName:@"colorChanged" object: color]];
-        [center postNotification: [NSNotification notificationWithName:@"brushSizeChanged" object: size]];
+        //[center postNotification: [NSNotification notificationWithName:@"brushSizeChanged" object: size]];
         [center postNotification: [NSNotification notificationWithName:@"brushSizeChangesEnded" object: nil]];
     } else {
         //DEFAULT
         [center postNotification:[NSNotification notificationWithName:@"colorChanged" object: [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0]]];
-        [center postNotification:[NSNotification notificationWithName:@"brushSizeChanged" object: [NSNumber numberWithFloat: 0.25]]];
+        //[center postNotification:[NSNotification notificationWithName:@"brushSizeChanged" object: [NSNumber numberWithFloat: 0.25]]];
         [center postNotification: [NSNotification notificationWithName:@"brushSizeChangesEnded" object: nil]];
     }
     
