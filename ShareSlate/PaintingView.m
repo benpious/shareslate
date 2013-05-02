@@ -169,6 +169,7 @@
         
         self.brushPointsCapacity = 1000;
 
+        self.sizeForBrushPoints = malloc(sizeof(float) * self.brushPointsCapacity);
         self.brushPoints = malloc(sizeof(pointData) * self.brushPointsCapacity);
         self.colorForBrushPoints = malloc(sizeof(colorData) * self.brushPointsCapacity);
         self.versionIndices =  [[NSMutableArray alloc] initWithCapacity:5] ;
@@ -176,6 +177,8 @@
         //[[NSRunLoop mainRunLoop] addTimer:self.autoVersionTimer forMode:NSDefaultRunLoopMode];
         [notificationCenter addObserver:self selector:@selector(manuallyAddNewVersion:) name:@"saveVersion" object:nil];
         [notificationCenter addObserver:self selector:@selector(undoSelected:) name:@"undoSelected" object:nil];
+        
+        self.brushSize = width/kBrushScale;
         
         self.undoStack = malloc(sizeof(node));
         self.undoStack[0].index = 0;
@@ -375,6 +378,7 @@
             self.brushPointsCapacity = 2 * self.brushPointsCapacity;
             self.brushPoints = realloc(self.brushPoints, self.brushPointsCapacity * sizeof(pointData));
             self.colorForBrushPoints = realloc(self.colorForBrushPoints, self.brushPointsCapacity * sizeof(colorData));
+            self.sizeForBrushPoints = realloc(self.sizeForBrushPoints, self.brushPointsCapacity * sizeof(float));
 		}
         
         pointData* curr = malloc(sizeof(pointData));
@@ -388,6 +392,7 @@
         self.brushPoints[self.numBrushPoints] = *curr;
         free(curr);
         self.colorForBrushPoints[self.numBrushPoints] = *currColor;
+        self.sizeForBrushPoints[self.numBrushPoints] = self.brushSize;
         free(currColor);
         self.numBrushPoints+=1;
         
@@ -410,7 +415,7 @@
     
     [EAGLContext setCurrentContext: context];
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
-    
+    glEnableClientState(GL_POINT_SIZE_ARRAY_OES);
     glEnableClientState(GL_COLOR_ARRAY);
     glBindTexture(GL_TEXTURE_2D, brushTexture);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -419,12 +424,14 @@
     // Render the vertex array
     glColorPointer(4, GL_FLOAT, sizeof(colorData), self.colorForBrushPoints);
 	glVertexPointer(2, GL_FLOAT, sizeof(pointData), self.brushPoints);
+    glPointSizePointerOES(GL_FLOAT, 0, self.sizeForBrushPoints);
 	glDrawArrays(GL_POINTS, 0, self.numBrushPoints);
     
 	// Display the buffer
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
     glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_POINT_SIZE_ARRAY_OES);
 }
 
 -(UIImage*) renderLinesFromIndex: (NSNumber*) index
@@ -438,7 +445,7 @@
     float width = self.frame.size.width;
     float height = self.frame.size.height;
 
-    
+    glEnableClientState(GL_POINT_SIZE_ARRAY_OES);
     glEnableClientState(GL_COLOR_ARRAY);
     glBindTexture(GL_TEXTURE_2D, brushTexture);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -446,12 +453,15 @@
     // Render the vertex array
     glColorPointer(4, GL_FLOAT, sizeof(colorData), self.colorForBrushPoints);
 	glVertexPointer(2, GL_FLOAT, sizeof(pointData), self.brushPoints);
+    glPointSizePointerOES(GL_FLOAT, 0, self.sizeForBrushPoints);
 	glDrawArrays(GL_POINTS, 0, index.intValue);
 	// Display the buffer
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
     glDisableClientState(GL_COLOR_ARRAY);
-        
+    glDisableClientState(GL_POINT_SIZE_ARRAY_OES);
+
+    
     
     
     NSInteger dataLength = width * height * 4;
@@ -719,6 +729,7 @@
 {
     NSLog(@"set point size");
     glPointSize(pointsize / kBrushScale);
+    self.brushSize = pointsize/kBrushScale;
 }
 
 /*

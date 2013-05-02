@@ -118,6 +118,7 @@ struct node{
 @property (assign) BOOL drawingImages;
 
 //version control/undo/redo support
+@property (assign) float* sizeForBrushPoints;
 @property (assign) colorData* currColor;
 @property (assign) colorData* colorForBrushPoints;
 @property (assign) pointData* brushPoints;
@@ -126,6 +127,7 @@ struct node{
 @property (retain) NSMutableArray* versionIndices;
 @property (retain) NSTimer* autoVersionTimer;
 @property (assign) node* undoStack;
+@property (assign) float brushSize;
 
 -(void) revertToIndex: (NSNumber*) version;
 - (void)erase;
